@@ -1,0 +1,15 @@
+<div class="row product-row">
+  <% @products.each do |product| %>
+    <div class="col md-4">
+      <ul style="list-style: none;">
+        <%= link_to product_path(product) do %> 
+          <li><%= image_tag product.picture_url, class: 'product-image thumbnail' %></li>
+          <li><h3><%= product.name %></h3></li>
+        <% end %> 
+
+        <li><h3>Price: <%= number_to_currency(product.price) %></h3></li>
+        <li><h3>Stock: <%= product.stock %></h3></li>
+      </ul>
+    </div>
+  <% end %> 
+</div>
