@@ -7,6 +7,6 @@ before_action only: [:show, :edit, :update] { @product = Product.find(params[:id
   end
 
   def show
-    
+    @review = Review.new(product_id: @product.id)
   end
 end

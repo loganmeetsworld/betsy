@@ -1,10 +1,30 @@
-<h2><%= @product.name %></h2>
-<div class="img-responsive img-rounded">
-  <%= link_to product_path(@product) do %>
-    <%= image_tag @product.picture_url %>
-  <% end %>
-</div>
-<div>
-  <h3>Description</h3>
-  <p><%= @product.description %></p>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="img-responsive img-rounded">
+      <%= link_to product_path(@product) do %>
+        <%= image_tag @product.picture_url %>
+      <% end %>
+    </div>
+    <p><%= @product.description %></p>
+    <div>
+      <h4>Review this item</h4>
+      <%= form_for [@review], class: "form-group" do |f| %>
+        <h5>Rating:</h5>
+        <% (1..5).each do |num| %>
+          <%= f.label :rating, render_stars(num), class: "radio-inline" %>
+          <%= f.radio_button :rating, num %>
+        <% end %>
+        <br><br>
+        <h5><%= f.label :comment, "Write Your Own Review:" %></h5>
+        <%= f.text_area :comment, class: "form-control" %><br>
+    <%= f.submit "Submit", class: "btn btn-default" %>
+    <% end %>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <h2><%= @product.name %></h2>
+    <h5><%= number_to_currency(@product.price) %></h5>
+    <h5><%= @product.stock %> in stock</h5>
+    <h4>Add to cart!</h4>
+  </div>
 </div>
