@@ -1,1 +1,16 @@
-<h1>Your current order has <%= @current_order.orderitems.count %> item<%= "s" if @current_order.orderitems.count != 1 %></h1>
+<h1>Items in your cart</h1>
+
+<% if @current_order.orderitems.count > 0 %>
+  <h2>Your current order has <%= @current_order.orderitems.count %> item<%= "s" if @current_order.orderitems.count != 1 %></h2>
+  <table class="table">
+    <% @current_order.orderitems.each do |item| %>
+      <tr>
+        <td>
+          <%= item.product_id.name %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <h2>No items yet! Keep shopping!</h2>
+<% end %>
