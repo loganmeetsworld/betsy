@@ -4,7 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :current_order
+  before_action :find_categories
+  before_action :find_robots
 
+  def find_categories
+    @categories = Category.all
+  end
+
+  def find_robots
+    @robots = Robot.all
+  end
+  
   def current_order
     return @current_order if @current_order
     if session[:order_id]

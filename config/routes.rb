@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :products do
-    resources :categories
+    resources :reviews
   end
+
+  resources :categories only: [:new, :create]
 
   resources :robots
 
