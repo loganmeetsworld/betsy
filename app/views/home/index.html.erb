@@ -1,3 +1,5 @@
+<%= render 'shared/header' %>
+
 <div class="row product-row">
   <% @products.each do |product| %>
     <div class="col md-4">
@@ -9,6 +11,7 @@
 
         <li><h3>Price: <%= number_to_currency(product.price) %></h3></li>
         <li><h3>Stock: <%= product.stock %></h3></li>
+        <li><h3>Categories: <%= product.categories %></h3></li>
       </ul>
     </div>
   <% end %> 
