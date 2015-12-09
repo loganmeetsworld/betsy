@@ -1,0 +1,10 @@
+<h2><%= @product.name %></h2>
+<div class="img-responsive img-rounded">
+  <%= link_to product_path(@product) do %>
+    <%= image_tag @product.picture_url %>
+  <% end %>
+</div>
+<div>
+  <h3>Description</h3>
+  <p><%= @product.description %></p>
+</div>
