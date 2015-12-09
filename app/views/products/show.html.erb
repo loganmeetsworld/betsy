@@ -1,3 +1,7 @@
+<% if !flash.now[:success].nil? %>
+  <%= flash[:succes] %>
+<% end %>
+
 <div class="row">
   <div class="col-sm-8">
     <div class="img-responsive img-rounded">
@@ -8,10 +12,10 @@
     <p><%= @product.description %></p>
     <div>
       <h4>Review this item</h4>
-      <%= form_for [@review], class: "form-group" do |f| %>
+      <%= form_for [@review], url: { action: "create"}, class: "form-group" do |f| %>
         <h5>Rating:</h5>
         <% (1..5).each do |num| %>
-          <%= f.label :rating, render_stars(num), class: "radio-inline" %>
+          <%= f.label :rating, render_stars(num), class: "radio-inline star" %>
           <%= f.radio_button :rating, num %>
         <% end %>
         <br><br>
@@ -26,5 +30,11 @@
     <h5><%= number_to_currency(@product.price) %></h5>
     <h5><%= @product.stock %> in stock</h5>
     <h4>Add to cart!</h4>
+    <%= form_for @order_item, url: {controller: :orderitems, action: :add_to_cart, method: :patch}, class: "form-group" do |f| %>
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity %>
+      <% f.hidden_field :product_id, :value => @product.id %>
+    <%= f.submit "Add", class: "btn btn-default" %>
+    <% end %>
   </div>
 </div>
