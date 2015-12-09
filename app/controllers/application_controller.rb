@@ -3,9 +3,16 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :create_order
+  before_action :current_order
 
-  def create_order
-    session[:order] ||= Order.new(status: "pending")
+  def current_order
+    return @current_order if @current_order
+    if session[:order_id]
+      @current_order = Order.find(session[:order_id])
+    else
+      @current_order = Order.create(status: "pending")
+      session[:order_id] = @current_order.id
+    end
+
   end
 end
