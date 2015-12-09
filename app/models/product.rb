@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
   belongs_to :robot 
-  belongs_to :category
+  has_and_belongs_to_many :categories
   has_many :reviews
 end

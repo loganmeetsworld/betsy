@@ -11,12 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208184250) do
+ActiveRecord::Schema.define(version: 20151208224401) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_products", id: false, force: :cascade do |t|
+    t.integer "product_id",  null: false
+    t.integer "category_id", null: false
   end
 
   create_table "orderitems", force: :cascade do |t|
@@ -44,13 +49,13 @@ ActiveRecord::Schema.define(version: 20151208184250) do
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
-    t.integer  "price"
+    t.decimal  "price",       precision: 8, scale: 2
     t.integer  "robot_id"
-    t.integer  "cat_id"
     t.string   "picture_url"
     t.integer  "stock"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "description"
   end
 
   create_table "reviews", force: :cascade do |t|
