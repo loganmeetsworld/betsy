@@ -2,6 +2,10 @@
 @import "bootstrap";
 @import "font-awesome";
 
+body { 
+  padding-top: 65px; 
+}
+
 .img {
   width: 200px;
   height: auto;
@@ -16,12 +20,17 @@
 }
 
 .star {
-  height: 16px;
-  width: 16px;
-
+  color: gold;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 1em;
 }
 
-.showimage {
+.quantity {
+  width: 10%;
+}
+
+.show {
   width: 300px;
   height: auto;
 }
+

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post '/products/:id/add' => 'orderitems#add_to_cart'
 
   resources :products do
-    resources :reviews
+    resources :reviews, only: [:new, :create]
   end
 
   resources :categories, only: [:new, :create]
