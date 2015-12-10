@@ -1,5 +1,5 @@
 <div class="container">
-<% if !flash.now[:success].nil? %>
+<% if !flash[:success].nil? %>
   <%= flash[:success] %>
 <% end %>
 
@@ -14,7 +14,7 @@
     <h2><%= @product.name %></h2>
     <h3>Details
       <p><small><%= @product.description %></small></p>
-    </h3> 
+    </h3>
     <p class="text-muted">Categories: <%= Product.show_categories(@product) %></p>
     <h5><%= number_to_currency(@product.price) %></h5>
 
@@ -24,17 +24,17 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <% unless @product.reviews.empty? %> 
+    <% unless @product.reviews.empty? %>
       <h3>Reviews for <%= @product.name %></h3>
       <% @product.reviews.each do |review| %>
         <%= review.rating.times do |star| %>
-          <%= fa_icon "star", class: 'star' %> 
+          <%= fa_icon "star", class: 'star' %>
         <% end %>
         <h5><%= review.comment %></h5>
         <br>
-      <% end %> 
+      <% end %>
     <% end %>
-    <% unless session[:robot_id] == @product.robot_id %> 
+    <% unless session[:robot_id] == @product.robot_id %>
       <h3>Leave Your Review for <%= @product.name %></h3>
       <%= render 'shared/review_form' %>
     <% end %>
