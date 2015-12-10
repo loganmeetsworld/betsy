@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  patch '/products/:id/add' => 'orderitems#add_to_cart'
   post '/products/:id/add' => 'orderitems#add_to_cart'
 
   resources :products do

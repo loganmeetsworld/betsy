@@ -6,7 +6,7 @@
     <% @current_order.orderitems.each do |item| %>
       <tr>
         <td>
-          <%= item.product_id.name %>
+          <%= item.product.name %>
         </td>
       </tr>
     <% end %>
