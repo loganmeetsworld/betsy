@@ -2,7 +2,7 @@
 
 <% if @current_order.orderitems.count > 0 %>
   <h2>Your current order has <%= @current_order.orderitems.count %> unique item<%= "s" if @current_order.orderitems.count != 1 %>
-  <small>(X items total)</small>
+  <small>(<%= @current_order.total_items %> item<%= "s" if @current_order.total_items != 1 %> total)</small>
   </h2>
   <table class="table">
     <tr>
