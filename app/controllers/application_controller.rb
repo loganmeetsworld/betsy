@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
   def find_robots
     @robots = Robot.all
   end
+
+  def current_robot
+    @robot = nil
+  end
   
   def current_order
     return @current_order if @current_order

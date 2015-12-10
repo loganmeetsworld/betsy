@@ -1,39 +1,42 @@
+<div class="container">
 <% if !flash.now[:success].nil? %>
-  <%= flash[:succes] %>
+  <%= flash[:success] %>
 <% end %>
 
 <div class="row">
-  <div class="col-sm-8">
-    <div class="img-responsive img-rounded">
-      <%= link_to product_path(@product) do %>
-        <%= image_tag @product.picture_url %>
-      <% end %>
-    </div>
-    <p><%= @product.description %></p>
-    <div>
-      <h4>Review this item</h4>
-      <%= form_for [@review], url: { action: "create"}, class: "form-group" do |f| %>
-        <h5>Rating:</h5>
-        <% (1..5).each do |num| %>
-          <%= f.label :rating, render_stars(num), class: "radio-inline star" %>
-          <%= f.radio_button :rating, num %>
-        <% end %>
-        <br><br>
-        <h5><%= f.label :comment, "Write Your Own Review:" %></h5>
-        <%= f.text_area :comment, class: "form-control" %><br>
-    <%= f.submit "Submit", class: "btn btn-default" %>
+  <div class="col-md-4 col-md-offset-3">
+    <%= link_to product_path(@product) do %>
+      <%= image_tag @product.picture_url, class: "show" %>
     <% end %>
-    </div>
   </div>
-  <div class="col-sm-4">
+
+  <div class="col-md-4">
     <h2><%= @product.name %></h2>
+    <h3>Details
+      <p><small><%= @product.description %></small></p>
+    </h3>
+    <p class="text-muted">Categories: <%= Product.show_categories(@product) %></p>
     <h5><%= number_to_currency(@product.price) %></h5>
-    <h5><%= @product.stock %> in stock</h5>
-    <h4>Add to cart!</h4>
-    <%= form_for @order_item, url: {controller: :orderitems, action: :add_to_cart, method: :patch}, class: "form-group" do |f| %>
-      <%= f.label :quantity %>
-      <%= f.number_field :quantity %>
-      <%= f.submit "Add", class: "btn btn-default" %>
+
+    <%= render 'shared/orderitem_form' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <% unless @product.reviews.empty? %>
+      <h3>Reviews for <%= @product.name %></h3>
+      <% @product.reviews.each do |review| %>
+        <%= review.rating.times do |star| %>
+          <%= fa_icon "star", class: 'star' %>
+        <% end %>
+        <h5><%= review.comment %></h5>
+        <br>
+      <% end %>
+    <% end %>
+    <% unless session[:robot_id] == @product.robot_id %>
+      <h3>Leave Your Review for <%= @product.name %></h3>
+      <%= render 'shared/review_form' %>
     <% end %>
   </div>
 </div>

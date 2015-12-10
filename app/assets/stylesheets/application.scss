@@ -1,7 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
-img {
+body { 
+  padding-top: 65px; 
+}
+
+.img {
   width: 200px;
   height: auto;
 }
@@ -15,7 +20,17 @@ img {
 }
 
 .star {
-  height: 16px;
-  width: 16px;
-
+  color: gold;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 1em;
 }
+
+.quantity {
+  width: 10%;
+}
+
+.show {
+  width: 300px;
+  height: auto;
+}
+
