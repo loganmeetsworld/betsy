@@ -10,7 +10,8 @@ class OrderitemsController < ApplicationController
       @current_order.orderitems.push(@order_item)
     end
     @order_item.save
-    flash.now[:success] = "You've updated your cart"
+    flash[:success] = "You've updated your cart!"
+    redirect_to product_path(params[:id])
   end
 
   def change_quantity
