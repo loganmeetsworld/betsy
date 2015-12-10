@@ -1,5 +1,10 @@
 <% if @product.stock != 0 %>  
   <%= form_for @order_item, url: {controller: :orderitems, action: :add_to_cart, method: :patch}, class: "form-group" do |f| %>
+    <h5>Average Rating: 
+    <% Product.rating_average(@product).times do |star| %>
+      <%= fa_icon "star", class: 'star' %>
+    <% end %>
+    </h5>
     <h5><%= @product.stock %> in stock</h5>
     <%= f.label :quantity %>
     <%= f.number_field :quantity, class: "quantity", :value => 1 %>
