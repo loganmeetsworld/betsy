@@ -20,13 +20,13 @@
             <li role="separator" class="divider"></li>
 
             <li class="dropdown-header">By Category</li>
-            <% @categories.each do |category| %> 
-              <li><% link_to category.name, by_category_path(category.name) %></li>
+            <% @categories.each do |category| %>
+              <li><%= link_to category.name, by_category_path(category.name) %></li>
             <% end %>
-            
+
             <li class="dropdown-header">By Robot</li>
-            <% @robots.each do |robot| %> 
-              <li><% link_to robot.name, robot_products_path(robot) %></li>
+            <% @robots.each do |robot| %>
+              <li><%= link_to robot.name, robot_products_path(robot) %></li>
             <% end %>
             <li role="separator" class="divider"></li>
           </ul>
@@ -34,13 +34,13 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <% if @robot.nil? %> 
+        <% if @robot.nil? %>
           <li><%= link_to "Robot Login" %></li>
           <li><%= link_to "Sell on Botsy" %></li>
-        <% else %> 
+        <% else %>
          <li><%= link_to "Logout" %></li>
          <li><%= link_to "Account Info" %></li>
-        <% end %> 
+        <% end %>
         <li class="navbar-text"><%= @current_order.orderitems.size %>
         <li class="navbar-link"><%= link_to "", orders_path, class: "glyphicon glyphicon-shopping-cart cart" %></li></li>
         <li class="navbar-text">  </li>
