@@ -40,7 +40,7 @@
            <li><%= link_to "Logout" %></li>
            <li><%= link_to "Account Info" %></li>
           <% end %>
-          <li class="navbar-text"><%= @current_order.orderitems.size %>
+          <li class="navbar-text"><%= @current_order.total_items %>
           <li class="navbar-link"><%= link_to "", orders_path, class: "glyphicon glyphicon-shopping-cart cart" %></li></li>
           <li class="navbar-text">  </li>
         </ul>
