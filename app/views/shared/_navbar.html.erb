@@ -33,12 +33,12 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <% if @robot.nil? %>
-            <li><%= link_to "Robot Login" %></li>
-            <li><%= link_to "Sell on Botsy" %></li>
+          <% if current_robot.nil? %>
+            <li><%= link_to "Robot Login", login_path %></li>
+            <li><%= link_to "Robot Signup", signup_path %></li>
           <% else %>
-           <li><%= link_to "Logout" %></li>
-           <li><%= link_to "Account Info" %></li>
+           <li><%= link_to "Logout", logout_path %></li>
+           <li><%= link_to "Account Info", robot_path(current_robot) %></li>
           <% end %>
           <li class="navbar-text"><%= @current_order.total_items %>
           <li class="navbar-link"><%= link_to "", orders_path, class: "glyphicon glyphicon-shopping-cart cart" %></li></li>

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  helper_method :current_robot
   before_action :current_order
   before_action :find_categories
   before_action :find_robots
@@ -27,5 +28,9 @@ class ApplicationController < ActionController::Base
       @current_order = Order.create(status: "pending")
       session[:order_id] = @current_order.id
     end
+  end
+
+  def current_robot
+    @current_robot ||= Robot.find(session[:robot_id]) if session[:robot_id]
   end
 end
