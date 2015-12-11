@@ -1,57 +1,52 @@
 products = [
-  { 
-    name: "Robot Dog", 
-    description: "Great dog to walk and play with. We love him and now he can be yours.", 
-    price: 232.23, 
-    robot_id: 1, 
-    category_ids: [1, 2],
-    picture_url: 'http://www.toyrobotsreview.com/wp-content/uploads/2013/08/robot-dog-toy.jpg', 
+  {
+    name: "Robot Dog",
+    description: "Great dog to walk and play with. We love him and now he can be yours.",
+    price: 232.23,
+    robot_id: 1,
+    picture_url: 'http://www.toyrobotsreview.com/wp-content/uploads/2013/08/robot-dog-toy.jpg',
     stock: 3
   },
-  { 
-    name: "Robot Food", description: "Yummy for robots so probably yummy for humans as well. Humans like robots and so humans probably like robot food.", 
-    price: 12.34, 
-    robot_id: 1, 
-    category_ids: 2,
+  {
+    name: "Robot Food", description: "Yummy for robots so probably yummy for humans as well. Humans like robots and so humans probably like robot food.",
+    price: 12.34,
+    robot_id: 1,
     picture_url: 'http://destroyallrobots.org/wp-content/uploads/robot_breakfast.jpg', stock: 100
   },
-  { 
-    name: "Binary Art", 
+  {
+    name: "Binary Art",
     description: "Beautiful art I made.",
-    price: 49.29, 
-    robot_id: 2, 
-    category_ids: [1, 3],
-    picture_url: 'http://static.bilder-welten.net/pics/31/438931.jpg', 
+    price: 49.29,
+    robot_id: 2,
+    picture_url: 'http://static.bilder-welten.net/pics/31/438931.jpg',
     stock: 12
   },
-  { 
+  {
     name: "Firmware",
-    description: "Works really well with all the wares.", 
-    price: 1.29, 
-    robot_id: 2, 
-    category_ids: [2, 3],
-    picture_url: 'http://simxperience.com/Portals/0//EasyDNNnews/24/firmware-update-icon.png', 
+    description: "Works really well with all the wares.",
+    price: 1.29,
+    robot_id: 2,
+    picture_url: 'http://simxperience.com/Portals/0//EasyDNNnews/24/firmware-update-icon.png',
     stock: 10
   },
-  { 
-    name: "Kernel", 
+  {
+    name: "Kernel",
     description: "The Kernel is the Kernel.",
-    price: 394.23, 
-    robot_id: 3, 
-    category_ids: [1, 3],
-    picture_url: 'http://osr507doc.sco.com/en/OSTut/graphics/kernel.gif', 
+    price: 394.23,
+    robot_id: 3,
+    picture_url: 'http://osr507doc.sco.com/en/OSTut/graphics/kernel.gif',
     stock: 2
   },
-  { 
-    name: "Binary pizza", 
+  {
+    name: "Binary pizza",
     description: "So delicious and yummy.",
-    price: 12.32, 
-    robot_id: 3, 
-    category_ids: 2,
-    picture_url: 'https://foodoftheconchords.files.wordpress.com/2010/05/fotc-binary-pizza1.jpg', 
+    price: 12.32,
+    robot_id: 3,
+    picture_url: 'https://foodoftheconchords.files.wordpress.com/2010/05/fotc-binary-pizza1.jpg',
     stock: 1
   }
 ]
+
 
 categories = [
   { name: "Art" },
@@ -104,3 +99,10 @@ end
 reviews.each do |review|
   Review.create(review)
 end
+
+Product.find(1).categories << Category.find(1)
+Product.find(1).categories << Category.find(2)
+Product.find(1).categories << Category.find(3)
+Product.find(2).categories << Category.find(1)
+Product.find(2).categories << Category.find(2)
+Product.find(3).categories << Category.find(3)
