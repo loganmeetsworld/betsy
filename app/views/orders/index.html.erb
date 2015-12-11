@@ -26,8 +26,8 @@
         </tr>
       <% end %>
   </table>
+  <%= button_to "Cancel my order", order_path(@current_order), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+
 <% else %>
   <h2>No items yet! Keep shopping!</h2>
 <% end %>
-
-<%= button_to "Delete", order_path(@current_order), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
