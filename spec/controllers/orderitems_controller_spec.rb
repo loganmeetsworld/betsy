@@ -32,18 +32,21 @@ RSpec.describe OrderitemsController, type: :controller do
   end
 
   describe "PATCH 'increase_quantity'" do
+    let(:order) do
+      Order.create(status: "pending")
+    end
+
     before(:each) do
       request.env["HTTP_REFERER"] = "where_i_came_from"
-      @order = Order.create(status: "pending")
-      session[:order_id] = @order.id
+      session[:order_id] = order.id
     end
 
     let(:orderitem) do
-      Orderitem.create(order_id: @order.id, product_id: 2, quantity: 3)
+      Orderitem.create(order_id: order.id, product_id: 2, quantity: 3)
     end
 
     it "refreshes the page" do
-      patch :increase_quantity, id: orderitem.id
+      patch :increase_quantity, id: orderitem.product_id
       expect(subject).to redirect_to "where_i_came_from"
     end
   end
