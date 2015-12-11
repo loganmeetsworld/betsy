@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_many :reviews
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
   validates :robot_id, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :stock, numericality: {greater_than_or_equal_to: 0}
