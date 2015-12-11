@@ -18,15 +18,14 @@ class ApplicationController < ActionController::Base
   def current_robot
     @robot = nil
   end
-  
+
   def current_order
-    return @current_order if @current_order
+    return @current_order if !@current_order.nil?
     if session[:order_id]
       @current_order = Order.find(session[:order_id])
     else
       @current_order = Order.create(status: "pending")
       session[:order_id] = @current_order.id
     end
-
   end
 end

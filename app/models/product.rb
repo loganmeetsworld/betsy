@@ -8,15 +8,15 @@ class Product < ActiveRecord::Base
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :stock, numericality: {greater_than_or_equal_to: 0}
 
-  def self.rating_average(product)
+  def rating_average
     sums = []
-    product.reviews.each do |review|
+    self.reviews.each do |review|
       sums.push(review.rating)
     end
-    return sums.inject(:+) / product.reviews.count
+    return sums.inject(:+) / self.reviews.count
   end
 
-  def self.show_categories(product)
-    product.categories.map {|category| category.name}.join(", ")
+  def show_categories
+    self.categories.map { |category| category.name }.join(", ")
   end
 end

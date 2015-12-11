@@ -1,7 +1,9 @@
 <h1>Items in your cart</h1>
 
 <% if @current_order.orderitems.count > 0 %>
-  <h2>Your current order has <%= @current_order.orderitems.count %> item<%= "s" if @current_order.orderitems.count != 1 %></h2>
+  <h2>Your current order has <%= @current_order.orderitems.count %> unique item<%= "s" if @current_order.orderitems.count != 1 %>
+  <small>(<%= @current_order.total_items %> item<%= "s" if @current_order.total_items != 1 %> total)</small>
+  </h2>
   <table class="table">
     <tr>
       <td>
@@ -14,10 +16,12 @@
       <% @current_order.orderitems.each do |item| %>
         <tr>
           <td>
-            <%= item.product.name %>
+            <%= link_to item.product.name, product_path(item.product) %>
           </td>
           <td>
+            <%= link_to '<i class="fa fa-minus"></i>'.html_safe, less_path(id: item.product_id), method: :patch %>
             <%= item.quantity %>
+            <%= link_to '<i class="fa fa-plus"></i>'.html_safe, more_path(id: item.product_id), method: :patch %>
           </td>
         </tr>
       <% end %>
@@ -25,3 +29,5 @@
 <% else %>
   <h2>No items yet! Keep shopping!</h2>
 <% end %>
+
+<%= button_to "Delete", order_path(@current_order), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>

@@ -2,9 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Robot, type: :model do
   describe "validations" do 
-    before_action do 
-      @good_robot = Robot.create(name: nil, password: nil, )
-    end
 
     it "requires name" do 
     end

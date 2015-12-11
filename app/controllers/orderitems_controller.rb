@@ -14,8 +14,16 @@ class OrderitemsController < ApplicationController
     redirect_to product_path(params[:id])
   end
 
-  def change_quantity
+  def increase_quantity
+    @order_item = @current_order.orderitems.where("product_id = ?", params[:id]).first
+    @order_item.increment!(:quantity)
+    redirect_to :back
+  end
 
+  def decrease_quantity
+    @order_item = @current_order.orderitems.where("product_id = ?", params[:id]).first
+    @order_item.decrement!(:quantity)
+    redirect_to :back
   end
 
   private
