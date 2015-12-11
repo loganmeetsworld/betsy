@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Style 
+# Style
 gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 
@@ -62,4 +62,3 @@ group :production do
   gem 'pg'
   gem 'rails_12factor', '~> 0.0.3'
 end
-
