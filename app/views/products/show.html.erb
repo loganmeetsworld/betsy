@@ -15,7 +15,7 @@
     <h3>Details
       <p><small><%= @product.description %></small></p>
     </h3>
-    <p class="text-muted">Categories: <%= Product.show_categories(@product) %></p>
+    <p class="text-muted">Categories: <%= @product.show_categories %></p>
     <h5><%= number_to_currency(@product.price) %></h5>
 
     <%= render 'shared/orderitem_form' %>

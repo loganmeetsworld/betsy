@@ -8,7 +8,7 @@
   <%= form_for @order_item, url: {controller: :orderitems, action: :add_to_cart, method: verb}, class: "form-group" do |f| %>
     <% if @product.reviews.count > 0 %>
       <h5>Average Rating:
-      <% Product.rating_average(@product).times do |star| %>
+      <% @product.rating_average.times do |star| %>
         <%= fa_icon "star", class: 'star' %>
       <% end %>
       </h5>
