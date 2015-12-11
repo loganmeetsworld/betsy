@@ -26,7 +26,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe  "GET 'category'" do
     it "renders the show view for products of a single category" do
-      get :show, id: @category.id
+      get :category, category_name: @category.name
       expect(response.status).to eq 200
       expect(subject).to render_template :category
     end
