@@ -15,6 +15,11 @@ before_action only: [:show, :edit, :update] { @product = Product.find(params[:id
     end
   end
 
+  def category
+    @category = Category.find_by(name: params[:category_name])
+    @products = @category.products
+  end
+
   private
 
   def product_params
