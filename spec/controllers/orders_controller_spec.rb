@@ -9,9 +9,17 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe "DELETE 'destroy'" do
+    let(:order) do
+      Order.create(status: "pending")
+    end
+
+    before(:each) do
+      session[:order_id] = order.id
+    end
+
     it "redirects to index view" do
-      delete :destroy, id: good_art.id
-      expect(subject).to redirect_to polymorphic_path(model)
+      delete :destroy, id: order.id
+      expect(subject).to redirect_to orders_path
     end
   end
 end
