@@ -1,15 +1,26 @@
 class SessionsController < ApplicationController
-  resources :sessions, :only => [:new, :create]
+
   def new; end
 
   def create
-    robot = Robot.authenticate(params[:email], params[:password])
-    if robot
-      session[:robot_id] = robot.id
-      redirect_to robot_path(robot.id)
+    data = params[:session_data]
+    @robot = Robot.find_by_email(data[:email])
+
+    if !@robot.nil?
+      # robot is in the system
+      if @robot.authenticate(data[:password])
+        # robot is authenticated
+        session[:robot_id] = @robot.id
+        redirect_to root_path
+      else
+        # robot is not authenticated
+        flash.now[:error] = "Try Again!"
+        render :new
+      end
     else
-      flash.now[:error]= "Try Again!"
-      render :new
+      # robot is not in the system
+      flash[:error] = "Try to Create a New robot"
+      redirect_to new_robot_path
     end
   end
 

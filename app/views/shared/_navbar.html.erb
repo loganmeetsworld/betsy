@@ -25,7 +25,7 @@
               <li role="separator" class="divider"></li>
               <li class="dropdown-header">By Robot</li>
               <% @robots.each do |robot| %>
-                <li><%= link_to robot.name, robot_products_path(robot) %></li>
+                <li><%= link_to robot.username, robot_path(robot) %></li>
               <% end %>
               <li role="separator" class="divider"></li>
             </ul>

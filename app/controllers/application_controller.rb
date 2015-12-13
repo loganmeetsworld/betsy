@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :current_order
   before_action :find_categories
   before_action :find_robots
+  # before_action :require_login
 
   def find_categories
     @categories = Category.all
@@ -32,5 +33,12 @@ class ApplicationController < ActionController::Base
 
   def current_robot
     @current_robot ||= Robot.find(session[:robot_id]) if session[:robot_id]
+  end
+
+  def require_login
+    if current_robot.nil?
+      flash[:error] = "You must be logged in to view this section"
+      redirect_to new_session_path
+    end
   end
 end

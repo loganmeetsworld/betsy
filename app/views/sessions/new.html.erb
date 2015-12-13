@@ -1,12 +1,17 @@
 <h1>Log In</h1><br>
 <div class="form-group">
   <div class="center-div">
-    <%= form_tag sessions_path do %>
-      <%= label_tag :email %><br>
-      <%= email_field_tag :email, params[:username],:class => "form-control", placeholder: "Email Address" %><br><br>
-      <%= label_tag :password %><br>
-      <%= password_field_tag :password, "", :class => "form-control", placeholder: "Password" %><br><br>
-      <%= submit_tag "Log in", :class => 'btn btn-default' %>
+
+    <%= form_for(:session_data, url: sessions_path) do |f| %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+      <%= f.submit "Login", class:"btn btn-info" %>
     <% end %>
+
   </div>
 </form>
