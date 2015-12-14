@@ -17,18 +17,6 @@ RSpec.describe OrderitemsController, type: :controller do
   end
 
   describe "PATCH 'add_to_cart'" do
-    let(:order) do
-      Order.create(status: "pending")
-    end
-
-    before(:each) do
-      session[:order_id] = order.id
-    end
-
-    let(:orderitem) do
-      Orderitem.create(order_id: order.id, product_id: 2, quantity: 3)
-    end
-
     let(:good_params) do
       {
         orderitem: {
@@ -40,6 +28,7 @@ RSpec.describe OrderitemsController, type: :controller do
 
     it "redirects to show view" do
       post :add_to_cart, good_params
+      patch :add_to_cart, good_params
       expect(subject).to redirect_to product_path(2)
     end
   end
