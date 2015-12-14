@@ -17,10 +17,6 @@ class ApplicationController < ActionController::Base
     @robots = Robot.all
   end
 
-  def current_robot
-    @robot = nil
-  end
-
   def current_order
     return @current_order if !@current_order.nil?
     if session[:order_id]

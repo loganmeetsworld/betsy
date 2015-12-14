@@ -1,4 +1,6 @@
 class RobotsController < ApplicationController
+  before_action :require_login, only: [:dashboard]
+
   def new
     @robot = Robot.new
   end
@@ -18,9 +20,15 @@ class RobotsController < ApplicationController
     # Need to add the 'active' or 'retired' thing
   end
 
+  def dashboard
+    @robot = Robot.find(session[:robot_id])
+    @products = @robot.products
+    @orders = Order.includes(:orderitems).where(orderitems: { robot_id: @robot.id})
+  end
+
   private
 
   def robot_params
-    params.require(:robot).permit(:username, :email, :password, :salt, :encrypted_password)
+    params.require(:robot).permit(:username, :email, :password, :password_confirmation)
   end
 end

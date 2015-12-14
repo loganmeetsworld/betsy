@@ -29,6 +29,16 @@ RSpec.describe RobotsController, type: :controller do
       }
     end
 
+    let(:bad_params) do 
+      {
+        robot: {
+          username: 'name_2',
+          password: 'test',
+          password_confirmation: 'test'
+        }
+      }
+    end
+
     it "creates robot" do 
       post :create, good_params 
       expect(Robot.count).to eq 4
@@ -37,6 +47,11 @@ RSpec.describe RobotsController, type: :controller do
     it "redirects to login page" do 
       post :create, good_params
       expect(subject).to redirect_to new_session_path
+    end
+
+    it "renders new with bad params" do 
+      post :create, bad_params
+      expect(subject).to render_template(:new)
     end
   end
 end
