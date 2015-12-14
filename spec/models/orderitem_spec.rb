@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Orderitem, type: :model do
  before :each do
-    @good_orderitem = Orderitem.create(quantity: 10, product_id: 1, order_id: 1)
-    @bad_orderitem = Orderitem.create(quantity: nil, product_id: nil, order_id: nil)
-    @negative_nums = Orderitem.create(quantity: -10, product_id: 1, order_id: 1)
+   @good_product = Product.create(name: 'product', price: 10, robot_id: 1, stock: 100)
+   @good_orderitem = Orderitem.create(quantity: 10, product_id: @good_product.id, order_id: 1)
+   @bad_orderitem = Orderitem.create(quantity: nil, product_id: @good_product.id, order_id: nil)
+   @negative_nums = Orderitem.create(quantity: -10, product_id: @good_product.id, order_id: 1)
   end
 
-  describe "validations" do 
-    it "has a user id" do 
+  describe "validations" do
+    it "has a user id" do
       expect(@good_orderitem).to be_valid
       expect(@bad_orderitem).to_not be_valid
     end
@@ -32,4 +33,3 @@ RSpec.describe Orderitem, type: :model do
     end
   end
 end
-

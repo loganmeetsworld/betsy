@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  describe "validations" do 
+  describe "validations" do
   end
 
-  describe "total items calculation" do 
+  describe "total items calculation" do
     order = Order.create
 
-    Orderitem.create(product_id: 1, order_id: order.id, quantity: 3)
-    Orderitem.create(product_id: 3, order_id: order.id, quantity: 2)
+    good_product = Product.create(name: 'product', price: 10, robot_id: 1, stock: 100)
+    Orderitem.create(product_id: good_product.id, order_id: order.id, quantity: 3)
+    Orderitem.create(product_id: good_product.id, order_id: order.id, quantity: 2)
 
     it "multiples the item by quantity" do
       expect(order.total_items).to eq 5

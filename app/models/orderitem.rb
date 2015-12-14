@@ -8,8 +8,9 @@ class Orderitem < ActiveRecord::Base
   validates :product_id, presence: true
 
   def quantity_cannot_exceed_stock
-    if quantity > Product.find(self.product_id).stock
+    if self.quantity > self.product.stock
       errors.add(:quantity, "can't exceed present stock")
     end
   end
+
 end
