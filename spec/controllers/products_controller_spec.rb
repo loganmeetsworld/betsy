@@ -140,4 +140,18 @@ RSpec.describe ProductsController, type: :controller do
       expect(response).to render_template 'edit'
     end
   end
+
+  describe "PATCH 'retire'" do
+    it "retires a product" do
+      patch :retire, { id: @product.id}
+      @product.reload
+      expect(@product.retire).to eq true
+    end
+
+    it "redirects to robot account page" do
+      patch :retire, { id: @product.id}
+      @product.reload
+      expect(response).to redirect_to robot_path(@product.robot_id)
+    end
+  end
 end
