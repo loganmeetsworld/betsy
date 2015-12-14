@@ -36,6 +36,6 @@ before_action only: [:show, :edit, :update] { @product = Product.find(params[:id
   private
 
   def product_params
-    params.require(:product).permit([:name, :description, :price, :robot_id, :categories, :picture_url, :stock])
+    params.require(:product).permit([:name, :description, :price, :robot_id, :categories, :picture_url, :stock, :category_ids => []])
   end
 end
