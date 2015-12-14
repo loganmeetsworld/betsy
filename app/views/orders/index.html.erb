@@ -1,5 +1,9 @@
 <h1>Items in your cart</h1>
 
+<% if !flash[:error].nil? %>
+  <%= flash[:error] %>
+<% end %>
+
 <% if @current_order.orderitems.count > 0 %>
   <h2>Your current order has <%= @current_order.orderitems.count %> unique item<%= "s" if @current_order.orderitems.count != 1 %>
   <small>(<%= @current_order.total_items %> item<%= "s" if @current_order.total_items != 1 %> total)</small>
@@ -10,7 +14,10 @@
         Item
       </td>
       <td>
-        Quantity
+        Adjust quantity
+      </td>
+      <td>
+        Remove?
       </td>
     </tr>
       <% @current_order.orderitems.each do |item| %>
@@ -23,9 +30,13 @@
             <%= item.quantity %>
             <%= link_to '<i class="fa fa-plus"></i>'.html_safe, more_path(id: item.product_id), method: :patch %>
           </td>
+          <td>
+            <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, remove_path(id: item.product_id), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
         </tr>
       <% end %>
   </table>
+  <%= link_to "Continue to checkout", checkout_path, class: "btn btn-primary" %>
   <%= button_to "Cancel my order", order_path(@current_order), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 
 <% else %>

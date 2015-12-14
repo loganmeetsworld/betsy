@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   patch 'products/:id/more' => 'orderitems#increase_quantity', as: :more
   patch 'products/:id/less' => 'orderitems#decrease_quantity', as: :less
+  delete 'products/:id/remove' => 'orderitems#remove', as: :remove
 
   resources :products do
     resources :reviews, only: [:new, :create]
@@ -30,5 +31,9 @@ Rails.application.routes.draw do
   get '/products/categories/:category_name', to: 'products#category', as: 'by_category'
   resources :robots
 
+  get '/orders/checkout' => 'orders#checkout', as: 'checkout'
+  patch '/orders/confirm' => 'orders#confirm', as: 'confirm'
+
   resources :orders
+
 end
