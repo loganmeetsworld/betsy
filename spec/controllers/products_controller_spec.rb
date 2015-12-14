@@ -82,7 +82,7 @@ RSpec.describe ProductsController, type: :controller do
 
     it "redirects to the product show page on success" do
       post :create, create_params
-      expect(response).to redirect_to product_path(@product.id + 1)
+      expect(response).to redirect_to robot_path(@current_robot)
     end
 
     it "renders the new form if unsuccessful" do
