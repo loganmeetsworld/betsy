@@ -2,7 +2,7 @@
 <div id="myCarousel" class="carousel slide container" data-ride="carousel">
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="robot.jpg" alt="robot">
+      <%= image_tag @products.sample.picture_url %> 
     </div>
     <% @products.sample(@products.size).each do |product| %>
     <div class="item">
