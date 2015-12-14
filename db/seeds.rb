@@ -39,7 +39,7 @@ products = [
   },
   {
     name: "Robot Cat",
-    description: "Will be as apathetic and cuddley as a real cat.",
+    description: "Will be as apathetic and cuddly as a real cat.",
     price: 100.50,
     robot_id: 1,
     picture_url: 'https://f1.bcbits.com/img/a2219945996_16.jpg',
@@ -47,7 +47,7 @@ products = [
   },
   {
     name: "Robot Koala",
-    description: "How could you not want this? Austrailian inspired design made by (robot) hand",
+    description: "How could you not want this? Australian inspired design made by (robot) hand",
     price: 299.99,
     robot_id: 1,
     picture_url: 'https://s-media-cache-ak0.pinimg.com/736x/1a/ac/1b/1aac1b41b3fdf0bd43fd7f5e0e457bed.jpg',

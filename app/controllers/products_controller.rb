@@ -20,6 +20,19 @@ before_action only: [:show, :edit, :update] { @product = Product.find(params[:id
     @products = @category.products
   end
 
+  def new
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new(product_params)
+    if @product.save
+      redirect_to product_path(id: @product.id)
+    else
+      render 'new'
+    end
+  end
+
   private
 
   def product_params
