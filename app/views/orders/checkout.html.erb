@@ -2,9 +2,19 @@
 
 <ul>
   <% @current_order.errors.each do |column, message| %>
-    <li>
-      <strong><%= column.capitalize %></strong> <%= message %>
-    </li>
+    <% if column.to_s == "credit_name" %>
+      <li>
+        <strong>Name</strong> <%= message %>
+      </li>
+    <% elsif column.to_s == "credit_num" %>
+      <li>
+        <strong>Credit card number</strong> <%= message %>
+      </li>
+    <% else %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
 
