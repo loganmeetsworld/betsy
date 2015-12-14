@@ -33,6 +33,17 @@ before_action only: [:show, :edit, :update] { @product = Product.find(params[:id
     end
   end
 
+  def edit; end
+
+  def update
+    @product.update(product_params)
+    if @product.save
+      redirect_to by_robot_path(current_robot)
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def product_params
