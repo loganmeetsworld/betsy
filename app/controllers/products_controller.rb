@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
 
-before_action only: [:show, :edit, :update] { @product = Product.find(params[:id]) }
+before_action only: [:show, :edit, :update, :retire] { @product = Product.find(params[:id]) }
 
   def index
-    @products = Product.order(stock: :desc)
+    @products = Product.where(retire: false).order(stock: :desc)
   end
 
   def show
@@ -17,7 +17,7 @@ before_action only: [:show, :edit, :update] { @product = Product.find(params[:id
 
   def category
     @category = Category.find_by(name: params[:category_name])
-    @products = @category.products
+    @products = @category.products.where(retire: false)
   end
 
   def robot
@@ -47,6 +47,12 @@ before_action only: [:show, :edit, :update] { @product = Product.find(params[:id
     else
       render 'edit'
     end
+  end
+
+  def retire
+    @product.retire ? @product.retire = false : @product.retire = true
+    @product.save
+    redirect_to robot_path(@product.robot_id)
   end
 
   private

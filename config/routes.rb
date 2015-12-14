@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  patch 'products/retire/:id' => 'products#retire', as: "retire"
+
   get 'login' => 'sessions#new', :as => 'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
   get 'signup' => 'robots#new', :as => 'signup'
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
 
   patch 'products/:id/more' => 'orderitems#increase_quantity', as: :more
   patch 'products/:id/less' => 'orderitems#decrease_quantity', as: :less
+  delete 'products/:id/remove' => 'orderitems#remove', as: :remove
 
   resources :products do
     resources :reviews, only: [:new, :create]
@@ -29,5 +32,9 @@ Rails.application.routes.draw do
 
   resources :robots
 
+  get '/orders/checkout' => 'orders#checkout', as: 'checkout'
+  patch '/orders/confirm' => 'orders#confirm', as: 'confirm'
+
   resources :orders
+
 end
