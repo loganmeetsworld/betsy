@@ -54,4 +54,8 @@ RSpec.describe RobotsController, type: :controller do
       expect(subject).to render_template(:new)
     end
   end
+
+  describe "dashboard" do 
+    
+  end
 end

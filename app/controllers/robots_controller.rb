@@ -18,12 +18,6 @@ class RobotsController < ApplicationController
     @robot = Robot.find(params[:id])
   end
 
-  def dashboard
-    @robot = Robot.find(session[:robot_id])
-    @products = @robot.products
-    @orders = Order.includes(:orderitems).where(orderitems: { robot_id: @robot.id})
-  end
-
   private
 
   def robot_params
