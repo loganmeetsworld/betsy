@@ -17,6 +17,14 @@ RSpec.describe CategoriesController, type: :controller do
       }
     end
 
+    let(:create_params) do
+      {
+        category: {
+          name: 'different',
+        }
+      }
+    end
+
     let(:bad_params) do
       {
         category: {
@@ -30,9 +38,9 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     it "redirects to the referring page on success" do
-      post :create, good_params
-      expect(response).to redirect_to "where_i_came_from"
-      expect(Category.count).to eq 1
+      post :create, create_params
+      expect(response).to redirect_to robot_path(@current_robot)
+      expect(Category.count).to eq 2
     end
   end
 

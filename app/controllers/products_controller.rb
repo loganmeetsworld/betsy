@@ -32,7 +32,7 @@ before_action only: [:show, :edit, :update, :retire] { @product = Product.find(p
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to product_path(id: @product.id)
+      redirect_to robot_path(current_robot)
     else
       render 'new'
     end
