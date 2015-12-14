@@ -24,8 +24,9 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:new, :create]
 
-  get '/products/robots/:id', to: 'robots#show', as: 'by_robot'
+  get '/products/robots/:id', to: 'products#robot', as: 'by_robot'
   get '/products/categories/:category_name', to: 'products#category', as: 'by_category'
+
   resources :robots
 
   resources :orders

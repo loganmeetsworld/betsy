@@ -20,6 +20,11 @@ before_action only: [:show, :edit, :update] { @product = Product.find(params[:id
     @products = @category.products
   end
 
+  def robot
+    @robot = Robot.find_by(params[:id])
+    @products = @robot.products.where(retire: false)
+  end
+
   def new
     @product = Product.new
   end
@@ -38,7 +43,7 @@ before_action only: [:show, :edit, :update] { @product = Product.find(params[:id
   def update
     @product.update(product_params)
     if @product.save
-      redirect_to by_robot_path(current_robot)
+      redirect_to robot_path(current_robot)
     else
       render 'edit'
     end
