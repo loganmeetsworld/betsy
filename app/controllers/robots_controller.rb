@@ -1,5 +1,5 @@
 class RobotsController < ApplicationController
-  before_action :require_login, only: [:dashboard]
+  before_action :require_login, only: [:show]
 
   def new
     @robot = Robot.new
