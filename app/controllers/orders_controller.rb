@@ -7,8 +7,15 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-    @current_order.attributes = order_params
     @current_order.status = "paid"
+    @current_order.attributes = order_params
+    if !@current_order.save
+      @current_order.status = "pending"
+      render :checkout
+    else
+      # change stock
+    end
+
   end
 
   def destroy

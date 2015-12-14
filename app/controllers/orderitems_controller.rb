@@ -2,10 +2,11 @@ class OrderitemsController < ApplicationController
   def add_to_cart
     if @current_order.orderitems.where("product_id = ?", params[:id]).first
       @order_item = @current_order.orderitems.where("product_id = ?", params[:id]).first
+      @order_item.increment(:quantity, order_item_params[:quantity].to_i)
     else
       @order_item = Orderitem.new(product_id: params[:id])
+      @order_item.quantity = order_item_params[:quantity].to_i
     end
-    @order_item.increment(:quantity, order_item_params[:quantity].to_i)
     if @order_item.order_id.nil?
       @current_order.orderitems.push(@order_item)
     end

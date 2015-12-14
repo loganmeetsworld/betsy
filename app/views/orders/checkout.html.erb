@@ -1,5 +1,13 @@
 <h1>Checkout</h1>
 
+<ul>
+  <% @current_order.errors.each do |column, message| %>
+    <li>
+      <strong><%= column.capitalize %></strong> <%= message %>
+    </li>
+  <% end %>
+</ul>
+
 <div class="row">
   <div class="col-md-6">
     <%= form_for @current_order, :url => { :action => "confirm" } do |f| %>
