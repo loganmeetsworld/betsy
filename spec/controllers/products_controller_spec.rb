@@ -34,6 +34,14 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
+  describe  "GET 'robot'" do
+    it "renders the show view for products of a single robot" do
+      get :robot, id: @current_robot.id
+      expect(response.status).to eq 200
+      expect(subject).to render_template :category
+    end
+  end
+
   describe "GET 'new'" do
     it "renders the new view" do
       get :new, robot_id: @current_robot
