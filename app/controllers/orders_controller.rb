@@ -24,6 +24,11 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
 
+  def show
+    @guest = Order.find(params[:id])
+    @card_num = @guest.credit_num.split(//).last(4).join
+  end
+
   private
 
   def order_params
