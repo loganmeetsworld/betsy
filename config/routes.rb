@@ -17,5 +17,9 @@ Rails.application.routes.draw do
   get '/products/categories/:category_name', to: 'products#category', as: 'by_category'
   resources :robots
 
+  get '/orders/checkout' => 'orders#checkout', as: 'checkout'
+  patch '/orders/confirm' => 'orders#confirm', as: 'confirm'
+
   resources :orders
+
 end

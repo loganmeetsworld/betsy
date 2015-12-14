@@ -16,13 +16,15 @@ class OrderitemsController < ApplicationController
 
   def increase_quantity
     @order_item = @current_order.orderitems.where("product_id = ?", params[:id]).first
-    @order_item.increment!(:quantity)
+    @order_item.quantity += 1
+    @order_item.save
     redirect_to :back
   end
 
   def decrease_quantity
     @order_item = @current_order.orderitems.where("product_id = ?", params[:id]).first
-    @order_item.decrement!(:quantity)
+    @order_item.quantity -= 1
+    @order_item.save
     redirect_to :back
   end
 
