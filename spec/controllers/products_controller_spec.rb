@@ -71,4 +71,54 @@ RSpec.describe ProductsController, type: :controller do
       expect(subject).to render_template 'new'
     end
   end
+
+  describe "GET 'edit'" do
+    it "renders the edit form" do
+      get :edit, id: @product.id
+      expect(response.status).to eq 200
+      expect(subject).to render_template 'edit'
+    end
+  end
+
+  describe "PATCH 'update'" do
+    let(:change_params) do
+      {
+        product: {
+          name: 'Catprod',
+          price: 1,
+          stock: 1,
+          robot_id: 2,
+        }
+      }
+    end
+
+    let(:bad_change_params) do
+      {
+        product: {
+          name: '',
+          price: 1,
+          stock: 1,
+          robot_id: 2,
+        }
+      }
+    end
+
+    it "updates a product" do
+      patch :update, { id: @product.id }.merge(change_params)
+      @product.reload
+      expect(Product.find(1).name).to eq "Catprod"
+    end
+
+    it "redirects to robot page if successful" do
+      patch :update, { id: @product.id }.merge(change_params)
+      @product.reload
+      expect(response).to redirect_to by_robot_path(@product.robot_id)
+    end
+
+    it "renders edit page if unsuccessful" do
+      patch :update, { id: @product.id }.merge(bad_change_params)
+      @product.reload
+      expect(response).to render_template 'edit'
+    end
+  end
 end
