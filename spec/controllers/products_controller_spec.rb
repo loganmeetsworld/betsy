@@ -38,7 +38,7 @@ RSpec.describe ProductsController, type: :controller do
     it "renders the show view for products of a single robot" do
       get :robot, id: @current_robot.id
       expect(response.status).to eq 200
-      expect(subject).to render_template :category
+      expect(subject).to render_template :robot
     end
   end
 
@@ -69,9 +69,20 @@ RSpec.describe ProductsController, type: :controller do
       }
     end
 
+    let(:create_params) do
+      {
+        product: {
+          name: 'CatProd2',
+          price: 1,
+          stock: 1,
+          robot_id: 5,
+        }
+      }
+    end
+
     it "redirects to the product show page on success" do
-      post :create, good_params
-      expect(subject).to redirect_to product_path(1)
+      post :create, create_params
+      expect(response).to redirect_to product_path(@product.id + 1)
     end
 
     it "renders the new form if unsuccessful" do
@@ -114,13 +125,13 @@ RSpec.describe ProductsController, type: :controller do
     it "updates a product" do
       patch :update, { id: @product.id }.merge(change_params)
       @product.reload
-      expect(Product.find(1).name).to eq "Catprod"
+      expect(Product.find(@product.id).name).to eq "Catprod"
     end
 
     it "redirects to robot page if successful" do
       patch :update, { id: @product.id }.merge(change_params)
       @product.reload
-      expect(response).to redirect_to by_robot_path(@product.robot_id)
+      expect(response).to redirect_to robot_path(@product.robot_id)
     end
 
     it "renders edit page if unsuccessful" do
