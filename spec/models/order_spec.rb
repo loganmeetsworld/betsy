@@ -15,4 +15,13 @@ RSpec.describe Order, type: :model do
       expect(order.total_items).to eq 5
     end
   end
+
+  describe "paid?" do
+    it "checks an order has paid status" do
+      paid = Order.new(status: "paid")
+      pending = Order.new(status: "pending")
+      expect(paid.paid?).to be true
+      expect(pending.paid?).to be false
+    end
+  end
 end
