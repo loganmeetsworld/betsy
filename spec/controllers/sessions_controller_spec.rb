@@ -13,10 +13,24 @@ RSpec.describe SessionsController, type: :controller do
       }
     end
 
+    let (:bad_params) do
+    {
+      session_data:{
+        email: "bad@robot.com", 
+        password: "password"
+      }
+    }
+  end
+
     it "creates a session and redirects to robot account page" do
       robot = Robot.find_by_email(session_data[:email])
       post :create, :session_data => session_data
-      expect(response).to redirect_to robot_path(@robot.id)
+      expect(response).to redirect_to robot_path(robot)
+    end
+
+    it "renders new template on error" do
+      post :create, bad_params
+      expect(subject).to render_template :new
     end
   end
 

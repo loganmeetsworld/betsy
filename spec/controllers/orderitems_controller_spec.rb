@@ -83,7 +83,4 @@ RSpec.describe OrderitemsController, type: :controller do
       expect(subject).to redirect_to "where_i_came_from"
     end
   end
-
-
-
 end

@@ -6,13 +6,14 @@ class SessionsController < ApplicationController
     data = params[:session_data]
     @robot = Robot.find_by_email(data[:email])
 
-    if @robot.authenticate(data[:password])
-      # robot is authenticated
-      session[:robot_id] = @robot.id
-      redirect_to robot_path(@robot)
+    if !@robot.nil?
+      if @robot.authenticate(data[:password])
+        # robot is authenticated
+        session[:robot_id] = @robot.id
+        redirect_to robot_path(@robot)
+      end
     else
-      # robot is not authenticated
-      flash.now[:error] = "Something went wrong. Try Again!"
+      flash.now[:error] = "Incorrect email or password"
       render :new
     end
   end
