@@ -6,36 +6,39 @@
     <%= link_to "Add Category", new_category_path, class: 'btn btn-default' %> 
   </p>
 
-  <table class="table table-hover table-bordered">
-    <tr class="">
-      <th>Product</th>
-      <th>Price</th>
-      <th>Stock</th>
-      <th>Update</th>
-      <th>Retire</th>
-    </tr>
+  <% unless @products.nil? %>
+  
+    <table class="table table-hover table-bordered">
+      <tr class="">
+        <th>Product</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Update</th>
+        <th>Retire</th>
+      </tr>
 
-  <% @products.each do |product| %>
-    <tr class="valign">
-      <td>
-        <%= link_to product_path(product) do %>
-          <%= image_tag product.picture_url, class: "dashboard" %><br>
-          <%= product.name.titlecase %>
-        <% end %> 
-      </td>
-      <td class="text-center">
-        <%= number_to_currency(product.price) %>
-      </td>
-      <td class="text-center">
-        <%= product.stock %>
-      </td>
-      <td class="text-center">
-        <%= link_to "Edit", edit_product_path(product), class: 'btn btn-info' %>
-      </td>
-      <td class="text-center">
-        <%= button_to status(product), retire_path(product), method: 'patch', class: 'btn btn-danger' %>
-      </td>
-    </tr>
-  <% end %>
+      <% @products.each do |product| %>
+        <tr class="valign">
+          <td>
+            <%= link_to product_path(product) do %>
+              <%= image_tag product.picture_url, class: "dashboard" %><br>
+              <%= product.name.titlecase %>
+            <% end %> 
+          </td>
+          <td class="text-center">
+            <%= number_to_currency(product.price) %>
+          </td>
+          <td class="text-center">
+            <%= product.stock %>
+          </td>
+          <td class="text-center">
+            <%= link_to "Edit", edit_product_path(product), class: 'btn btn-info' %>
+          </td>
+          <td class="text-center">
+            <%= button_to status(product), retire_path(product), method: 'patch', class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %> 
   </table>
 </div>

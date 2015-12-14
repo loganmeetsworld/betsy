@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to :back
+      redirect_to robot_path(current_robot)
     else
       render 'new'
     end

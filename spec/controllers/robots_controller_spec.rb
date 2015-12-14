@@ -41,7 +41,7 @@ RSpec.describe RobotsController, type: :controller do
 
     it "creates robot" do 
       post :create, good_params 
-      expect(Robot.count).to eq 4
+      expect(Robot.count).to eq 2
     end
 
     it "redirects to login page" do 
