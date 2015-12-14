@@ -1,1 +1,11 @@
-<h1>account page</h1>
+<h1><%= current_robot.username.titlecase %>'s Account Page</h1>
+<div class="row">
+  <% @products.each do |product| %> 
+    <div class="col-md-3">
+      <h4><%= link_to product.name, product_path(product) %></h4>
+      <p><%= image_tag product.picture_url, class: "img-rounded" %></p>
+      <h5>Price: <%= number_to_currency(product.price) %></h5>
+      <h5>Stock: <%= product.stock %></h5>
+    </div>
+  <% end %>   
+</div>

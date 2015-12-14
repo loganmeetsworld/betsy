@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'login' => 'sessions#new', :as => 'login'
-  get 'logout' => 'session#destroy', :as => 'logout'
+  get 'logout' => 'sessions#destroy', :as => 'logout'
   get 'signup' => 'robots#new', :as => 'signup'
 
   resources :robots
