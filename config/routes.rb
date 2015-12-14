@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy', :as => 'logout'
   get 'signup' => 'robots#new', :as => 'signup'
 
-  resources :robots
+  resources :robots do 
+    resources :orders 
+    resources :products
+  end
 
   resources :sessions
 
