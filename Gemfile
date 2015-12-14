@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Style
 gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
+gem 'skeleton-rails', github: 'helios-technologies/skeleton-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

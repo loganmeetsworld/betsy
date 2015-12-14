@@ -18,6 +18,9 @@ class OrdersController < ApplicationController
 
   end
 
+  def fulfill
+  end
+
   def destroy
     @current_order.destroy
     session[:order_id] = nil

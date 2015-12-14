@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'signup' => 'robots#new', :as => 'signup'
 
   resources :robots do
+    get 'fulfillment' => 'orders#fulfill', :as => 'fulfillment'
     resources :orders
     resources :products
   end

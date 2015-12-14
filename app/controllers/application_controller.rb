@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   before_action :current_order
   before_action :find_categories
   before_action :find_robots
-  # before_action :require_login
 
   def find_categories
     @categories = Category.all

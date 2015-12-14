@@ -13,7 +13,15 @@ RSpec.describe RobotsController, type: :controller do
     Robot.create(email: "testy@test.com", username: "testytest", password_digest: "test")
     it "renders the show view for a robot" do
       get :show, id: 1
-      expect(response.status).to eq 200
+      expect(response.status).to eq 302
+    end
+  end
+
+  describe 'require login' do 
+    it "redirects to new session when non-robot tries to go to show" do
+      current_robot = nil
+      get :show, current_robot
+      expect(response).to redirect_to new_session_path
     end
   end
 

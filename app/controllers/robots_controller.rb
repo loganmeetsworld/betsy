@@ -1,5 +1,5 @@
 class RobotsController < ApplicationController
-  before_action :require_login, only: [:dashboard]
+  before_action :require_login, only: [:show]
 
   def new
     @robot = Robot.new
@@ -16,12 +16,6 @@ class RobotsController < ApplicationController
 
   def show
     @robot = Robot.find(params[:id])
-  end
-
-  def dashboard
-    @robot = Robot.find(session[:robot_id])
-    @products = @robot.products
-    @orders = Order.includes(:orderitems).where(orderitems: { robot_id: @robot.id})
   end
 
   private
