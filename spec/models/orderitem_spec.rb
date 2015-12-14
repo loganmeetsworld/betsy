@@ -1,35 +1,59 @@
 require 'rails_helper'
 
 RSpec.describe Orderitem, type: :model do
- before :each do
-   @good_product = Product.create(name: 'product', price: 10, robot_id: 1, stock: 100)
-   @good_orderitem = Orderitem.create(quantity: 10, product_id: @good_product.id, order_id: 1)
-   @bad_orderitem = Orderitem.create(quantity: nil, product_id: @good_product.id, order_id: nil)
-   @negative_nums = Orderitem.create(quantity: -10, product_id: @good_product.id, order_id: 1)
+  let(:product) do
+    Product.create(name: 'product', price: 10, robot_id: 1, stock: 100)
+  end
+
+  let(:good_orderitem) do
+    Orderitem.new(quantity: 10, product_id: product.id, order_id: 1)
   end
 
   describe "validations" do
-    it "has a user id" do
-      expect(@good_orderitem).to be_valid
-      expect(@bad_orderitem).to_not be_valid
+    let(:missing_product_id) do
+      Orderitem.new(quantity: 1, product_id: nil, order_id: 1)
+    end
+
+    let(:missing_quantity) do
+      Orderitem.new(quantity: nil, product_id: product.id, order_id: 1)
+    end
+
+    let(:missing_order_id) do
+      Orderitem.new(quantity: 10, product_id: product.id)
+    end
+
+    let(:negative_quantity) do
+      Orderitem.new(quantity: 0, product_id: product.id, order_id: 1)
+    end
+
+    let(:exceeds_stock) do
+      Orderitem.new(quantity: 500, product_id: product.id, order_id: 1)
+    end
+
+    it "has a product id" do
+      expect(good_orderitem).to be_valid
+      expect(missing_product_id).to be_invalid
     end
 
     it "has a quantity" do
-      expect(@good_orderitem).to be_valid
-      expect(@bad_orderitem).to_not be_valid
-      expect(@bad_orderitem.errors.keys).to include(:quantity)
-    end
-
-    it "has a product_id" do
-      expect(@bad_orderitem.errors.keys).to include(:product_id)
+      expect(good_orderitem).to be_valid
+      expect(missing_quantity).to be_invalid
     end
 
     it "has a order_id" do
-      expect(@bad_orderitem.errors.keys).to include(:order_id)
+      expect(good_orderitem).to be_valid
+      expect(missing_order_id).to be_invalid
     end
 
     it "quantity must be greater than 0" do
-      expect(@negative_nums.errors.keys).to include(:quantity)
+      expect(good_orderitem).to be_valid
+      expect(negative_quantity).to be_invalid
     end
+
+    it "cannot exceed present stock" do
+      expect(good_orderitem).to be_valid
+      expect(exceeds_stock).to be_invalid
+    end
+
   end
 end
