@@ -3,17 +3,17 @@
   <% @products.each do |product| %>
   <div class="col-md-4">
     <div class= "img thumbnail">
-      <a href= "<%= product_path(product.id) %>"></a>
+      <a href= "<%= product_path(product.id) %>">
       <%= image_tag(product.picture_url) %>
       <div class="caption">
-        <h3><center><%= product.name %></center></h3>
+        <h3><center><%= product.name %></center></h3></a>
         <h5 class="pull-right"><%= number_to_currency(product.price) %></h5>
         <h5 class="pull-left"><%= product.stock %> in stock</h5>
         <% if !product.reviews.empty? %>
           <div class='star'><p><% product.rating_average.times do |star| %> 
             <%= fa_icon('star') %>
           <% end %></p></div>
-        <% end %> 
+        <% end %>
       </div>
     </div>
   </div>
