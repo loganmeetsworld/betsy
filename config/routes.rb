@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   patch 'products/:id/more' => 'orderitems#increase_quantity', as: :more
   patch 'products/:id/less' => 'orderitems#decrease_quantity', as: :less
+  delete 'products/:id/remove' => 'orderitems#remove', as: :remove
 
   resources :products do
     resources :reviews, only: [:new, :create]

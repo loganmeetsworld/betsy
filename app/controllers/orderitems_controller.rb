@@ -17,14 +17,29 @@ class OrderitemsController < ApplicationController
   def increase_quantity
     @order_item = @current_order.orderitems.where("product_id = ?", params[:id]).first
     @order_item.quantity += 1
-    @order_item.save
-    redirect_to :back
+    if @order_item.save
+      redirect_to :back
+    else
+      flash[:error] = "Quantity not increased. Cannot exceed current stock."
+      redirect_to :back
+    end
   end
 
   def decrease_quantity
     @order_item = @current_order.orderitems.where("product_id = ?", params[:id]).first
     @order_item.quantity -= 1
-    @order_item.save
+    if @order_item.save
+      redirect_to :back
+    else
+      @order_item.destroy
+      flash[:error] = "Item removed from your cart."
+      redirect_to :back
+    end
+  end
+
+  def remove
+    @order_item = @current_order.orderitems.where("product_id = ?", params[:id]).first
+    @order_item.destroy
     redirect_to :back
   end
 
