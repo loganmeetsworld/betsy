@@ -10,7 +10,11 @@
          <h5 class="pull-right"><%= number_to_currency(product.price) %></h5>
          <h5><%= product.stock %> in stock</h5>
          <h5 class="pull-right"><%= product.reviews.count %> Reviews</h5>
-         <h5>Star rating?</h5>
+        <% if !product.reviews.empty? %>
+          <div class='star'><p><% product.rating_average.times do |star| %> 
+            <%= fa_icon('star') %>
+          <% end %></p></div>
+        <% end %> 
      </div>
    </div>
  </div>
