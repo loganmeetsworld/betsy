@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
         redirect_to root_path
       else
         # robot is not authenticated
-        flash.now[:error] = "Try Again!"
+        flash.now[:error] = "Something went wrong. Try Again!"
         render :new
       end
     else

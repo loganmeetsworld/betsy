@@ -2,9 +2,8 @@
 <div class="form-group">
   <div class="center-div">
     <% if @robot.errors.any? %>
-      <h2>Form is invalid</h2>
       <% for message in @robot.errors.full_messages %>
-        <%= message %>
+        <div class="alert alert-danger"><%= flash.now[:error] %><%= message %></div>
       <% end %> 
     <% end %>
     

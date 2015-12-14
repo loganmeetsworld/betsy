@@ -13,7 +13,9 @@ class RobotsController < ApplicationController
   end
 
   def show
-  
+    @robot = Robot.find(params[:id])
+    @products = @robot.products
+    # Need to add the 'active' or 'retired' thing
   end
 
   private
