@@ -33,7 +33,7 @@
         <%= link_to "Edit", edit_product_path(product), class: 'btn btn-info' %>
       </td>
       <td class="text-center">
-        <%= link_to "Retire", root_url, class: 'btn btn-danger' %>
+        <%= button_to status(product), retire_path(product), method: 'patch', class: 'btn btn-danger' %>
       </td>
     </tr>
   <% end %>

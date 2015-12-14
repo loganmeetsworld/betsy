@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  patch 'products/retire/:id' => 'products#retire', as: "retire"
+
   get 'login' => 'sessions#new', :as => 'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
   get 'signup' => 'robots#new', :as => 'signup'
