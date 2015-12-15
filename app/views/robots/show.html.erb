@@ -1,9 +1,9 @@
 <div class="col-md-8 col-md-offset-2">
   <h1 class="title"><%= current_robot.username.titlecase %>'s Products</h1>
   <p class="title-buttons">
-    <%= link_to "Account Orders", robot_fulfillment_path(current_robot), class: 'btn btn-default' %> 
-    <%= link_to "Add Product", new_robot_product_path(current_robot), class: 'btn btn-default' %> 
-    <%= link_to "Add Category", new_category_path, class: 'btn btn-default' %> 
+    <%= link_to "Account Orders", robot_fulfillment_path(current_robot), class: 'btn btn-default' %>
+    <%= link_to "Add Product", new_robot_product_path(current_robot), class: 'btn btn-default' %>
+    <%= link_to "Add Category", new_category_path, class: 'btn btn-default' %>
   </p>
 
   <% unless @products.nil? %>
@@ -23,7 +23,7 @@
             <%= link_to product_path(product) do %>
               <%= image_tag product.picture_url, class: "dashboard" %><br>
               <%= product.name.titlecase %>
-            <% end %> 
+            <% end %>
           </td>
           <td class="text-center">
             <%= number_to_currency(product.price) %>
@@ -39,6 +39,6 @@
           </td>
         </tr>
       <% end %>
-    <% end %> 
+    <% end %>
   </table>
 </div>

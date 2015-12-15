@@ -19,6 +19,8 @@ class OrdersController < ApplicationController
   end
 
   def fulfill
+    @robot = Robot.find(params[:id])
+    @products = Product.where(robot_id: @robot.id )
   end
 
   def destroy

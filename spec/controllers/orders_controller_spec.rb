@@ -22,4 +22,18 @@ RSpec.describe OrdersController, type: :controller do
       expect(subject).to redirect_to orders_path
     end
   end
+
+  describe "GET 'show'" do
+    it "is successful" do
+      get :show
+      expect(response.status).to eq 200
+    end
+  end
+
+  describe "GET 'fulfill'" do
+    it "is successful" do
+      get :fulfill
+      expect(response.status).to eq 200
+    end
+  end
 end
