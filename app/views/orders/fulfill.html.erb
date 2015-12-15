@@ -22,7 +22,7 @@
           <td>$<%= item.product.price * item.quantity %></td>
           <td><%= item.updated_at.to_formatted_s(:short) %></td>
           <td><%= item.order.status.titlecase %></td>
-          <td>button</td>
+          <td><%= button_to "Ship it", ship_path(item) %> </td>
         <% end %>
 
       </tr>

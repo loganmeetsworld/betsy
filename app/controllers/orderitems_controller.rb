@@ -44,6 +44,10 @@ class OrderitemsController < ApplicationController
     redirect_to :back
   end
 
+  def ship
+    
+  end
+
   private
 
   def order_item_params
