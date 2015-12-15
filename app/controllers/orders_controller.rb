@@ -21,7 +21,6 @@ class OrdersController < ApplicationController
       @completed_order = Order.last
       session[:order_id] = nil
     end
-
   end
 
   def fulfill
