@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/products/robots/:id', to: 'products#robot', as: 'by_robot'
   get '/products/categories/:category_name', to: 'products#category', as: 'by_category'
   patch 'products/retire/:id' => 'products#retire', as: "retire"
+  
   resources :products do
     resources :reviews, only: [:new, :create]
   end

@@ -31,15 +31,19 @@
           <% else %>
             <td>$<%= item.product.price * item.quantity %></td>
           <% end %>
-          <td><%= item.updated_at.to_formatted_s(:short) %></td>
+          <% if item.order.status != "paid" %>
+            <td class="text-primary">Awaiting Purchase</td>
+          <% else %>
+            <td><%= item.order.purchase_time %></td>
+          <% end %>
           <td><%= item.order.status.titlecase %></td>
           <% if item.order.status == "pending" %>
             <td class="text-info">Human has not paid for order.</td>
           <% elsif item.order.status == "cancelled" %>
             <td class="text-danger">Human cancelled this order.</td>
           <% else %>
-          <td><%= link_to "See Human", info_path(current_robot, item.order), class: "btn btn-info" %></td>
-          <td><%= button_to ship_status(item), ship_path(item), method: :patch, class: ship_color(item) %> </td>
+            <td><%= link_to "See Human", info_path(current_robot, item.order), class: "btn btn-info" %></td>
+            <td><%= button_to ship_status(item), ship_path(item), method: :patch, class: ship_color(item) %> </td>
           <% end %>
       </tr>
       <% end %>

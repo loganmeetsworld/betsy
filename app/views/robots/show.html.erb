@@ -2,7 +2,7 @@
   <h1 class="title"><%= current_robot.username.titlecase %>'s Products</h1>
   <p class="title-buttons">
     <%= link_to "Account Orders", robot_fulfillment_path(current_robot), class: 'btn btn-default' %>
-    <%= link_to "Add Product", new_robot_product_path(current_robot), class: 'btn btn-default' %>
+    <%= link_to "Add Product", new_product_path(current_robot), class: 'btn btn-default' %>
     <%= link_to "Add Category", new_category_path, class: 'btn btn-default' %>
   </p>
 
