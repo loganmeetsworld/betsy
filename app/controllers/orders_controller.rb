@@ -24,8 +24,14 @@ class OrdersController < ApplicationController
   end
 
   def fulfill
-    @robot = Robot.find(params[:id])
-    @products = Product.where(robot_id: @robot.id )
+    @items = current_robot.orderitems
+    # @pending_items = current_robot.orderitems.where(status: "pending")
+    # @paid_items = current_robot.orderitems.where(status: "paid")
+    # @complete_items = current_robot.orderitems.where(status: "complete")
+    # @cancelled_items = current_robot.orderitems.where(status: "cancelled")
+
+
+
   end
 
   def destroy

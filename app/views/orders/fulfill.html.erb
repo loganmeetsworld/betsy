@@ -13,10 +13,18 @@
         <th>Revenue from Item</th>
         <th>Purchase Date</th>
         <th>Order Status</th>
-        <th>Shipping Status</th>
+        <th>Ship to Human</th>
       </tr>
       <tr>
-        <th>Product</th>
+        <% @items.each do |item| %>
+          <td><%= item.product.name %></td>
+          <td><%= item.quantity %></td>
+          <td>$<%= item.product.price * item.quantity %></td>
+          <td><%= item.updated_at.to_formatted_s(:short) %></td>
+          <td><%= item.order.status.titlecase %></td>
+          <td>button</td>
+        <% end %>
+
       </tr>
     </table>
   </div>

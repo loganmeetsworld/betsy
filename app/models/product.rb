@@ -1,7 +1,8 @@
 class Product < ActiveRecord::Base
-  belongs_to :robot 
+  belongs_to :robot
   has_and_belongs_to_many :categories
   has_many :reviews
+  has_many :orderitems
 
   validates :name, presence: true
   validates :robot_id, presence: true
