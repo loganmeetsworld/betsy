@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
       item.product.stock -= item.quantity
       item.product.save
     end
+    @current_order.save
     session[:order_id] = nil
     render :thanks
   end

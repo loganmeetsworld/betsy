@@ -1,4 +1,4 @@
-<h1>Items in your cart</h1>
+<h1 class="text-center">Items in your cart</h1>
 
 <% if !flash[:error].nil? %>
   <%= flash[:error] %>
@@ -40,5 +40,11 @@
   <%= button_to "Cancel my order", order_path(@current_order), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 
 <% else %>
-  <h2>No items yet! Keep shopping!</h2>
+  <h2 class="text-center">No items yet! Keep shopping!</h2>
+  <p class="text-center">
+    <%= image_tag("sad-robot.png") %>
+  </p>
+  <p class="text-center">
+    <%= link_to "Browse Products", products_path, class: "btn btn-default" %>
+  </p>
 <% end %>
