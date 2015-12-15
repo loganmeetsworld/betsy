@@ -25,13 +25,10 @@ class OrdersController < ApplicationController
 
   def fulfill
     @items = current_robot.orderitems
-    # @pending_items = current_robot.orderitems.where(status: "pending")
-    # @paid_items = current_robot.orderitems.where(status: "paid")
+    # @pending_items = Order.where(status: "pending")
+    # @paid_items = Order.where(status: "paid")
     # @complete_items = current_robot.orderitems.where(status: "complete")
     # @cancelled_items = current_robot.orderitems.where(status: "cancelled")
-
-
-
   end
 
   def destroy
