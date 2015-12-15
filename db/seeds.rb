@@ -1,13 +1,5 @@
 products = [
   {
-    name: "Robot Dog",
-    description: "Great dog to walk and play with. We love him and now he can be yours.",
-    price: 232.23,
-    robot_id: 1,
-    picture_url: 'http://www.toyrobotsreview.com/wp-content/uploads/2013/08/robot-dog-toy.jpg',
-    stock: 3
-  },
-  {
     name: "Robot Food", description: "Yummy for robots so probably yummy for humans as well. Humans like robots and so humans probably like robot food.",
     price: 12.34,
     robot_id: 1,
@@ -525,5 +517,4 @@ Product.find(23).categories << Category.find(7)
 Product.find(23).categories << Category.find(3)
 Product.find(24).categories << Category.find(2)
 Product.find(24).categories << Category.find(5)
-Product.find(25).categories << Category.find(2)
-Product.find(25).categories << Category.find(5)
+

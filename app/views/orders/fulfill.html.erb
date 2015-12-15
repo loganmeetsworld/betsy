@@ -13,6 +13,7 @@
         <th>Revenue from Item</th>
         <th>Purchase Date</th>
         <th>Order Status</th>
+        <th>Human Info</th>
         <th>Ship to Human</th>
       </tr>
       
@@ -33,9 +34,12 @@
           <td><%= item.updated_at.to_formatted_s(:short) %></td>
           <td><%= item.order.status.titlecase %></td>
           <% if item.order.status == "pending" %>
-            <td class="text-primary">Pending Payment</td>
+            <td class="text-info">Human has not paid for order.</td>
+          <% elsif item.order.status == "cancelled" %>
+            <td class="text-danger">Human cancelled this order.</td>
           <% else %>
-            <td><%= button_to ship_status(item), ship_path(item), method: :patch, class: ship_color(item) %> </td>
+          <td><%= link_to "See Human", root_url, class: "btn btn-info" %></td>
+          <td><%= button_to ship_status(item), ship_path(item), method: :patch, class: ship_color(item) %> </td>
           <% end %>
       </tr>
       <% end %>
