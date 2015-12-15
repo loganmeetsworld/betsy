@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/products/robots/:id', to: 'products#robot', as: 'by_robot'
   get '/products/categories/:category_name', to: 'products#category', as: 'by_category'
   patch 'products/retire/:id' => 'products#retire', as: "retire"
-  
+
   resources :products do
     resources :reviews, only: [:new, :create]
   end
@@ -25,12 +25,12 @@ Rails.application.routes.draw do
   resources :categories, only: [:new, :create]
 
   #Orders controller
-  resources :orders
   get '/orders/checkout' => 'orders#checkout', as: 'checkout'
   patch '/orders/confirm' => 'orders#confirm', as: 'confirm'
   patch '/orders/cancel' => 'orders#cancel', as: 'cancel'
   patch '/orders/finalize' => 'orders#finalize', as: 'finalize'
   get '/robots/:id/orders/:id/info' => 'orders#info', as: 'info'
+  resources :orders
 
   #Orderitems controller
   patch 'orderitems/:id/ship' => 'orderitems#ship', as: :ship
