@@ -1,5 +1,21 @@
 require 'rails_helper'
 
+RSpec::Matchers.define :require_login do
+
+  match do |actual|
+    redirect_to Rails.application.routes.url_helpers.login_path
+  end
+
+  failure_message do |actual|
+    "expected to require login to access the method"
+  end
+
+  description do
+    "redirect to the login form"
+  end
+
+end
+
 RSpec.describe RobotsController, type: :controller do
 
   describe "GET 'new'" do 
@@ -18,10 +34,12 @@ RSpec.describe RobotsController, type: :controller do
   end
 
   describe 'require login' do 
+    let(:robot) { create(:robot) }
+
     it "redirects to new session when non-robot tries to go to show" do
-      current_robot = nil
-      get :show, current_robot
-      expect(response).to redirect_to new_session_path
+      current_robot = Robot.create(username: "test", email: "test@test.com", password: "test", password_confirmation: "test")
+      get :show, id: current_robot.id
+      expect(response).to require_login
     end
   end
 
