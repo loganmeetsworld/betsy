@@ -15,7 +15,6 @@ class OrdersController < ApplicationController
     else
       # change stock
     end
-
   end
 
   def fulfill

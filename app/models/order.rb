@@ -17,6 +17,13 @@ class Order < ActiveRecord::Base
     return total
   end
 
+  def total_amount
+    total = 0
+    self.orderitems.each do |item|
+      total += item.price if !item.price.nil?
+    end
+  end
+
   def paid?
     status == "paid"
   end

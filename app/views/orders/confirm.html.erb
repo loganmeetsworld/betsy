@@ -1,1 +1,49 @@
-<h1>Done!</h1>
+<div class="col-md-8 col-md-offset-2">
+  <h2 class="title">Thanks for Shopping on BOTsy! Here is your Order Confirmation</h2>
+  <p class="title-buttons">
+    <%= link_to "Continuing Shopping", products_path, class: 'btn btn-default' %> 
+    <%= link_to "Homepage", root_path, class: 'btn btn-default' %> 
+  </p>
+  <h3>Order Information</h3>
+  <table class="table table-hover table-bordered">
+    <tr class="">
+      <th>Order Total Amount</th>
+      <th>Time Purchased</th>
+      <th>Current Status</th>
+    </tr>
+    
+    <tr class="valign">
+      <td class="text-center">
+        <%= @completed_order.total_amount %> 
+      </td>
+      <td class="text-center">
+        <%= @completed_order.updated_at %> 
+      </td>
+      <td class="text-center">
+        <%= @completed_order.status %> 
+      </td>
+    </tr>
+  </table>
+
+  <h3>Products Purchased</h3>
+  <table class="table table-hover table-bordered">
+    <tr class="">
+      <th>Product</th>
+      <th>Price</th>
+    </tr>
+
+    <% @completed_order.products.each do |product| %>
+      <tr class="valign">
+        <td>
+          <%= link_to product_path(product) do %>
+            <%= image_tag product.picture_url, class: "dashboard" %><br>
+            <%= product.name.titlecase %>
+          <% end %> 
+        </td>
+        <td class="text-center">
+          <%= number_to_currency(product.price) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
