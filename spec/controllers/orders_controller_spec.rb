@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe OrdersController, type: :controller do
+  before :each do
+    @current_robot = Robot.create(username: "robo", email: "robo@email.com", password: "BestPosswordOfAll")
+    session[:robot_id] = @current_robot.id
+  end
+
   describe "GET 'index'" do
     it "is successful" do
       get :index
@@ -73,16 +78,21 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  describe "GET 'show'" do
+  describe "GET 'info'" do
+    before(:each) do
+      @order = Order.create(status: "paid", email: "test@test.com", address: "test", city: "test", state: "WA", zip: "98102", credit_name: "test", credit_num: "4444444444444444", cvv: "444")
+      @order << @current_robot.orders
+    end
+
     it "is successful" do
-      get :show
+      get :show, @order.id
       expect(response.status).to eq 200
     end
   end
 
   describe "GET 'fulfill'" do
     it "is successful" do
-      get :fulfill
+      get :fulfill, robot_id: 1
       expect(response.status).to eq 200
     end
   end
