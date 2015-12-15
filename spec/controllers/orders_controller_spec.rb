@@ -38,6 +38,7 @@ RSpec.describe OrdersController, type: :controller do
         },
       }
     end
+
     let(:bad_params) do
       {
         order: {
@@ -45,16 +46,33 @@ RSpec.describe OrdersController, type: :controller do
         },
       }
     end
+
     it "redirects to confirmation page when successful" do
       patch :confirm, good_params
       expect(subject).to render_template(:confirm)
     end
+
     it "reduces stock" do
       # something
     end
+
     it "renders checkout page when unsuccessful" do
       patch :confirm, bad_params
       expect(subject).to render_template(:checkout)
+    end
+  end
+
+  describe "GET 'show'" do
+    it "is successful" do
+      get :show
+      expect(response.status).to eq 200
+    end
+  end
+
+  describe "GET 'fulfill'" do
+    it "is successful" do
+      get :fulfill
+      expect(response.status).to eq 200
     end
   end
 end
