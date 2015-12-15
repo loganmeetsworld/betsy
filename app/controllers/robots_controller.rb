@@ -14,10 +14,7 @@ class RobotsController < ApplicationController
     end
   end
 
-  def show
-    @robot = Robot.find(params[:id])
-    @products = @robot.products
-  end
+  def show; end
 
   private
 

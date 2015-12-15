@@ -39,4 +39,16 @@ RSpec.describe Product, type: :model do
       expect(@negative_nums.errors.keys).to include(:stock)
     end
   end
+
+  describe "rating_methods" do 
+    it "averages the rating correctly" do
+      Review.create(rating: 4, product_id: @good_product.id)
+      Review.create(rating: 3, product_id: @good_product.id)
+      Review.create(rating: 3, product_id: @good_product.id)
+      Review.create(rating: 3, product_id: @good_product.id)
+
+      expect(@good_product.rating_average).to eq 3
+    end
+
+  end
 end

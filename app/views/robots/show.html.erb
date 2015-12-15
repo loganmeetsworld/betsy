@@ -17,7 +17,7 @@
         <th>Retire</th>
       </tr>
 
-      <% @products.each do |product| %>
+      <% current_robot.products.each do |product| %>
         <tr class="valign">
           <td>
             <%= link_to product_path(product) do %>

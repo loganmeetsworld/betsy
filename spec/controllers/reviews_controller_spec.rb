@@ -17,7 +17,8 @@ RSpec.describe ReviewsController, type: :controller do
   describe "POST 'create'" do 
     it "creates view" do
       Review.create(review_params)
-      expect(Review.count).to eq(1)
+      expect(Review.count).to eq(5)
+      # 4 reviews created in product as well
     end
 
     it "redirects back to product page" do 
