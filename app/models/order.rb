@@ -1,13 +1,13 @@
 class Order < ActiveRecord::Base
   has_many :orderitems
-  validates :credit_name, presence: true, on: :update, if: :paid?
-  validates :email,       presence: true, on: :update, if: :paid?
-  validates :credit_num,  presence: true, numericality: { only_integer: true }, length: { is: 16 }, on: :update, if: :paid?
-  validates :cvv,         presence: true, numericality: { only_integer: true }, length: { is: 3 },  on: :update, if: :paid?
-  validates :address,     presence: true, on: :update, if: :paid?
-  validates :city,        presence: true, on: :update, if: :paid?
-  validates :state,       presence: true, on: :update, if: :paid?
-  validates :zip,         presence: true, numericality: { only_integer: true }, length: { is: 5 },  on: :update, if: :paid?
+  validates :credit_name, presence: true, on: :update, if: :awaiting_confirmation?
+  validates :email,       presence: true, on: :update, if: :awaiting_confirmation?
+  validates :credit_num,  presence: true, numericality: { only_integer: true }, length: { is: 16 }, on: :update, if: :awaiting_confirmation?
+  validates :cvv,         presence: true, numericality: { only_integer: true }, length: { is: 3 },  on: :update, if: :awaiting_confirmation?
+  validates :address,     presence: true, on: :update, if: :awaiting_confirmation?
+  validates :city,        presence: true, on: :update, if: :awaiting_confirmation?
+  validates :state,       presence: true, on: :update, if: :awaiting_confirmation?
+  validates :zip,         presence: true, numericality: { only_integer: true }, length: { is: 5 },  on: :update, if: :awaiting_confirmation?
 
   def total_items
     total = 0
@@ -16,18 +16,18 @@ class Order < ActiveRecord::Base
     end
     return total
   end
-   
+
   def total_amount
     total = 0
     items = self.orderitems
-    
+
     items.each do |item|
       total += item.product.price
     end
     return total
   end
 
-  def paid?
-    status == "paid"
+  def awaiting_confirmation?
+    status == "Awaiting confirmation"
   end
 end

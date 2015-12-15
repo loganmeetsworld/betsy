@@ -33,8 +33,12 @@ Rails.application.routes.draw do
 
   resources :robots
 
+
   get '/orders/checkout' => 'orders#checkout', as: 'checkout'
   patch '/orders/confirm' => 'orders#confirm', as: 'confirm'
+  patch '/orders/cancel' => 'orders#cancel', as: 'cancel'
+  patch '/orders/finalize' => 'orders#finalize', as: 'finalize'
+
 
   resources :orders
 
