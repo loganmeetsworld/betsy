@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
     items = self.orderitems
 
     items.each do |item|
-      total += item.product.price
+      total += item.product.price * item.quantity
     end
     return total
   end
