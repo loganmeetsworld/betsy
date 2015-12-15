@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 class Order < ActiveRecord::Base
   has_many :orderitems
   validates :credit_name, presence: true, on: :update, if: :paid?
@@ -32,14 +32,14 @@ class Order < ActiveRecord::Base
     status == "paid"
   end
 
-  def revenue
-    total = 0
-    self.orderitems.each do |item|
-      if item.order.status == "paid"
-        total += item.quantity * item.product.price
-      end
-    end
-    binding.pry
-    return total
-  end
+  # def revenue
+  #   total = 0
+  #   self.each do |item|
+  #     if item.order.status == "paid"
+  #       total += item.quantity * item.product.price
+  #     end
+  #   end
+  #   # binding.pry
+  #   return total
+  # end
 end
