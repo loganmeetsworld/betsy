@@ -38,7 +38,7 @@
           <% elsif item.order.status == "cancelled" %>
             <td class="text-danger">Human cancelled this order.</td>
           <% else %>
-          <td><%= link_to "See Human", root_url, class: "btn btn-info" %></td>
+          <td><%= link_to "See Human", info_path(current_robot, item.order), class: "btn btn-info" %></td>
           <td><%= button_to ship_status(item), ship_path(item), method: :patch, class: ship_color(item) %> </td>
           <% end %>
       </tr>
