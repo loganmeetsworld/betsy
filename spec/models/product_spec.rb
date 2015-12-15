@@ -40,7 +40,7 @@ RSpec.describe Product, type: :model do
     end
   end
 
-  describe "rating_methods" do 
+  describe "model methods" do 
     it "averages the rating correctly" do
       Review.create(rating: 4, product_id: @good_product.id)
       Review.create(rating: 3, product_id: @good_product.id)
@@ -48,6 +48,20 @@ RSpec.describe Product, type: :model do
       Review.create(rating: 3, product_id: @good_product.id)
 
       expect(@good_product.rating_average).to eq 3
+    end
+
+    it "shows categories correctly" do
+      @cat1 = Category.create(name: "cat1")
+      @cat2 = Category.create(name: "cat2")
+      @cat3 = Category.create(name: "cat3")
+      @cat4 = Category.create(name: "cat4")
+
+      Product.find(@good_product.id).categories << Category.find(@cat1.id)
+      Product.find(@good_product.id).categories << Category.find(@cat2.id)
+      Product.find(@good_product.id).categories << Category.find(@cat3.id)
+      Product.find(@good_product.id).categories << Category.find(@cat4.id)
+
+      expect(@good_product.show_categories).to eq "cat1, cat2, cat3, cat4"
     end
 
   end
