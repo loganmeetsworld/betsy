@@ -16,12 +16,12 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe "paid?" do
-    it "checks an order has paid status" do
-      paid = Order.new(status: "paid")
+  describe "awaiting_confirmation?" do
+    it "checks an order has 'awaiting confirmation' status" do
+      ac = Order.new(status: "Awaiting confirmation")
       pending = Order.new(status: "pending")
-      expect(paid.paid?).to be true
-      expect(pending.paid?).to be false
+      expect(ac.awaiting_confirmation?).to be true
+      expect(pending.awaiting_confirmation?).to be false
     end
   end
 end
