@@ -16,12 +16,15 @@ class Order < ActiveRecord::Base
     end
     return total
   end
-
+   
   def total_amount
     total = 0
-    self.orderitems.each do |item|
-      total += item.price if !item.price.nil?
+    items = self.orderitems
+    
+    items.each do |item|
+      total += item.product.price
     end
+    return total
   end
 
   def paid?

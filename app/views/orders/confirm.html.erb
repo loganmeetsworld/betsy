@@ -14,13 +14,13 @@
     
     <tr class="valign">
       <td class="text-center">
-        <%= @completed_order.total_amount %> 
+        $<%= @completed_order.total_amount %> 
       </td>
       <td class="text-center">
-        <%= @completed_order.updated_at %> 
+        <%= @completed_order.updated_at.to_formatted_s(:short) %> 
       </td>
       <td class="text-center">
-        <%= @completed_order.status %> 
+        <%= @completed_order.status.titlecase %> 
       </td>
     </tr>
   </table>
@@ -30,18 +30,26 @@
     <tr class="">
       <th>Product</th>
       <th>Price</th>
+      <th>Quantity</th>
+      <th>Total Cost</th>
     </tr>
 
-    <% @completed_order.products.each do |product| %>
+    <% @completed_order.orderitems.each do |item| %>
       <tr class="valign">
         <td>
-          <%= link_to product_path(product) do %>
-            <%= image_tag product.picture_url, class: "dashboard" %><br>
-            <%= product.name.titlecase %>
+          <%= link_to product_path(item.product) do %>
+            <%= image_tag item.product.picture_url, class: "dashboard" %><br>
+            <%= item.product.name.titlecase %>
           <% end %> 
         </td>
         <td class="text-center">
-          <%= number_to_currency(product.price) %>
+          $<%= item.product.price %>
+        </td>
+        <td class="text-center">
+          <%= item.quantity %>
+        </td>
+        <td class="text-center">
+          <%= number_to_currency(item.product.price * item.quantity) %>
         </td>
       </tr>
     <% end %>
