@@ -111,7 +111,7 @@ products = [
   },
   {
     name: "Portable Speaker",
-    description: "Plugs into headphone jack for easy use, also works when not attached to handlebars for a portable speaker. Enjoy your favorite music while cruising with your friends. Speaker will not obsolete when new phone is launched. ",
+    description: "Plugs into headphone jack for easy use. Enjoy your favorite music while cruising with your friends. Speaker works with any phone brand magically. ",
     price: 55.25,
     robot_id: 1,
     picture_url: 'http://img.timeinc.net/time/2008/top_ten_2008/10_gadgets/pico.jpg',
@@ -119,7 +119,7 @@ products = [
   },
   {
     name: "Botch",
-    description: "Wild watches for wild peopl.",
+    description: "Wild watches for wild people.",
     price: 49.99,
     robot_id: 3,
     picture_url: 'http://www.webdesignco.co.uk/images/2014/01/top-gadgets-for-designers_eniof_9.jpg',
