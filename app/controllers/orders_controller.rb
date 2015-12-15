@@ -18,11 +18,6 @@ class OrdersController < ApplicationController
 
   def cancel
     @current_order.status = "cancelled"
-    items = @current_order.orderitems
-    items.each do |item|
-      item.product.stock += item.quantity
-      item.product.save
-    end
     @current_order.save
     session[:order_id] = nil
     redirect_to orders_path
