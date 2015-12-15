@@ -24,12 +24,19 @@ class OrdersController < ApplicationController
   end
 
   def fulfill
+    @robot = Robot.find(params[:id])
+    @products = Product.where(robot_id: @robot.id )
   end
 
   def destroy
     @current_order.destroy
     session[:order_id] = nil
     redirect_to orders_path
+  end
+
+  def show
+    @guest = Order.find(params[:id])
+    @card_num = @guest.credit_num.split(//).last(4).join
   end
 
   private
