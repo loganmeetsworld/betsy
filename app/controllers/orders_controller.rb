@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
 
   def finalize
     @current_order.status = "paid"
+    @current_order.purchase_time = Time.now
     items = @current_order.orderitems
     items.each do |item|
       item.product.stock -= item.quantity
