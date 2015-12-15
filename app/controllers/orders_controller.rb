@@ -7,20 +7,31 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-    @current_order.status = "paid"
+    @completed_order = @current_order
+    @current_order.status = "Awaiting confirmation"
     @current_order.attributes = order_params
     if !@current_order.save
       @current_order.status = "pending"
       render :checkout
-    else
-      items = @current_order.orderitems
-      items.each do |item|
-        item.product.stock -= item.quantity
-        item.product.save
-      end
-      @completed_order = Order.last
-      session[:order_id] = nil
     end
+  end
+
+  def cancel
+    @current_order.status = "cancelled"
+    @current_order.save
+    session[:order_id] = nil
+    redirect_to orders_path
+  end
+
+  def finalize
+    @current_order.status = "paid"
+    items = @current_order.orderitems
+    items.each do |item|
+      item.product.stock -= item.quantity
+      item.product.save
+    end
+    session[:order_id] = nil
+    render :thanks
   end
 
   def fulfill
