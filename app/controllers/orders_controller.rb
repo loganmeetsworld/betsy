@@ -30,16 +30,14 @@ class OrdersController < ApplicationController
       item.product.stock -= item.quantity
       item.product.save
     end
+    @current_order.save
     session[:order_id] = nil
     render :thanks
   end
 
   def fulfill
-    @items = current_robot.orderitems
-    # @pending_items = Order.where(status: "pending")
-    # @paid_items = Order.where(status: "paid")
-    # @complete_items = current_robot.orderitems.where(status: "complete")
-    # @cancelled_items = current_robot.orderitems.where(status: "cancelled")
+    @items = current_robot.orderitems.order(:quantity)
+    @order = Order.where(id: @items.last.order_id)
   end
 
   def destroy

@@ -8,19 +8,13 @@ class Robot < ActiveRecord::Base
 
   has_secure_password
 
-  # def self.authenticate(email, password)
-  #   robot = find_by_email(email)
-  #   if robot && robot.password_digest == BCrypt::Engine.hash_secret(password, robot.password_salt)
-  #     robot
-  #   else
-  #     nil
-  #   end
-  # end
-
-  # def encrypt_password
-  #   if password.present?
-  #     self.password_salt = BCrypt::Engine.generate_salt
-  #     self.password_digest = BCrypt::Engine.hash_secret(password, password_salt)
-  #   end
-  # end
+  def revenue
+    total = 0
+      self.orderitems.each do |item|
+        if item.order.status == "paid"
+        total += item.quantity * item.product.price
+      end
+    end
+    return total
+  end
 end

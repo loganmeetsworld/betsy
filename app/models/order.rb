@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
     items = self.orderitems
 
     items.each do |item|
-      total += item.product.price
+      total += item.product.price * item.quantity
     end
     return total
   end
@@ -31,15 +31,4 @@ class Order < ActiveRecord::Base
   def awaiting_confirmation?
     status == "Awaiting confirmation"
   end
-
-  # def revenue
-  #   total = 0
-  #   self.each do |item|
-  #     if item.order.status == "paid"
-  #       total += item.quantity * item.product.price
-  #     end
-  #   end
-  #   # binding.pry
-  #   return total
-  # end
 end

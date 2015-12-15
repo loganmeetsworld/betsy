@@ -1,8 +1,8 @@
 <h1 class="text-center">Order Fulfillment</h1>
 <p class="title-buttons">
-  <%= link_to "Account Products", robot_products_path(current_robot), class: 'btn btn-default' %>
+  <%= link_to "Return to Account Page", robot_path(current_robot), class: 'btn btn-default' %>
 </p>
-<h3 class="text-center">Total Revenue: $<%= @items.revenue %></h3>
+<h3 class="text-center">Total Revenue: $<%= current_robot.revenue %></h3>
 <br>
 <div class="row">
   <div class='col-md-8 col-md-offset-2' >
@@ -15,8 +15,9 @@
         <th>Order Status</th>
         <th>Ship to Human</th>
       </tr>
-      <tr>
+      
         <% @items.each do |item| %>
+        <tr>
         <td>
           <%= link_to product_path(item.product) do %>
             <%= image_tag item.product.picture_url, class: "dashboard" %><br>

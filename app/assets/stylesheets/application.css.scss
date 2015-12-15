@@ -9,10 +9,15 @@ body {
   height:100%;
   padding-bottom: 60px;
 }
+
 .carousel-inner > .item > img {
   height:360px;
   width: auto;
   margin: 0 auto;
+}
+
+.navbar-brand {
+  font-family: 'Roboto Mono';
 }
 
 .page-header {
