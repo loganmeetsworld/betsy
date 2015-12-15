@@ -43,11 +43,22 @@ RSpec.describe OrderitemsController, type: :controller do
       session[:order_id] = order.id
     end
 
-    let(:orderitem) do
-      Orderitem.create(order_id: order.id, product_id: 2, quantity: 3)
+    let(:product) do
+      Product.create(name: 'something', price: 200, robot_id: 1, stock: 5)
     end
 
-    it "refreshes the page" do
+    let(:orderitem) do
+      Orderitem.create(order_id: order.id, product_id: product.id, quantity: 3)
+    end
+
+    it "refreshes the page on success" do
+      patch :increase_quantity, id: orderitem.product_id
+      expect(subject).to redirect_to "where_i_came_from"
+    end
+
+    it "refreshes the page on failure" do
+      patch :increase_quantity, id: orderitem.product_id
+      patch :increase_quantity, id: orderitem.product_id
       patch :increase_quantity, id: orderitem.product_id
       expect(subject).to redirect_to "where_i_came_from"
     end
@@ -67,9 +78,37 @@ RSpec.describe OrderitemsController, type: :controller do
       Orderitem.create(order_id: order.id, product_id: 2, quantity: 3)
     end
 
-    it "refreshes the page" do
+    it "refreshes the page on success" do
       patch :decrease_quantity, id: orderitem.product_id
       expect(subject).to redirect_to "where_i_came_from"
     end
+
+    it "refreshes the page on failure" do
+      patch :decrease_quantity, id: orderitem.product_id
+      patch :decrease_quantity, id: orderitem.product_id
+      patch :decrease_quantity, id: orderitem.product_id
+      expect(subject).to redirect_to "where_i_came_from"
+    end
+  end
+
+  describe "DELETE 'remove'" do
+    let(:order) do
+      Order.create(status: "pending")
+    end
+
+    before(:each) do
+      request.env["HTTP_REFERER"] = "where_i_came_from"
+      session[:order_id] = order.id
+    end
+
+    let(:orderitem) do
+      Orderitem.create(order_id: order.id, product_id: 2, quantity: 3)
+    end
+
+    it "refreshes the page" do
+      delete :remove, id: orderitem.product_id
+      expect(subject).to redirect_to "where_i_came_from"
+    end
+
   end
 end
