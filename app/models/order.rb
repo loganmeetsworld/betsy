@@ -1,3 +1,4 @@
+require 'pry'
 class Order < ActiveRecord::Base
   has_many :orderitems
   validates :credit_name, presence: true, on: :update, if: :paid?
@@ -16,11 +17,11 @@ class Order < ActiveRecord::Base
     end
     return total
   end
-   
+
   def total_amount
     total = 0
     items = self.orderitems
-    
+
     items.each do |item|
       total += item.product.price
     end
@@ -29,5 +30,16 @@ class Order < ActiveRecord::Base
 
   def paid?
     status == "paid"
+  end
+
+  def revenue
+    total = 0
+    self.orderitems.each do |item|
+      if item.order.status == "paid"
+        total += item.quantity * item.product.price
+      end
+    end
+    binding.pry
+    return total
   end
 end

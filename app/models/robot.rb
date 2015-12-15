@@ -1,5 +1,7 @@
 class Robot < ActiveRecord::Base
   has_many :products
+  has_many :orderitems, :through => :products
+
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: /@/
   validates :username, presence: true, uniqueness: { case_sensitive: false }
@@ -14,7 +16,7 @@ class Robot < ActiveRecord::Base
   #     nil
   #   end
   # end
-  
+
   # def encrypt_password
   #   if password.present?
   #     self.password_salt = BCrypt::Engine.generate_salt

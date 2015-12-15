@@ -14,5 +14,4 @@ class Orderitem < ActiveRecord::Base
       end
     end
   end
-
 end

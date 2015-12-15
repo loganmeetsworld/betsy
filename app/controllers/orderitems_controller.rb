@@ -44,6 +44,13 @@ class OrderitemsController < ApplicationController
     redirect_to :back
   end
 
+  def ship
+    @order_item = Orderitem.find(params[:id])
+    @order_item.shipped ? @order_item.shipped = false : @order_item.shipped = true
+    @order_item.save
+    redirect_to :back
+  end
+
   private
 
   def order_item_params

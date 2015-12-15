@@ -96,6 +96,7 @@ GEM
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
       railties (>= 3.0.0, < 5.0.0)
+    method_source (0.8.2)
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
@@ -103,6 +104,10 @@ GEM
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rack (1.6.4)
     rack-contrib (1.4.0)
       git-version-bump (~> 0.15)
@@ -178,6 +183,7 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    slop (3.6.0)
     spring (1.5.0)
     sprockets (3.5.1)
       concurrent-ruby (~> 1.0)
@@ -218,6 +224,7 @@ DEPENDENCIES
   jquery-rails
   meta_request
   pg
+  pry
   rails (= 4.2.5)
   rails-erd
   rails_12factor (~> 0.0.3)

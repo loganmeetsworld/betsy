@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :sessions
+  patch 'orderitems/:id/ship' => 'orderitems#ship', as: :ship
 
   patch '/products/:id/add' => 'orderitems#add_to_cart'
   post '/products/:id/add' => 'orderitems#add_to_cart'

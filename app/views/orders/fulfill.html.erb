@@ -2,10 +2,10 @@
 <p class="title-buttons">
   <%= link_to "Account Products", robot_products_path(current_robot), class: 'btn btn-default' %>
 </p>
-<h3 class="text-center">Total Revenue: <%=  %></h3>
+<h3 class="text-center">Total Revenue: $<%= @current_order.revenue %></h3>
 <br>
 <div class="row">
-  <div class='col-md-12'>
+  <div class='col-md-8 col-md-offset-2' >
     <table class='table table-bordered table-hover'>
       <tr>
         <th>Product</th>
@@ -13,11 +13,31 @@
         <th>Revenue from Item</th>
         <th>Purchase Date</th>
         <th>Order Status</th>
-        <th>Shipping Status</th>
+        <th>Ship to Human</th>
       </tr>
       <tr>
-        <th>Product</th>
+        <% @items.each do |item| %>
+        <td>
+          <%= link_to product_path(item.product) do %>
+            <%= image_tag item.product.picture_url, class: "dashboard" %><br>
+            <%= item.product.name.titlecase %>
+          <% end %>
+        </td>
+          <td><%= item.quantity %></td>
+          <% if item.order.status == "pending" %>
+            <td class="text-primary">Pending Payment of $<%= item.product.price * item.quantity %></td>
+          <% else %>
+            <td>$<%= item.product.price * item.quantity %></td>
+          <% end %>
+          <td><%= item.updated_at.to_formatted_s(:short) %></td>
+          <td><%= item.order.status.titlecase %></td>
+          <% if item.order.status == "pending" %>
+            <td class="text-primary">Pending Payment</td>
+          <% else %>
+            <td><%= button_to ship_status(item), ship_path(item), method: :patch, class: ship_color(item) %> </td>
+          <% end %>
       </tr>
+      <% end %>
     </table>
   </div>
 </div>
