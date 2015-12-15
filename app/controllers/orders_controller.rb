@@ -13,7 +13,13 @@ class OrdersController < ApplicationController
       @current_order.status = "pending"
       render :checkout
     else
-      # change stock
+      items = @current_order.orderitems
+      items.each do |item|
+        item.product.stock -= item.quantity
+        item.product.save
+      end
+      @completed_order = Order.last
+      session[:order_id] = nil
     end
 
   end
