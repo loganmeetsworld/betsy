@@ -9,8 +9,10 @@ class Orderitem < ActiveRecord::Base
 
   def quantity_cannot_exceed_stock
     if !self.quantity.nil? && !self.product_id.nil?
-      if self.quantity > self.product.stock
-        errors.add(:quantity, "can't exceed present stock")
+      if self.order.status != "paid"
+        if self.quantity > self.product.stock
+          errors.add(:quantity, "can't exceed present stock")
+        end
       end
     end
   end
