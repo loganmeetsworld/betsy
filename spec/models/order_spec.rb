@@ -37,4 +37,20 @@ RSpec.describe Order, type: :model do
       expect(pending.awaiting_confirmation?).to be false
     end
   end
+
+  describe "complete?" do 
+    it "returns true when all items are shipped" do 
+      order = Order.create
+      Orderitem.create(product_id: 2, order_id: order.id, quantity: 3, shipped: true)
+      Orderitem.create(product_id: 3, order_id: order.id, quantity: 1, shipped: true)
+      expect(order.complete?).to eq true
+    end
+
+    it "returns false when all items are not shipped" do 
+      order = Order.create
+      Orderitem.create(product_id: 3, order_id: order.id, quantity: 3, shipped: false)
+      Orderitem.create(product_id: 4, order_id: order.id, quantity: 1, shipped: true)
+      expect(order.complete?).to eq false
+    end
+  end
 end

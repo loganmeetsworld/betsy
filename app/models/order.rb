@@ -34,14 +34,17 @@ class Order < ActiveRecord::Base
 
   def complete?
     complete = true
+    a = []
     self.orderitems.each do |item|
       if item.shipped?
-        complete = true
+        a << true
       else
-        complete = false
+        a << false
       end
     end
 
+    a.include?(false) ? complete = false : complete = true
+    
     return complete
   end
 end
