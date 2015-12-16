@@ -61,7 +61,7 @@ RSpec.describe Product, type: :model do
       Product.find(@good_product.id).categories << Category.find(@cat3.id)
       Product.find(@good_product.id).categories << Category.find(@cat4.id)
 
-      expect(@good_product.show_categories).to eq "cat1, cat2, cat3, cat4"
+      expect(@good_product.show_categories).to eq "Cat1, Cat2, Cat3, Cat4"
     end
 
   end
