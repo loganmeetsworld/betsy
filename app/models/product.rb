@@ -18,6 +18,6 @@ class Product < ActiveRecord::Base
   end
 
   def show_categories
-    self.categories.map { |category| category.name }.join(", ")
+    self.categories.map { |category| category.name.capitalize }.join(", ")
   end
 end
