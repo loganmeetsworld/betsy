@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe OrdersController, type: :controller do
   before :each do
@@ -81,18 +82,25 @@ RSpec.describe OrdersController, type: :controller do
   describe "GET 'info'" do
     before(:each) do
       @order = Order.create(status: "paid", email: "test@test.com", address: "test", city: "test", state: "WA", zip: "98102", credit_name: "test", credit_num: "4444444444444444", cvv: "444")
-      @order << @current_robot.orders
+
     end
 
     it "is successful" do
-      get :show, @order.id
+      get :info, id: @current_robot.id, id: @order.id
       expect(response.status).to eq 200
     end
   end
 
   describe "GET 'fulfill'" do
+    before(:each) do
+      @order = Order.create(status: "paid", email: "test@test.com", address: "test", city: "test", state: "WA", zip: "98102", credit_name: "test", credit_num: "4444444444444444", cvv: "444")
+      @product = Product.create(name: 'something', price: 200, robot_id: @current_robot.id, stock: 5)
+      @orderitem = Orderitem.create(order_id: @order.id, product_id: @product.id, quantity: 2)
+      @current_robot.products.first.orderitems << @orderitem
+    end
+
     it "is successful" do
-      get :fulfill, robot_id: 1
+      get :fulfill, robot_id: @current_robot.id
       expect(response.status).to eq 200
     end
   end
