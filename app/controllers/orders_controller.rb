@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
   end
 
   def fulfill
-    @items = current_robot.orderitems.order(:quantity)
+    @items = current_robot.orderitems
     @order = @current_order
   end
 

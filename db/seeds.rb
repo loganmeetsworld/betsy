@@ -458,13 +458,13 @@ reviews = [
 ]
 
 categories = [
-  { name: "Art" },
-  { name: "Food" },
-  { name: "Gadgets" },
-  { name: "Pets" },
-  { name: "Home" },
-  { name: "Clothing" },
-  { name: "Software" }
+  { name: "art" },
+  { name: "food" },
+  { name: "gadgets" },
+  { name: "pets" },
+  { name: "home" },
+  { name: "clothing" },
+  { name: "software" }
 ]
 
 products.each do |product|

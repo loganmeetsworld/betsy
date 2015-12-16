@@ -20,7 +20,7 @@
             <li role="separator" class="divider"></li>
             <li class="dropdown-header">By Category</li>
             <% @categories.each do |category| %>
-              <li><%= link_to category.name, by_category_path(category.name) %></li>
+              <li><%= link_to category.name.capitalize, by_category_path(category.name) %></li>
             <% end %>
             <li role="separator" class="divider"></li>
             <li class="dropdown-header">By Robot</li>

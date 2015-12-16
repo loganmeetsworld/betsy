@@ -32,23 +32,27 @@
             <td>$<%= item.product.price * item.quantity %></td>
           <% end %>
           <% if item.order.status != "paid" %>
-            <td class="text-primary">Awaiting Purchase</td>
+            <td class="text-danger">No Payment</td>
           <% else %>
             <td><%= item.order.purchase_time %></td>
           <% end %>
 
           <% if item.order.status == "pending" %>
-            <td class="text-info">Pending: Human has not paid for order.</td>
+            <td class="text-primary">Pending</td>
           <% elsif item.order.status == "cancelled" %>
-            <td class="text-danger">Canceled: Human cancelled this order.</td>
+            <td class="text-danger">Cancelled</td>
           <% elsif item.order.complete? %>
-            <td class="text-info">Complete: All items shipped to human.</td>
+            <td class="text-primary">Complete: All items shipped to human.</td>
           <% else %> 
             <td><%= item.order.status.titlecase %></td>
           <% end %>
 
           <td><%= link_to "See Human", info_path(current_robot, item.order), class: "btn btn-info" %></td>
-          <td><%= button_to ship_status(item), ship_path(item), method: :patch, class: ship_color(item) %> </td>
+          <% if item.order.status == "paid" %>
+            <td><%= button_to ship_status(item), ship_path(item), method: :patch, class: ship_color(item) %> </td>
+          <% else %> 
+            <td class="text-danger">No Payment</td>
+          <% end %> 
       </tr>
       <% end %>
     </table>
