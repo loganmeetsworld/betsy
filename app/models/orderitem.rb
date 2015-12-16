@@ -14,15 +14,4 @@ class Orderitem < ActiveRecord::Base
       end
     end
   end
-
-  def revenue
-    total = 0
-    self.each do |item|
-      if item.order.status == "paid"
-        total += item.quantity * item.product.price
-      end
-    end
-    # binding.pry
-    return total
-  end
 end

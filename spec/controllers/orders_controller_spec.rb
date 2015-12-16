@@ -68,14 +68,54 @@ RSpec.describe OrdersController, type: :controller do
       expect(subject).to render_template(:confirm)
     end
 
-    it "reduces stock" do
-      patch :confirm, good_params
-      expect(Product.find(@product.id).stock).to eq 3
-    end
-
     it "renders checkout page when unsuccessful" do
       patch :confirm, bad_params
       expect(subject).to render_template(:checkout)
+    end
+  end
+
+  describe "PATCH 'cancel'" do
+    let(:order) do
+      Order.create(status: "Awaiting confirmation")
+    end
+
+    before(:each) do
+      session[:order_id] = order.id
+    end
+
+    let(:product) do
+      Product.create(name: 'something', price: 200, robot_id: 1, stock: 5)
+    end
+
+    let(:orderitem) do
+      Orderitem.create(order_id: order.id, product_id: product.id, quantity: 3)
+    end
+
+    it "refreshes the page on success" do
+      patch :cancel
+      expect(subject).to redirect_to orders_path
+    end
+  end
+
+  describe "PATCH 'finalize'" do
+    let(:order) do
+      Order.create(status: "Awaiting confirmation")
+    end
+
+    before(:each) do
+      session[:order_id] = order.id
+      @product = Product.create(name: 'something', price: 200, robot_id: 1, stock: 5)
+      @orderitem = Orderitem.create(order_id: order.id, product_id: @product.id, quantity: 3)
+    end
+
+    it "goes to the thanks page" do
+      patch :finalize
+      expect(subject).to render_template :thanks
+    end
+
+    it "reduces stock" do
+      patch :finalize
+      expect(Product.find(@product.id).stock).to eq 2
     end
   end
 
