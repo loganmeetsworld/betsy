@@ -31,4 +31,17 @@ class Order < ActiveRecord::Base
   def awaiting_confirmation?
     status == "Awaiting confirmation"
   end
+
+  def complete?
+    complete = true
+    self.orderitems.each do |item|
+      if item.shipped?
+        complete = true
+      else
+        complete = false
+      end
+    end
+
+    return complete
+  end
 end

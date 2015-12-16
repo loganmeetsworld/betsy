@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
 
   def fulfill
     @items = current_robot.orderitems.order(:quantity)
-    @order = Order.where(id: @items.last.order_id)
+    @order = @current_order
   end
 
   def destroy

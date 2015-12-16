@@ -36,15 +36,19 @@
           <% else %>
             <td><%= item.order.purchase_time %></td>
           <% end %>
-          <td><%= item.order.status.titlecase %></td>
+
           <% if item.order.status == "pending" %>
-            <td class="text-info">Human has not paid for order.</td>
+            <td class="text-info">Pending: Human has not paid for order.</td>
           <% elsif item.order.status == "cancelled" %>
-            <td class="text-danger">Human cancelled this order.</td>
-          <% else %>
-            <td><%= link_to "See Human", info_path(current_robot, item.order), class: "btn btn-info" %></td>
-            <td><%= button_to ship_status(item), ship_path(item), method: :patch, class: ship_color(item) %> </td>
+            <td class="text-danger">Canceled: Human cancelled this order.</td>
+          <% elsif item.order.complete? %>
+            <td class="text-info">Complete: All items shipped to human.</td>
+          <% else %> 
+            <td><%= item.order.status.titlecase %></td>
           <% end %>
+
+          <td><%= link_to "See Human", info_path(current_robot, item.order), class: "btn btn-info" %></td>
+          <td><%= button_to ship_status(item), ship_path(item), method: :patch, class: ship_color(item) %> </td>
       </tr>
       <% end %>
     </table>
