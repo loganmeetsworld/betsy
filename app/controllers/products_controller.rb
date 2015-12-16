@@ -8,8 +8,7 @@ before_action only: [:show, :edit, :update, :retire] { @product = Product.find(p
 
   def show
     @review = Review.new(product_id: @product.id)
-    if @current_order.orderitems.where("product_id = ?", params[:id]).first
-      @order_item = @current_order.orderitems.where("product_id = ?", params[:id]).first
+    if @order_item = @current_order.orderitems.where("product_id = ?", params[:id]).first
     else
       @order_item = Orderitem.new(product_id: @product.id)
     end
