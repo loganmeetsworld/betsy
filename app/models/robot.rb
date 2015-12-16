@@ -3,8 +3,8 @@ class Robot < ActiveRecord::Base
   has_many :orderitems, :through => :products
 
 
-  validates :email, presence: true, uniqueness: { case_sensitive: false }, format: /@/, length: { maximum: 50 }
-  validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 6 }
+  validates :email, presence: true, uniqueness: { case_sensitive: false }, format: /@/
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
 
   has_secure_password
 
