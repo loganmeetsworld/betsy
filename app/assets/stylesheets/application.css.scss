@@ -21,6 +21,11 @@ body {
   margin: 0 auto;
 }
 
+.carousel-control.left,
+.carousel-control.right {
+    background-image: none
+}
+
 .navbar-brand {
   font-family: 'Roboto Mono';
 }
