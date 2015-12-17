@@ -24,13 +24,18 @@ class OrdersController < ApplicationController
   end
 
   def finalize
-    @current_order.status = "paid"
-    @current_order.purchase_time = Time.now
     items = @current_order.orderitems
     items.each do |item|
-      item.product.stock -= item.quantity
-      item.product.save
+      if item.quantity > item.product.stock
+        flash[:error] = "Oh no! Too slow. You may need to adjust the quantity of items in your cart."
+        redirect_to orders_path and return
+      else
+        item.product.stock -= item.quantity
+        item.product.save
+      end
     end
+    @current_order.status = "paid"
+    @current_order.purchase_time = Time.now
     @current_order.save
     session[:order_id] = nil
     render :thanks

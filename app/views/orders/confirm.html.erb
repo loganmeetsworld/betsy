@@ -1,3 +1,7 @@
+<% if !flash[:error].nil? %>
+  <div class="alert alert-danger"><%= flash.now[:error] %></div>
+<% end %>
+
 <div class="col-md-8 col-md-offset-2">
   <h2 class="title">Almost done! Here is your order summary:</h2>
   <p><strong>You must confirm or cancel your order below.</strong></p>
@@ -11,7 +15,7 @@
 
     <tr class="valign">
       <td class="text-center">
-        $<%= @completed_order.total_amount %>
+        <%= number_to_currency(@completed_order.total_amount) %>
       </td>
       <td class="text-center">
         <%= @completed_order.updated_at.to_formatted_s(:short) %>
@@ -40,7 +44,7 @@
           <% end %>
         </td>
         <td class="text-center">
-          $<%= item.product.price %>
+          <%= number_to_currency(item.product.price) %>
         </td>
         <td class="text-center">
           <%= item.quantity %>
