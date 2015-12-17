@@ -20,4 +20,9 @@ class Product < ActiveRecord::Base
   def show_categories
     self.categories.map { |category| category.name.capitalize }.join(", ")
   end
+
+  def self.search(search)
+    where("name LIKE ?", "%#{search}%")
+    where("description LIKE ?", "%#{search}%")
+  end
 end

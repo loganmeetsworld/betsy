@@ -3,7 +3,11 @@ class ProductsController < ApplicationController
 before_action only: [:show, :edit, :update, :retire] { @product = Product.find(params[:id]) }
 
   def index
+    if params[:search]
+      @products = Product.search(params[:search]).where(retire: false).order(stock: :desc)
+    else
     @products = Product.where(retire: false).order(stock: :desc)
+    end
   end
 
   def show

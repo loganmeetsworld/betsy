@@ -33,6 +33,13 @@
         </li>
       </ul>
 
+      <div class="pull-right">
+        <%= form_tag(products_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Products" %>
+          <%= submit_tag "Search", class: "btn btn-default" %>
+        <% end %>
+      </div>
+
       <ul class="nav navbar-nav navbar-right">
         <% if current_robot.nil? %>
           <li><%= link_to "Robot Login", login_path %></li>
