@@ -78,16 +78,6 @@ h1 {
   height: 250px;
 }
 
-.product-thumb {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.image-holder {
-  height: 215px;
-  width: 320px;
-}
-
 .thumbnail {
   width: 350px;
 }
@@ -97,4 +87,14 @@ h1 {
   width: auto;
   margin-right: 10px;
   margin-top: 5px;
+}
+
+.btn-center {
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.form-header {
+  margin-bottom: 30px;
 }

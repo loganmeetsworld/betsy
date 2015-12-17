@@ -7,12 +7,12 @@
     <% end %>
    <%= form_for @category do |f| %>
    <div class="col-md-8 col-md-offset-2">
-     <h1>Add a Category</h1>
+     <h1 class="form-header">Add a Category</h1>
      <div class="form-group">
        <%= f.label :name %>
        <%= f.text_field :name, class: "form-control" %>
      </div>
-     <%= f.submit class: "btn btn-default" %>
+     <%= f.submit class: "btn btn-success btn-center" %>
      <% end %>
    </div>
  </div>

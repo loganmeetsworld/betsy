@@ -1,6 +1,5 @@
-
+<h1 class="text-center form-header">Add a Product</h1>
 <div class="form-group">
-<h1 class="text-center">Add a Product</h1>
 <% if @product.errors.any? %>
       <% for message in @product.errors.full_messages %>
         <div class="alert alert-danger"><%= flash.now[:error] %><%= message %></div>
@@ -27,7 +26,10 @@
       <%= f.label :picture %>
       <%= f.text_field :picture_url, placeholder: 'Picture Url', class: "form-control" %><br>
       <%= f.hidden_field :robot_id, value: current_robot.id %>
-      <%= f.submit :class => 'btn btn-default'%>
+    </div>
+    <div class="col-md-12">
+      <%= f.submit :class => 'btn btn-success btn-center'%>
     <% end %>
   </div>
+
 </div>
