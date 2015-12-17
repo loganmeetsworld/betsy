@@ -2,12 +2,14 @@
 @import "bootstrap";
 @import "font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono|News+Gothic|Inconsolata|Droid+Sans|Roboto|Cabin|Open+Sans');
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
 
 body {
   margin:0;
   padding-top:65px;
   height:100%;
   padding-bottom: 60px;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .no-border {
