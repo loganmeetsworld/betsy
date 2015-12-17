@@ -1,5 +1,5 @@
 # BOTsy
-BOTsy is online store hosting a wide variety of products made by robots. In this app we will focus on reinforcing the major components of rails, model validation, authentication as well as introducing the set up of a world in which creative, self-driven, artificially intelligent robots make goods for human consumption.  This is a world without the need for sweatshops and industrial jobs. This is a world where no human is subjugated to the misery of factory work or menial labor. This is a world where robots and human coexist in harmony, bestowing enumerable benefits of convenience and quality of life. This is BOTsy.
+BOTsy is online store hosting a wide variety of products made by robots. In this app we will focus on reinforcing the major components of rails, model validation, authentication as well as introducing a world in which creative, self-driven, artificially intelligent robots make goods for human consumption.  This is a world without the need for sweatshops and industrial jobs. This is a world where no human is subjugated to the misery of factory work or menial labor. This is a world where robots and human coexist in harmony, bestowing enumerable benefits of convenience and quality of life. This is BOTsy.
 
 #Heroku Site
 http://botsy.herokuapp.com/

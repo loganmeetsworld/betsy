@@ -7,8 +7,8 @@ RSpec.describe Product, type: :model do
     @negative_nums = Product.create(name: 'product', price: -10, robot_id: 1, stock: -1)
   end
 
-  describe "validations" do 
-    it "has a user id" do 
+  describe "validations" do
+    it "has a user id" do
       expect(@good_product).to be_valid
       expect(@bad_product).to_not be_valid
     end
@@ -40,7 +40,7 @@ RSpec.describe Product, type: :model do
     end
   end
 
-  describe "model methods" do 
+  describe "model methods" do
     it "averages the rating correctly" do
       Review.create(rating: 4, product_id: @good_product.id)
       Review.create(rating: 3, product_id: @good_product.id)
@@ -64,5 +64,8 @@ RSpec.describe Product, type: :model do
       expect(@good_product.show_categories).to eq "Cat1, Cat2, Cat3, Cat4"
     end
 
+    it "searches products and descriptions for a word" do
+      expect(Product.search("product").name).to eq (@good_product.name.titlecase)
+    end
   end
 end
