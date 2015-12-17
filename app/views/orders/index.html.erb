@@ -1,8 +1,8 @@
-<h1 class="text-center">Items in your cart</h1>
-
 <% if !flash[:error].nil? %>
-  <%= flash[:error] %>
+  <div class="alert alert-danger"><%= flash.now[:error] %></div>
 <% end %>
+
+<h1 class="text-center">Items in your cart</h1>
 
 <% if @current_order.orderitems.count > 0 %>
   <h2>Your current order has <%= @current_order.orderitems.count %> unique item<%= "s" if @current_order.orderitems.count != 1 %>
