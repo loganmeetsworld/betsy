@@ -21,8 +21,7 @@ class Product < ActiveRecord::Base
     self.categories.map { |category| category.name.capitalize }.join(", ")
   end
 
-  def self.search(search)
-    where("name LIKE ?", "%#{search}%")
-    where("description LIKE ?", "%#{search}%")
+  def self.search(query)
+    where("name LIKE ? OR description LIKE ?", "%#{query}%", "%#{query}%")
   end
 end
