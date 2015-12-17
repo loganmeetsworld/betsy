@@ -17,6 +17,10 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse<b class="caret"></b></a>
           <ul class="dropdown-menu">
+          <li class="navbar-text"><%= form_tag(products_path, :method => "get", id: "search-form") do %>
+          <i class="fa fa-search"><%= text_field_tag :search, params[:search], placeholder: "Search Products", class: "search-box" %></i>
+          <%= submit_tag "Search", class: "search" %>
+        <% end %></li>
             <li><%= link_to "All Products", products_path %> </li>
             <li role="separator" class="divider"></li>
             <li class="dropdown-header">By Category</li>
@@ -29,16 +33,11 @@
               <li><%= link_to robot.username, by_robot_path(robot) %></li>
             <% end %>
             <li role="separator" class="divider"></li>
+
           </ul>
         </li>
       </ul>
 
-      <div class="pull-right">
-        <%= form_tag(products_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search Products" %>
-          <%= submit_tag "Search", class: "btn btn-default" %>
-        <% end %>
-      </div>
 
       <ul class="nav navbar-nav navbar-right">
         <% if current_robot.nil? %>
@@ -50,6 +49,7 @@
         <% end %>
         <li class="navbar-link"><%= link_to "#{@current_order.total_items}", orders_path, class: "glyphicon glyphicon-shopping-cart cart" %></li></li>
         <li class="navbar-text">  </li>
+        
       </ul>
   </div>
 </div>
