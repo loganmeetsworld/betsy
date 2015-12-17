@@ -7,12 +7,17 @@ RSpec.describe ProductsController, type: :controller do
     @product.categories << Category.find(1)
     @current_robot = Robot.create(username: "robo", email: "robo@email.com", password: "BestPosswordOfAll")
     session[:robot_id] = @current_robot.id
-
   end
 
   describe "GET 'index'" do
     it "is successful" do
       get :index
+      expect(response.status).to eq 200
+      expect(subject).to render_template :index
+    end
+
+    it "is successful loading searched products" do
+      get :index, :search => "Test"
       expect(response.status).to eq 200
       expect(subject).to render_template :index
     end
