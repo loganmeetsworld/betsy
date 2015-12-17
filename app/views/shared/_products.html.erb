@@ -10,12 +10,12 @@
             <h4 class="text-center"><%= product.name %></h4>
           <% end %>
 
-            <div class="caption">
+            <div class="price">
               <h5 class="pull-right"> <%= number_to_currency(product.price) %></h5>
               <p>Stock: <%= product.stock %></p>
             </div>
 
-            <div class="ratings">
+            <div class="review">
               <p class="pull-right"><%= product.reviews.count %> Reviews</p>
               <% if product.reviews.count == 0 %>
                 <p>No Rating</p>

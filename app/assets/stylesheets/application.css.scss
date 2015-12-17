@@ -10,6 +10,26 @@ body {
   padding-bottom: 60px;
 }
 
+.no-border {
+  border: none;
+  background-color: transparent;
+  color: rgb(118, 118, 118);
+}
+
+.search {
+  display: none;
+}
+
+.search-box {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 10pt;
+  height: 25px;
+  color: rgb(118, 118, 118);
+}
+
 .products {
   max-width: 350px;
   max-height: 160px;
