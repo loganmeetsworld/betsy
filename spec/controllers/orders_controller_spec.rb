@@ -132,7 +132,7 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     it "is successful" do
-      get :info, id: @current_robot.id, id: @order.id
+      get :info, id: @order.id
       expect(response.status).to eq 200
     end
   end
