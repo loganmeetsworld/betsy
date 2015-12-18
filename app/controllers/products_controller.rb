@@ -24,7 +24,7 @@ before_action only: [:show, :edit, :update, :retire] { @product = Product.find(p
   end
 
   def robot
-    @robot = Robot.find_by(params[:id])
+    @robot = Robot.find(params[:id])
     @products = @robot.products.where(retire: false)
   end
 
