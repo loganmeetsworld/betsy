@@ -107,6 +107,7 @@ h1 {
 
 .thumbnail {
   width: 350px;
+  margin: auto;
 }
 
 .main-bot {
@@ -132,4 +133,8 @@ form label {
 
 .fa-search:before {
   margin-right: 7px;
+}
+
+.btn-top {
+  margin-top: 20px;
 }

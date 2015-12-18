@@ -3,7 +3,7 @@
   <div class="row">
     <% sorted.each do |product| %>
       <div class="col-md-4">
-        <div class="thumbnail">
+        <div class="thumbnail container-fluid">
 
           <%= link_to product_path(product.id) do %>
             <%= image_tag(product.picture_url, class: "img-rounded products") %>
@@ -12,16 +12,16 @@
 
             <div class="price">
               <h5 class="pull-right"> <%= number_to_currency(product.price) %></h5>
-              <p>Stock: <%= product.stock %></p>
+              <!-- <p>Stock: <%= product.stock %></p> -->
             </div>
 
             <div class="review">
-              <p class="pull-right"><%= product.reviews.count %> Reviews</p>
               <% if product.reviews.count == 0 %>
                 <p>No Rating</p>
               <% else %>
                 <p><div class="star"><%= render_stars(product.rating_average) %></p></div>
               <% end %>
+              <!-- <p><%= product.reviews.count %> Reviews</p> -->
             </div>
 
         </div>
