@@ -117,6 +117,12 @@ RSpec.describe OrdersController, type: :controller do
       patch :finalize
       expect(Product.find(@product.id).stock).to eq 2
     end
+
+    it "goes back to the cart on failure" do
+      patch :finalize
+      patch :finalize
+      expect(subject).to redirect_to orders_path
+    end
   end
 
   describe "GET 'info'" do
