@@ -4,11 +4,9 @@ require 'pry'
 RSpec.describe Order, type: :model do
   describe "total items calculation" do
     it "multiplies the item by quantity" do
-      order = create(:order)
-      product = create(:product)
-      create(:orderitem, quantity: 3, order_id: order.id, product_id: product.id)
-      create(:orderitem, quantity: 2, order_id: order.id, product_id: product.id)
-      expect(order.total_items).to eq 5
+      item = create(:orderitem, quantity: 3)
+      create(:orderitem, quantity: 2, order_id: item.order.id, product_id: item.product.id)
+      expect(item.order.total_items).to eq 5
     end
   end
 

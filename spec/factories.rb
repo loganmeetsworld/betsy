@@ -19,7 +19,7 @@ FactoryGirl.define do
 
   factory :orderitem do
     quantity 1
-    association :order, strategy: :build
+    association :order
     association :product
   end
 
