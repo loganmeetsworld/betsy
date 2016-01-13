@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 
 # Style
 gem "font-awesome-rails"
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 gem 'skeleton-rails', github: 'helios-technologies/skeleton-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
 # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -41,6 +41,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'pry'
+  gem 'factory_girl_rails'
 end
 
 group :development do

@@ -74,6 +74,11 @@ GEM
     docile (1.1.5)
     erubis (2.7.0)
     execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     font-awesome-rails (4.5.0.0)
       railties (>= 3.2, < 5.0)
     git-version-bump (0.15.1)
@@ -216,9 +221,10 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
-  bootstrap-sass (~> 3.3, >= 3.3.5.1)
+  bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.1.0)
+  factory_girl_rails
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
