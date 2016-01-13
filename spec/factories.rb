@@ -6,13 +6,20 @@ FactoryGirl.define do
     stock 100
   end
 
+  factory :other_product, class: Product do
+    name "Product2"
+    price 100
+    robot_id 1
+    stock 100
+  end
+
   factory :order do
     status "pending"
   end
 
   factory :orderitem do
     quantity 1
-    association :order
+    association :order, strategy: :build
     association :product
   end
 
