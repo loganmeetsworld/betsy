@@ -26,14 +26,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active_shipping (1.6.5)
-      active_utils (~> 3.2.0)
-      activesupport (>= 3.2, < 5.0.0)
-      nokogiri (>= 1.6)
-      quantified (~> 1.0.1)
-    active_utils (3.2.0)
-      activesupport (>= 3.2)
-      i18n
     activejob (4.2.5)
       activesupport (= 4.2.5)
       globalid (>= 0.3.0)
@@ -116,7 +108,6 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    quantified (1.0.1)
     rack (1.6.4)
     rack-contrib (1.4.0)
       git-version-bump (~> 0.15)
@@ -222,7 +213,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_shipping (~> 1.6, >= 1.6.5)
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
@@ -250,4 +240,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.0
+   1.11.2
