@@ -1,3 +1,51 @@
+robots = [
+ {
+   email: "robot1@robot.com",
+   username: "robot1",
+   state: "NJ",
+   city: "East Brunswick",
+   postal_code: "08816",
+   password: "12345678",
+   password_confirmation: "12345678"
+ },
+ {
+   email: "robot2@robot.com",
+   username: "robot2",
+   state: "GA",
+   city: "Suwanee",
+   postal_code: "30024",
+   password: "12345678",
+   password_confirmation: "12345678"
+ },
+ {
+   email: "robot3@robot.com",
+   username: "robot3",
+   state: "OH",
+   city: "Cuyahoga Falls",
+   postal_code: "44221",
+   password: "12345678",
+   password_confirmation: "12345678"
+ },
+ {
+   email: "robot4@robot.com",
+   username: "robot4",
+   state: "IL",
+   city: "Vernon Hills",
+   postal_code: "60061",
+   password: "12345678",
+   password_confirmation: "12345678"
+ },
+ {
+   email: "robot5@robot.com",
+   username: "robot5",
+   state: "VA",
+   city: "Powhatan",
+   postal_code: "23139",
+   password: "12345678",
+   password_confirmation: "12345678"
+ }
+]
+
 products = [
   {
     name: "Robot Dog",
@@ -467,6 +515,10 @@ categories = [
   { name: "software" }
 ]
 
+robots.each do |robot|
+  Robot.create(robot)
+end
+
 products.each do |product|
   Product.create(product)
 end
@@ -525,4 +577,3 @@ Product.find(23).categories << Category.find(7)
 Product.find(23).categories << Category.find(3)
 Product.find(24).categories << Category.find(2)
 Product.find(24).categories << Category.find(5)
-
