@@ -7,7 +7,6 @@ RSpec.describe OrdersController, type: :controller do
   let(:order) { orderitem.order }
   let(:robot) { product.robot }
   before :each do
-    # @current_robot = Robot.create(username: "robo", email: "robo@email.com", password: "BestPosswordOfAll")
     session[:robot_id] = robot.id
   end
 
@@ -87,14 +86,6 @@ RSpec.describe OrdersController, type: :controller do
       session[:order_id] = order.id
     end
 
-    # let(:product) do
-    #   Product.create(name: 'something', price: 200, robot_id: 1, stock: 5)
-    # end
-    #
-    # let(:orderitem) do
-    #   Orderitem.create(order_id: order.id, product_id: product.id, quantity: 3)
-    # end
-
     it "refreshes the page on success" do
       patch :cancel
       expect(subject).to redirect_to orders_path
@@ -108,8 +99,8 @@ RSpec.describe OrdersController, type: :controller do
 
     before(:each) do
       session[:order_id] = order.id
-      @product = Product.create(name: 'something', price: 200, robot_id: 1, stock: 5)
-      @orderitem = Orderitem.create(order_id: order.id, product_id: @product.id, quantity: 3)
+      # @product = Product.create(name: 'something', price: 200, robot_id: 1, stock: 5)
+      # @orderitem = Orderitem.create(order_id: order.id, product_id: @product.id, quantity: 3)
     end
 
     it "goes to the thanks page" do
@@ -118,8 +109,9 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     it "reduces stock" do
+      product
       patch :finalize
-      expect(Product.find(@product.id).stock).to eq 2
+      expect(product.stock).to eq 6
     end
 
     it "goes back to the cart on failure" do
@@ -142,13 +134,6 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe "GET 'fulfill'" do
-    # before(:each) do
-    #   @order = Order.create(status: "paid", email: "test@test.com", address: "test", city: "test", state: "WA", zip: "98102", credit_name: "test", credit_num: "4444444444444444", cvv: "444")
-    #   @product = Product.create(name: 'something', price: 200, robot_id: @current_robot.id, stock: 5)
-    #   @orderitem = Orderitem.create(order_id: @order.id, product_id: @product.id, quantity: 2)
-    #   @current_robot.products.first.orderitems << @orderitem
-    # end
-
     it "is successful" do
       get :fulfill, robot_id: robot.id
       expect(response.status).to eq 200
