@@ -1,26 +1,15 @@
 <h1>Billing Information</h1>
 
-<ul>
-  <% @current_order.errors.each do |column, message| %>
-    <% if column.to_s == "credit_name" %>
-      <li>
-        <strong>Name</strong> <%= message %>
-      </li>
-    <% elsif column.to_s == "credit_num" %>
-      <li>
-        <strong>Credit card number</strong> <%= message %>
-      </li>
-    <% else %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%= message %>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
-
 <div class="row">
   <div class="col-md-6">
-    <%= form_for @current_order, :url => { :action => "confirm" } do |f| %>
+    <%= form_for @current_order, method: :put, url: wizard_path do |f| %>
+      <% if f.object.errors.any? %>
+        <div class="error_messages">
+          <% f.object.errors.full_messages.each do |error| %>
+            <p><%= error %></p>
+          <% end %>
+        </div>
+      <% end %>
       <div class="form-group">
         <%= f.label :credit_name, "Name on card" %>
         <%= f.text_field :credit_name, class: "form-control" %>
