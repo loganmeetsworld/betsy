@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get '/orders/checkout' => 'orders#checkout', as: 'checkout'
   patch '/orders/checkout/shipping' => 'orders#shipping', as: 'shipping'
   patch '/orders/checkout/billing' => 'orders#billing', as: 'billing'
-  patch '/orders/confirm' => 'orders#confirm', as: 'confirm'
+  get '/orders/confirm' => 'orders#confirm', as: 'confirm'
   patch '/orders/cancel' => 'orders#cancel', as: 'cancel'
   patch '/orders/finalize' => 'orders#finalize', as: 'finalize'
   get '/robots/:id/orders/:id/info' => 'orders#info', as: 'info'

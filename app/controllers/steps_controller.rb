@@ -11,6 +11,10 @@ class StepsController < ApplicationController
     render_wizard @current_order
   end
 
+  def finish_wizard_path
+    confirm_path
+  end
+
   private
 
   def order_params(step)

@@ -15,11 +15,6 @@ class OrdersController < ApplicationController
   def confirm
     @completed_order = @current_order
     @current_order.status = "Awaiting confirmation"
-    @current_order.attributes = order_params
-    if !@current_order.save
-      @current_order.status = "pending"
-      render :checkout
-    end
   end
 
   def cancel
