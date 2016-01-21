@@ -22,15 +22,15 @@ RSpec.describe Order, type: :model do
       expect(order.total_amount).to eq 130
     end
   end
-
-  describe "awaiting_confirmation?" do
-    it "checks an order has 'awaiting confirmation' status" do
-      ac = Order.new(status: "Awaiting confirmation")
-      pending = Order.new(status: "pending")
-      expect(ac.awaiting_confirmation?).to be true
-      expect(pending.awaiting_confirmation?).to be false
-    end
-  end
+  # 
+  # describe "awaiting_confirmation?" do
+  #   it "checks an order has 'awaiting confirmation' status" do
+  #     ac = Order.new(status: "Awaiting confirmation")
+  #     pending = Order.new(status: "pending")
+  #     expect(ac.awaiting_confirmation?).to be true
+  #     expect(pending.awaiting_confirmation?).to be false
+  #   end
+  # end
 
   describe "complete?" do
     it "returns true when all items are shipped" do

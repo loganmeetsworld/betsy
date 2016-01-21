@@ -1,4 +1,3 @@
-# require 'pry'
 class Order < ActiveRecord::Base
   has_many :orderitems
   validates :name,            presence: true, if: -> { required_for_step?(:shipping_address) }
