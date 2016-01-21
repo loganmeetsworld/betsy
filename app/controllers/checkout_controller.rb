@@ -21,11 +21,11 @@ class CheckoutController < ApplicationController
     permitted_attributes = case step
     when "shipping_address"
         [:name, :address, :city, :state, :zip]
-      when "shipping_info"
-        [:shipping_carrier]
-      when "billing_info"
-        [:credit_name, :email, :credit_num, :cvv, :billing_address, :billing_city, :billing_state, :billing_zip]
-      end
+    when "shipping_info"
+      [:shipping_carrier]
+    when "billing_info"
+      [:credit_name, :email, :credit_num, :cvv, :billing_address, :billing_city, :billing_state, :billing_zip]
+    end
 
     params.require(:order).permit(permitted_attributes).merge(form_step: step)
   end
