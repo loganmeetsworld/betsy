@@ -35,6 +35,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use factory girl for testing
 gem "factory_girl_rails", "~> 4.0"
 
+# Use httparty for accessing shipping API
+gem 'httparty'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
