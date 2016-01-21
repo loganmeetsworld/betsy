@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get '/robots/:id/orders/:id/info' => 'orders#info', as: 'info'
   resources :orders
 
-  # Steps controller - helps with multistep forms
+  # Checkout controller - helps with multistep forms
   resources :checkout, only: [:show, :update], controller: 'checkout', as: 'checkout'
 
   # Orderitems controller

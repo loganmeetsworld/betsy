@@ -3,9 +3,9 @@ module ShippingService
 
     BASE_URI = "https://botsy-shipping.herokuapp.com/"
 
-    def initialize(robot, orderitem, product)
+    def initialize(robot, order, product)
       @origin = get_robot_location(robot)
-      @destination = get_package_location(orderitem)
+      @destination = get_package_location(order)
       @package = get_package_dimensions(product)
     end
 
@@ -29,6 +29,7 @@ module ShippingService
 
     # HTTParty request
     def get_ups_rate
+      HTTParty.post("#{BASE_URI}ups_rates", :headers => { 'Content-Type' => 'application/json' }, :body => { "origin" => @origin, "destination" => @destination,  "package" => @package }.to_json)
     end
   end
 end
