@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
   end
 
   def finalize
+    raise
     items = @current_order.orderitems
     items.each do |item|
       if item.quantity > item.product.stock
@@ -62,6 +63,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit([:credit_name, :email, :credit_num, :cvv, :address, :city, :state, :zip])
+    params.require(:order).permit([:credit_name, :email, :credit_num, :cvv, :address, :city, :state, :zip, :ship_city, :ship_zip, :ship_state])
   end
 end
