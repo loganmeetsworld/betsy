@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   end
 
   def order_checkout
-    # raise
     redirect_to checkout_path(Order.form_steps.first)
   end
 
