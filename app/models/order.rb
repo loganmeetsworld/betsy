@@ -51,9 +51,6 @@ class Order < ActiveRecord::Base
   end
 
   def self.orderitem_lookup(query)
-    query = { packages: [{ dimensions: [x, y, z], weight: a }, { dimensions: [x, y, z], weight: a }], origin: { state: "WA", city: "Seattle", zip: "98101" }, destination: { state: "IL", city: "Vernon Hills", zip: "98101" } )
-    orderitems = HTTParty.get("http://localhost:3000/ups/",
-
-    parsed_orderitems = JSON.parse(orderitems)
+  
   end
 end

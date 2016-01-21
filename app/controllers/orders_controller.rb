@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
   end
 
   def finalize
+    raise
     items = @current_order.orderitems
     items.each do |item|
       if item.quantity > item.product.stock
