@@ -13,5 +13,21 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+
+function initialize() {
+  var url = document.location.hash;
+  if (url.match('#')) {
+    console.log('matched');
+    $(".nav-tabs a[href='" + url + "']").tab('show');
+  }
+
+
+  $("input#shipping").on('click', shipFunction);
+}
+
+function shipFunction() {
+    $("#shipform").toggle();
+}
+
+$(document).ready(initialize);

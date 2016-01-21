@@ -200,12 +200,12 @@ products = [
 ]
 
 seed_robots = [
- { first_name: "Daphne", last_name: "Gold", email: "1@1.com" },
- { first_name: "Amy", last_name: "Hunter", email: "2@2.com" },
- { first_name: "Jessica", last_name: "Noglows", email: "3@3.com" },
- { first_name: "Lauren", last_name: "Granger", email: "4@4.com" },
- { first_name: "Charles", last_name: "Ellis", email: "5@5.com" },
- { first_name: "Kari", last_name: "Bancroft", email: "6@6.com" }
+ { username: "Daphne", email: "1@1.com" },
+ { username: "Amy", email: "2@2.com" },
+ { username: "Jessica", email: "3@3.com" },
+ { username: "Lauren", email: "4@4.com" },
+ { username: "Charles", email: "5@5.com" },
+ { username: "Kari", email: "6@6.com" }
 ]
 
 reviews = [

@@ -53,6 +53,20 @@
         <%= f.label :zip, "Zip code" %>
         <%= f.text_field :zip, class: "form-control" %>
       </div>
+      <%= label :shipping, "Shipping address is different than billing address" %>
+      <%= check_box_tag :shipping %>
+      <fieldset class="form-group applesauce">
+        <div id="shipform" style="display: none">
+          <legend>
+            Shipping Information
+          </legend>
+          <%= label :address, "Address" %>
+          <%= text_field_tag 'billing', nil, class: "form-control" %>
+          <%= label :zip, "Zipcode" %>
+          <%= text_field_tag 'zip', nil, class: "form-control" %>
+          <br>
+        </div>
+      </fieldset>
 
       <%= f.submit "Checkout", class: "btn btn-primary" %>
     <% end %>
