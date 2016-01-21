@@ -6,6 +6,7 @@ FactoryGirl.define do
     password 'test'
     password_confirmation 'test'
     state 'WA'
+    city 'Seattle'
     country 'US'
     postal_code '98133'
   end
@@ -21,7 +22,6 @@ FactoryGirl.define do
     association :robot
   end
 
-# status: "paid", email: "test@test.com", address: "test", city: "test", state: "WA", zip: "98102", credit_name: "test", credit_num: "4444444444444444", cvv: "444"
   factory :order do
     status 'paid'
     email 'test@test.com'
