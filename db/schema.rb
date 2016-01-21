@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160121001724) do
 
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -44,9 +45,16 @@ ActiveRecord::Schema.define(version: 20160121001724) do
     t.string   "credit_num"
     t.string   "cvv"
     t.datetime "exp_date"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.datetime "purchase_time"
+    t.string   "name"
+    t.string   "shipping_carrier"
+    t.integer  "shipping_cost"
+    t.string   "billing_address"
+    t.string   "billing_city"
+    t.string   "billing_state"
+    t.string   "billing_zip"
   end
 
   create_table "product_items", force: :cascade do |t|

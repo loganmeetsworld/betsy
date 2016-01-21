@@ -1,9 +1,14 @@
 class OrdersController < ApplicationController
   def index
-
   end
 
   def checkout
+  end
+
+  def shipping
+  end
+
+  def billing
   end
 
   def confirm
@@ -60,6 +65,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit([:credit_name, :email, :credit_num, :cvv, :address, :city, :state, :zip])
+    params.require(:order).permit([:credit_name, :email, :credit_num, :cvv, :address, :city, :state, :zip, :name, :shipping_carrier, :shipping_cost, :billing_address, :billing_city, :billing_state, :billing_zip])
   end
 end

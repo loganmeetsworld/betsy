@@ -26,8 +26,8 @@ Rails.application.routes.draw do
 
   # Orders controller
   get '/orders/checkout' => 'orders#checkout', as: 'checkout'
-  post '/orders/checkout/shipping' => 'orders#shipping', as: 'shipping'
-  get '/orders/checkout/billing' => 'orders#billing', as: 'billing'
+  patch '/orders/checkout/shipping' => 'orders#shipping', as: 'shipping'
+  patch '/orders/checkout/billing' => 'orders#billing', as: 'billing'
   patch '/orders/confirm' => 'orders#confirm', as: 'confirm'
   patch '/orders/cancel' => 'orders#cancel', as: 'cancel'
   patch '/orders/finalize' => 'orders#finalize', as: 'finalize'
