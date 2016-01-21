@@ -13,6 +13,8 @@ class OrdersController < ApplicationController
     if !@current_order.save
       @current_order.status = "pending"
       render :checkout
+    self.orderitem_lookup
+
     end
   end
 
