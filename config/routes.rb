@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'home#index'
 
   # Robot jobs
@@ -32,7 +33,9 @@ Rails.application.routes.draw do
   patch '/orders/cancel' => 'orders#cancel', as: 'cancel'
   patch '/orders/finalize' => 'orders#finalize', as: 'finalize'
   get '/robots/:id/orders/:id/info' => 'orders#info', as: 'info'
-  resources :orders
+  resources :orders do
+    resources :steps, only: [:show, :update], controller: 'orders/steps'
+  end
 
   # Orderitems controller
   patch 'orderitems/:id/ship' => 'orderitems#ship', as: :ship

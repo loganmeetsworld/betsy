@@ -1,0 +1,22 @@
+<h1>Shipping Options</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= form_for @current_order, method: :put, url: wizard_path do |f| %>
+      <% if f.object.errors.any? %>
+        <div class="error_messages">
+          <% f.object.errors.full_messages.each do |error| %>
+            <p><%= error %></p>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="btn-group" data-toggle="buttons-radio">
+        <%= f.radio_button :shipping_carrier, 'fedex' %>
+        <%= f.label :shipping_carrier, 'Fedex', :value => 'fedex' %>
+        <%= f.radio_button :shipping_carrier, 'ups' %>
+        <%= f.label :shipping_carrier, 'UPS', :value => 'ups' %>
+      </div>
+      <%= f.submit "Continue", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

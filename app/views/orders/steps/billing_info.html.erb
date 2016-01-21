@@ -1,0 +1,53 @@
+<h1>Billing Information</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= form_for @current_order, method: :put, url: wizard_path do |f| %>
+      <% if f.object.errors.any? %>
+        <div class="error_messages">
+          <% f.object.errors.full_messages.each do |error| %>
+            <p><%= error %></p>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.label :credit_name, "Name on card" %>
+        <%= f.text_field :credit_name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :credit_num, "Card number" %>
+        <%= f.text_field :credit_num, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :cvv, "CVV" %>
+        <%= f.text_field :cvv, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :exp_date, "Expiration date" %>
+        <%= f.text_field :exp_date, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :billing_address, "Street address" %>
+        <%= f.text_field :billing_address, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :billing_city, "City" %>
+        <%= f.text_field :billing_city, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :billing_state, "State" %>
+        <%= f.select :billing_state, ["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"], {include_blank: true}, class: "form-control"  %>
+      </div>
+      <div class="form-group">
+        <%= f.label :billing_zip, "Zip code" %>
+        <%= f.text_field :billing_zip, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email, "Email address" %>
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
+
+      <%= f.submit "Continue", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
