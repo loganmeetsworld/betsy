@@ -13,7 +13,7 @@ FactoryGirl.define do
   factory :product do
     name 'product'
     price 10
-    stock 1
+    stock 10
     length 10
     width 10
     height 10
