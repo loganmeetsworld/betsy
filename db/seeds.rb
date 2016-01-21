@@ -1,3 +1,51 @@
+robots = [
+ {
+   email: "robot1@robot.com",
+   username: "robot1",
+   state: "NJ",
+   city: "East Brunswick",
+   postal_code: "08816",
+   password: "12345678",
+   password_confirmation: "12345678"
+ },
+ {
+   email: "robot2@robot.com",
+   username: "robot2",
+   state: "GA",
+   city: "Suwanee",
+   postal_code: "30024",
+   password: "12345678",
+   password_confirmation: "12345678"
+ },
+ {
+   email: "robot3@robot.com",
+   username: "robot3",
+   state: "OH",
+   city: "Cuyahoga Falls",
+   postal_code: "44221",
+   password: "12345678",
+   password_confirmation: "12345678"
+ },
+ {
+   email: "robot4@robot.com",
+   username: "robot4",
+   state: "IL",
+   city: "Vernon Hills",
+   postal_code: "60061",
+   password: "12345678",
+   password_confirmation: "12345678"
+ },
+ {
+   email: "robot5@robot.com",
+   username: "robot5",
+   state: "VA",
+   city: "Powhatan",
+   postal_code: "23139",
+   password: "12345678",
+   password_confirmation: "12345678"
+ }
+]
+
 products = [
   {
     name: "Robot Dog",
@@ -5,13 +53,22 @@ products = [
     price: 232.23,
     robot_id: 1,
     picture_url: 'http://www.toyrobotsreview.com/wp-content/uploads/2013/08/robot-dog-toy.jpg',
-    stock: 3
+    stock: 3,
+    weight: 20,
+    length: 45,
+    width: 45,
+    height: 50
   },
   {
     name: "Robot Food", description: "Yummy for robots so probably yummy for humans as well. Humans like robots and so humans probably like robot food.",
     price: 12.34,
     robot_id: 1,
-    picture_url: 'http://destroyallrobots.org/wp-content/uploads/robot_breakfast.jpg', stock: 100
+    picture_url: 'http://destroyallrobots.org/wp-content/uploads/robot_breakfast.jpg',
+    stock: 100,
+    weight: 30,
+    length: 35,
+    width: 55,
+    height: 12
   },
   {
     name: "Binary Art",
@@ -19,7 +76,11 @@ products = [
     price: 49.29,
     robot_id: 2,
     picture_url: 'http://static.bilder-welten.net/pics/31/438931.jpg',
-    stock: 12
+    stock: 12,
+    weight: 12,
+    length: 12,
+    width: 12,
+    height: 12
   },
   {
     name: "Firmware",
@@ -27,7 +88,11 @@ products = [
     price: 1.29,
     robot_id: 2,
     picture_url: 'http://simxperience.com/Portals/0//EasyDNNnews/24/firmware-update-icon.png',
-    stock: 10
+    stock: 10,
+    weight: 15,
+    length: 20,
+    width: 10,
+    height: 18
   },
   {
     name: "Kernel",
@@ -35,7 +100,11 @@ products = [
     price: 394.23,
     robot_id: 3,
     picture_url: 'http://osr507doc.sco.com/en/OSTut/graphics/kernel.gif',
-    stock: 2
+    stock: 2,
+    weight: 9.5,
+    length: 14,
+    width: 33,
+    height: 12
   },
   {
     name: "Robot Cat",
@@ -43,7 +112,11 @@ products = [
     price: 100.50,
     robot_id: 1,
     picture_url: 'https://f1.bcbits.com/img/a2219945996_16.jpg',
-    stock: 5
+    stock: 5,
+    weight: 50,
+    length: 45,
+    width: 25,
+    height: 17
   },
   {
     name: "Robot Koala",
@@ -51,7 +124,11 @@ products = [
     price: 299.99,
     robot_id: 1,
     picture_url: 'https://s-media-cache-ak0.pinimg.com/736x/1a/ac/1b/1aac1b41b3fdf0bd43fd7f5e0e457bed.jpg',
-    stock: 4
+    stock: 4,
+    weight: 65,
+    length: 24,
+    width: 53,
+    height: 12
   },
   {
     name: "Robot Bunny",
@@ -59,7 +136,11 @@ products = [
     price: 19.99,
     robot_id: 1,
     picture_url: 'http://orig12.deviantart.net/bd11/f/2009/186/e/f/sprocket_the_robot_rabbit_by_bibelotforest.jpg',
-    stock: 7
+    stock: 7,
+    weight: 2.5,
+    length: 4,
+    width: 4,
+    height: 9
   },
   {
     name: "I, Robot",
@@ -67,7 +148,11 @@ products = [
     price: 199.99,
     robot_id: 2,
     picture_url: 'http://orig04.deviantart.net/0be5/f/2014/263/f/2/robot_art_1_by_aem_88-d7zuxc2.jpg',
-    stock: 1
+    stock: 1,
+    weight: 9.8,
+    length: 8,
+    width: 11,
+    height: 12
   },
   {
     name: "Robot with a Pearl Earring",
@@ -75,7 +160,11 @@ products = [
     price: 21.50,
     robot_id: 2,
     picture_url: 'http://media02.hongkiat.com/humanoid_robot_artwork/Equilibrium-robot-artwork-by-Daniel-Arnold-Mist.jpg',
-    stock: 3
+    stock: 3,
+    weight: 92,
+    length: 45,
+    width: 45,
+    height: 35
   },
   {
     name: "Mona Lisa Robot",
@@ -83,7 +172,11 @@ products = [
     price: 55.25,
     robot_id: 5,
     picture_url: 'http://41.media.tumblr.com/431544f1f9f3ed1ae6b2add5d598c97a/tumblr_nlh3nn25Zt1r69vxeo1_500.jpg',
-    stock: 5
+    stock: 5,
+    weight: 32,
+    length: 14,
+    width: 19,
+    height: 25
   },
   {
     name: "Sketches in Chalk",
@@ -91,7 +184,11 @@ products = [
     price: 49.99,
     robot_id: 2,
     picture_url: 'http://www.urbanghostsmedia.com/home/twamoran/urbanghostsmedia.com/wp-content/uploads/2015/04/edinburgh-robot-art.jpg',
-    stock: 1
+    stock: 1,
+    weight: 25,
+    length: 25,
+    width: 28,
+    height: 32
   },
   {
     name: "The Scream",
@@ -99,7 +196,11 @@ products = [
     price: 250.00,
     robot_id: 2,
     picture_url: 'http://cdnstatic.visualizeus.com/thumbs/47/19/birds,desert,illustration,robot-47198a8cb759cd9db2981e5684c06e74_h.jpg',
-    stock: 8
+    stock: 8,
+    weight: 8,
+    length: 8,
+    width: 8,
+    height: 8
   },
   {
     name: "Tablet",
@@ -107,7 +208,11 @@ products = [
     price: 150.00,
     robot_id: 2,
     picture_url: 'http://static.ibnlive.in.com/pix/slideshow/03-2013/weekly-roundup-new/main-1-weekly-160313.jpg',
-    stock: 5
+    stock: 5,
+    weight: 12,
+    length: 15,
+    width: 15,
+    height: 15
   },
   {
     name: "X-ray vision goggles",
@@ -115,7 +220,11 @@ products = [
     price: 104.50,
     robot_id: 5,
     picture_url: 'http://images.askmen.com/entertainment/guy_gear/ski-gadgets-2015_1417794395.jpg',
-    stock: 3
+    stock: 3,
+    weight: 92,
+    length: 30,
+    width: 30,
+    height: 35
   },
   {
     name: "Portable Speaker",
@@ -123,7 +232,11 @@ products = [
     price: 55.25,
     robot_id: 1,
     picture_url: 'http://img.timeinc.net/time/2008/top_ten_2008/10_gadgets/pico.jpg',
-    stock: 5
+    stock: 5,
+    weight: 5.5,
+    length: 8,
+    width: 10,
+    height: 12
   },
   {
     name: "Botch",
@@ -131,7 +244,11 @@ products = [
     price: 49.99,
     robot_id: 3,
     picture_url: 'http://www.webdesignco.co.uk/images/2014/01/top-gadgets-for-designers_eniof_9.jpg',
-    stock: 6
+    stock: 6,
+    weight: 11,
+    length: 14,
+    width: 16,
+    height: 19
   },
   {
     name: "Nail Drying Station",
@@ -139,7 +256,11 @@ products = [
     price: 39.99,
     robot_id: 1,
     picture_url: 'http://www.emel.com/images/gadget3_57.jpg',
-    stock: 7
+    stock: 7,
+    weight: 45,
+    length: 99,
+    width: 98,
+    height: 90
   },
   {
     name: "Arm Phone",
@@ -147,7 +268,11 @@ products = [
     price: 699.99,
     robot_id: 5,
     picture_url: 'https://i.ytimg.com/vi/O3SRoK2UF0I/maxresdefault.jpg',
-    stock: 90
+    stock: 90,
+    weight: 5.8,
+    length: 12,
+    width: 4,
+    height: 8
   },
   {
     name: "Robot Cleaner Eggs",
@@ -155,7 +280,11 @@ products = [
     price: 80.00,
     robot_id: 2,
     picture_url: 'http://cosmouk.cdnds.net/14/32/980x490/nrm_1407142589-beauty-gadgets.jpg',
-    stock: 15
+    stock: 15,
+    weight: 4,
+    length: 4,
+    width: 4,
+    height: 4
   },
   {
     name: "Calculator Bracelets",
@@ -163,7 +292,11 @@ products = [
     price: 104.50,
     robot_id: 4,
     picture_url: 'http://static.boredpanda.com/blog/wp-content/uuuploads/photography-gadgets-and-gift-ideas/photography-gadgets-16.jpg',
-    stock: 7
+    stock: 7,
+    weight: 8,
+    length: 10,
+    width: 12,
+    height: 12
   },
   {
     name: "Pancake Maker",
@@ -171,7 +304,11 @@ products = [
     price: 80.00,
     robot_id: 2,
     picture_url: 'http://i.huffpost.com/gen/1328223/thumbs/r-MINIMUM-WAGE-ROBOT-large.jpg',
-    stock: 13
+    stock: 13,
+    weight: 9.5,
+    length: 10,
+    width: 12,
+    height: 8
   },
   {
     name: "Robot Taste Maker",
@@ -179,7 +316,11 @@ products = [
     price: 80.00,
     robot_id: 2,
     picture_url: 'http://i.ebayimg.com/00/s/NTAwWDUwMA==/z/IUAAAOxy63FSs85W/$_3.JPG?set_id=2',
-    stock: 15
+    stock: 15,
+    weight: 23,
+    length: 40,
+    width: 65,
+    height: 60
   },
   {
     name: "Robot Oil",
@@ -187,7 +328,11 @@ products = [
     price: 6.50,
     robot_id: 4,
     picture_url: 'http://kimncris.com/bender/robot_oil.jpg',
-    stock: 25
+    stock: 25,
+    weight: 2.5,
+    length: 6,
+    width: 8,
+    height: 10
   },
   {
     name: "Robot Gears",
@@ -195,7 +340,11 @@ products = [
     price: 8.00,
     robot_id: 2,
     picture_url: 'http://www.ilikewallpaper.net/ipad-air-wallpapers/download/20619/Golden-Watch-Gears-ipad-air-wallpaper-ilikewallpaper_com.jpg',
-    stock: 67
+    stock: 67,
+    weight: 4.5,
+    length: 7,
+    width: 7,
+    height: 12
   }
 ]
 
@@ -467,6 +616,10 @@ categories = [
   { name: "software" }
 ]
 
+robots.each do |robot|
+  Robot.create(robot)
+end
+
 products.each do |product|
   Product.create(product)
 end
@@ -525,4 +678,3 @@ Product.find(23).categories << Category.find(7)
 Product.find(23).categories << Category.find(3)
 Product.find(24).categories << Category.find(2)
 Product.find(24).categories << Category.find(5)
-

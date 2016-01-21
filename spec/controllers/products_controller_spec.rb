@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ProductsController, type: :controller do
+  let(:category) { create(:category) }
+  let(:product) { create(:product) }
+  let(:current_robot) { product.robot }
   before :each do
-    @product = Product.create(name: 'Test', price: 1, robot_id: 1, stock: 1)
-    @category = Category.create(name: 'Catprodlol')
-    @product.categories << Category.find(1)
-    @current_robot = Robot.create(username: "robo", email: "robo@email.com", password: "BestPosswordOfAll")
-    session[:robot_id] = @current_robot.id
+    product.categories << category
+    session[:robot_id] = current_robot.id
   end
 
   describe "GET 'index'" do
@@ -25,7 +25,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe "GET 'show'" do
     it "renders the show view for a product" do
-      get :show, id: @product.id
+      get :show, id: product.id
       expect(response.status).to eq 200
       expect(subject).to render_template :show
     end
@@ -33,7 +33,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe  "GET 'category'" do
     it "renders the show view for products of a single category" do
-      get :category, category_name: @category.name
+      get :category, category_name: category.name
       expect(response.status).to eq 200
       expect(subject).to render_template :category
     end
@@ -41,7 +41,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe  "GET 'robot'" do
     it "renders the show view for products of a single robot" do
-      get :robot, id: @current_robot.id
+      get :robot, id: current_robot.id
       expect(response.status).to eq 200
       expect(subject).to render_template :robot
     end
@@ -49,23 +49,12 @@ RSpec.describe ProductsController, type: :controller do
 
   describe "GET 'new'" do
     it "renders the new view" do
-      get :new, robot_id: @current_robot
+      get :new, robot_id: current_robot
       expect(response).to render_template("new")
     end
   end
 
   describe "POST 'create'" do
-    let(:good_params) do
-      {
-        product: {
-          name: 'CatProd',
-          price: 1,
-          stock: 1,
-          robot_id: 5,
-        }
-      }
-    end
-
     let(:bad_params) do
       {
         product: {
@@ -80,14 +69,18 @@ RSpec.describe ProductsController, type: :controller do
           name: 'CatProd2',
           price: 1,
           stock: 1,
-          robot_id: 5,
+          length: 1,
+          width: 1,
+          height: 1,
+          weight: 1,
+          robot_id: current_robot.id,
         }
       }
     end
 
     it "redirects to the product show page on success" do
       post :create, create_params
-      expect(response).to redirect_to robot_path(@current_robot)
+      expect(subject).to redirect_to robot_path(current_robot)
     end
 
     it "renders the new form if unsuccessful" do
@@ -98,7 +91,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe "GET 'edit'" do
     it "renders the edit form" do
-      get :edit, id: @product.id
+      get :edit, id: product.id
       expect(response.status).to eq 200
       expect(subject).to render_template 'edit'
     end
@@ -111,7 +104,7 @@ RSpec.describe ProductsController, type: :controller do
           name: 'Catprod',
           price: 1,
           stock: 1,
-          robot_id: 2,
+          robot_id: current_robot.id,
         }
       }
     end
@@ -122,41 +115,41 @@ RSpec.describe ProductsController, type: :controller do
           name: '',
           price: 1,
           stock: 1,
-          robot_id: 2,
+          robot_id: current_robot.id,
         }
       }
     end
 
     it "updates a product" do
-      patch :update, { id: @product.id }.merge(change_params)
-      @product.reload
-      expect(Product.find(@product.id).name).to eq "Catprod"
+      patch :update, { id: product.id }.merge(change_params)
+      product.reload
+      expect(Product.find(product.id).name).to eq "Catprod"
     end
 
     it "redirects to robot page if successful" do
-      patch :update, { id: @product.id }.merge(change_params)
-      @product.reload
-      expect(response).to redirect_to robot_path(@product.robot_id)
+      patch :update, { id: product.id }.merge(change_params)
+      product.reload
+      expect(response).to redirect_to robot_path(product.robot_id)
     end
 
     it "renders edit page if unsuccessful" do
-      patch :update, { id: @product.id }.merge(bad_change_params)
-      @product.reload
+      patch :update, { id: product.id }.merge(bad_change_params)
+      product.reload
       expect(response).to render_template 'edit'
     end
   end
 
   describe "PATCH 'retire'" do
     it "retires a product" do
-      patch :retire, { id: @product.id}
-      @product.reload
-      expect(@product.retire).to eq true
+      patch :retire, { id: product.id}
+      product.reload
+      expect(product.retire).to eq true
     end
 
     it "redirects to robot account page" do
-      patch :retire, { id: @product.id}
-      @product.reload
-      expect(response).to redirect_to robot_path(@product.robot_id)
+      patch :retire, { id: product.id}
+      product.reload
+      expect(response).to redirect_to robot_path(product.robot_id)
     end
   end
 end

@@ -19,6 +19,6 @@ class RobotsController < ApplicationController
   private
 
   def robot_params
-    params.require(:robot).permit(:username, :email, :password, :password_confirmation)
+    params.require(:robot).permit(:username, :email, :password, :password_confirmation, :state, :country, :postal_code)
   end
 end
