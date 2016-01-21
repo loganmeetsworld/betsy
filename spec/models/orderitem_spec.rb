@@ -10,12 +10,10 @@ RSpec.describe Orderitem, type: :model do
     it { is_expected.to validate_presence_of(:product_id) }
     it { is_expected.to validate_numericality_of(:quantity).is_greater_than(0)}
 
-    let(:exceeds_stock) do
-      Orderitem.new(quantity: 500, product_id: product.id, order_id: 1)
-    end
-
     it "cannot exceed present stock" do
       expect(orderitem).to be_valid
+      exceeds_stock = Orderitem.new(quantity: 500, product_id: product.id, order_id: orderitem.order.id)
+      exceeds_stock.order.status = "pending"
       expect(exceeds_stock).to be_invalid
     end
 
