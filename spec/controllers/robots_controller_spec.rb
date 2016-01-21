@@ -17,45 +17,35 @@ RSpec::Matchers.define :require_login do
 end
 
 RSpec.describe RobotsController, type: :controller do
+  let(:robot) { create(:robot) }
 
-  describe "GET 'new'" do 
-    it "gets new successfully" do 
+  describe "GET 'new'" do
+    it "gets new successfully" do
       get :new
       expect(response).to render_template(:new)
     end
   end
 
   describe "GET 'show'" do
-    Robot.create(email: "testy@test.com", username: "testytest", password_digest: "test")
     it "renders the show view for a robot" do
-      get :show, id: 1
+      get :show, id: robot.id
       expect(response.status).to eq 302
     end
   end
 
-  describe 'require login' do 
-    let(:robot) { create(:robot) }
-
+  describe 'require login' do
     it "redirects to new session when non-robot tries to go to show" do
-      current_robot = Robot.create(username: "test", email: "test@test.com", password: "test", password_confirmation: "test")
-      get :show, id: current_robot.id
+      get :show, id: robot.id
       expect(response).to require_login
     end
   end
 
-  describe "POST 'create'" do 
-    let(:good_params) do 
-      {
-        robot: {
-          username: 'name_2',
-          email: 'robot2@robot2.com',
-          password: 'test',
-          password_confirmation: 'test'
-        }
-      }
+  describe "POST 'create'" do
+    let(:good_params) do
+      { robot: attributes_for(:robot)  }
     end
 
-    let(:bad_params) do 
+    let(:bad_params) do
       {
         robot: {
           username: 'name_2',
@@ -65,17 +55,17 @@ RSpec.describe RobotsController, type: :controller do
       }
     end
 
-    it "creates robot" do 
-      post :create, good_params 
-      expect(Robot.count).to eq 2
+    it "creates robot" do
+      post :create, good_params
+      expect(Robot.count).to eq 1
     end
 
-    it "redirects to login page" do 
+    it "redirects to login page" do
       post :create, good_params
       expect(subject).to redirect_to new_session_path
     end
 
-    it "renders new with bad params" do 
+    it "renders new with bad params" do
       post :create, bad_params
       expect(subject).to render_template(:new)
     end
