@@ -82,10 +82,6 @@ RSpec.describe OrderitemsController, type: :controller do
       request.env["HTTP_REFERER"] = "where_i_came_from"
     end
 
-    let(:orderitem) do
-      Orderitem.create(order_id: 1, product_id: 2, quantity: 3, shipped: false)
-    end
-
     it "reverses the shipped status" do
       patch :ship, id: orderitem.id
       expect(orderitem.shipped).to eq false
