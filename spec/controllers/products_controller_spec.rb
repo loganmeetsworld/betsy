@@ -104,7 +104,7 @@ RSpec.describe ProductsController, type: :controller do
           name: 'Catprod',
           price: 1,
           stock: 1,
-          robot_id: 2,
+          robot_id: current_robot.id,
         }
       }
     end
@@ -115,7 +115,7 @@ RSpec.describe ProductsController, type: :controller do
           name: '',
           price: 1,
           stock: 1,
-          robot_id: 2,
+          robot_id: current_robot.id,
         }
       }
     end
