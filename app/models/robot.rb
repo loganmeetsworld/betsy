@@ -12,10 +12,8 @@ class Robot < ActiveRecord::Base
 
   def revenue
     total = 0
-      self.orderitems.each do |item|
-        if item.order.status == "paid"
-        total += item.quantity * item.product.price
-      end
+    self.orderitems.each do |item|
+      total += item.quantity * item.product.price if item.order.status == "paid"
     end
     return total
   end

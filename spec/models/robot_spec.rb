@@ -18,7 +18,7 @@ RSpec.describe Robot, type: :model do
 
   describe "revenue method" do
     it "calculates the revenue" do
-      expect(robot.revenue).to eq 10
+      expect(robot.revenue).to eq 40.0
     end
   end
 end

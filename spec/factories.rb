@@ -31,7 +31,7 @@ FactoryGirl.define do
   end
 
   factory :orderitem do
-    quantity 1
+    quantity 4
     association :product
     association :order
   end
