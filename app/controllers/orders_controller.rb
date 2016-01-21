@@ -13,9 +13,10 @@ class OrdersController < ApplicationController
     if !@current_order.save
       @current_order.status = "pending"
       render :checkout
-    self.orderitem_lookup
-
     end
+    @ups = @current_order.get_ups
+    @usps = @current_order.get_usps
+    raise
   end
 
   def cancel
