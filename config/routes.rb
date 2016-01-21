@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:new, :create]
 
   # Orders controller
-  get '/orders/checkout' => 'orders#checkout', as: 'checkout'
+  get '/orders/checkout' => 'orders#order_checkout', as: 'order_checkout'
   patch '/orders/checkout/shipping' => 'orders#shipping', as: 'shipping'
   patch '/orders/checkout/billing' => 'orders#billing', as: 'billing'
   get '/orders/confirm' => 'orders#confirm', as: 'confirm'
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   resources :orders
 
   # Steps controller - helps with multistep forms
-  resources :steps, only: [:show, :update], controller: 'steps'
+  resources :checkout, only: [:show, :update], controller: 'checkout', as: 'checkout'
 
   # Orderitems controller
   patch 'orderitems/:id/ship' => 'orderitems#ship', as: :ship

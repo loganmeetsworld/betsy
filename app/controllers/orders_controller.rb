@@ -2,8 +2,9 @@ class OrdersController < ApplicationController
   def index
   end
 
-  def checkout
-    redirect_to step_path(Order.form_steps.first)
+  def order_checkout
+    # raise
+    redirect_to checkout_path(Order.form_steps.first)
   end
 
   def shipping

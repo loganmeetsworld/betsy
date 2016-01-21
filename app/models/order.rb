@@ -14,7 +14,7 @@ class Order < ActiveRecord::Base
   validates :billing_address, presence: true, if: -> { required_for_step?(:billing_info) }
   validates :billing_city,    presence: true, if: -> { required_for_step?(:billing_info) }
   validates :billing_state,   presence: true, if: -> { required_for_step?(:billing_info) }
-  validates :billing_zip,      presence: true, numericality: { only_integer: true }, length: { is: 5 },  if: -> { required_for_step?(:billing_info) }
+  validates :billing_zip,     presence: true, numericality: { only_integer: true }, length: { is: 5 },  if: -> { required_for_step?(:billing_info) }
 
   cattr_accessor :form_steps do
     %w(shipping_address shipping_info billing_info)
@@ -23,8 +23,8 @@ class Order < ActiveRecord::Base
   attr_accessor :form_step
 
   def required_for_step?(step)
-    # All fields are required if no form step is present
-    return true if form_step.nil?
+    # fields are not required if no form step is present
+    return false if form_step.nil?
 
     # All fields from previous steps are required if the
     # step parameter appears before or we are on the current step
