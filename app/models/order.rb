@@ -10,6 +10,8 @@ class Order < ActiveRecord::Base
   validates :state,       presence: true, on: :update, if: :awaiting_confirmation?
   validates :zip,         presence: true, numericality: { only_integer: true }, length: { is: 5 },  on: :update, if: :awaiting_confirmation?
 
+  serialize :dimensions
+
   def total_items
     total = 0
     self.orderitems.each do |item|
@@ -44,7 +46,14 @@ class Order < ActiveRecord::Base
     end
 
     a.include?(false) ? complete = false : complete = true
-    
+
     return complete
+  end
+
+  def self.orderitem_lookup(query)
+    query = { packages: [{ dimensions: [x, y, z], weight: a }, { dimensions: [x, y, z], weight: a }], origin: { state: "WA", city: "Seattle", zip: "98101" }, destination: { state: "IL", city: "Vernon Hills", zip: "98101" } )
+    orderitems = HTTParty.get("http://localhost:3000/ups/",
+
+    parsed_orderitems = JSON.parse(orderitems)
   end
 end

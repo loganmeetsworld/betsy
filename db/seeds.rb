@@ -199,6 +199,15 @@ products = [
   }
 ]
 
+seed_robots = [
+ { first_name: "Daphne", last_name: "Gold", email: "1@1.com" },
+ { first_name: "Amy", last_name: "Hunter", email: "2@2.com" },
+ { first_name: "Jessica", last_name: "Noglows", email: "3@3.com" },
+ { first_name: "Lauren", last_name: "Granger", email: "4@4.com" },
+ { first_name: "Charles", last_name: "Ellis", email: "5@5.com" },
+ { first_name: "Kari", last_name: "Bancroft", email: "6@6.com" }
+]
+
 reviews = [
   {
     rating: 4,
@@ -467,6 +476,12 @@ categories = [
   { name: "software" }
 ]
 
+seed_robots.each do |seed|
+ user = Robot.create(seed)
+ user.password = "1"
+ user.save
+end
+
 products.each do |product|
   Product.create(product)
 end
@@ -525,4 +540,3 @@ Product.find(23).categories << Category.find(7)
 Product.find(23).categories << Category.find(3)
 Product.find(24).categories << Category.find(2)
 Product.find(24).categories << Category.find(5)
-
