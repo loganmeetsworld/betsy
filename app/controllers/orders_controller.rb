@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    redirect_to order_step_path(@current_order, Order.form_steps.first)
+    redirect_to step_path(Order.form_steps.first)
   end
 
   def shipping

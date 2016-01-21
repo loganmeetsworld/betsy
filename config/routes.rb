@@ -33,9 +33,10 @@ Rails.application.routes.draw do
   patch '/orders/cancel' => 'orders#cancel', as: 'cancel'
   patch '/orders/finalize' => 'orders#finalize', as: 'finalize'
   get '/robots/:id/orders/:id/info' => 'orders#info', as: 'info'
-  resources :orders do
-    resources :steps, only: [:show, :update], controller: 'orders/steps'
-  end
+  resources :orders
+
+  # Steps controller - helps with multistep forms
+  resources :steps, only: [:show, :update], controller: 'steps'
 
   # Orderitems controller
   patch 'orderitems/:id/ship' => 'orderitems#ship', as: :ship
