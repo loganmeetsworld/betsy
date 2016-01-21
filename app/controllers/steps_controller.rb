@@ -1,4 +1,4 @@
-class StepsController < ApplicationController
+class CheckoutController < ApplicationController
   include Wicked::Wizard
   steps *Order.form_steps
 
