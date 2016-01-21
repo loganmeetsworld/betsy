@@ -7,6 +7,7 @@ class Robot < ActiveRecord::Base
   validates :state, presence: true, length: { is: 2 }
   validates :country, presence: true, length: { is: 2 }
   validates :postal_code, presence: true, length: { is: 5 }
+  validates :city, presence: true
 
   has_secure_password
 
