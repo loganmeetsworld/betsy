@@ -11,6 +11,18 @@
       <%= f.text_field :name, placeholder: 'Name', class: "form-control" %><br>
       <%= f.label :description %>
       <%= f.text_area :description, placeholder: 'Description', class: "form-control" %><br>
+      <legend>
+        Product Specifications
+      </legend>
+      Please submit general product specifications in grams/centimeters as whole numbers.<br>
+      <%= f.label :length %>
+      <%= f.number_field :length, class: "form-control", required: true, min: 0 %><br>
+      <%= f.label :width %>
+      <%= f.number_field :width, class: "form-control", required: true, min: 0 %><br>
+      <%= f.label :height %>
+      <%= f.number_field :height, class: "form-control", required: true, min: 0 %><br>
+      <%= f.label :weight %>
+      <%= f.number_field :weight, class: "form-control", required: true, min: 0 %><br>
       <%= f.label :categories %><br>
       <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) do |b| %>
         <%= b.label class: "checkbox-inline" do %>
