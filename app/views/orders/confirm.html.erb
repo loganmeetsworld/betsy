@@ -56,7 +56,7 @@
     <% end %>
   </table>
   <h3>Shipping Options</h3>
-   <%= image_tag("upslogo.png") %>
+   <%= image_tag("upslogo.png") %><%= image_tag("uspslogo.png") %>
     <%=form_for @current_order, url: finalize_path, method: :patch do |f| %>
     <% @rates.each_with_index do |info, i| %>
       <%= f.radio_button :ship_choice, i, required: true %> <%= info["rate"] %> <%= number_to_currency(info["price"]/100.00) %><br>
