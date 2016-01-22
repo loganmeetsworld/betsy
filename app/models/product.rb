@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
   validates :length, presence: true, numericality: { greater_than: 0, less_than_or_equal_to: 108 }
   validates :width, presence: true, numericality: { greater_than: 0, less_than_or_equal_to: 165 }
   validates :height, presence: true, numericality: { greater_than: 0, less_than_or_equal_to: 165 }
-  validates :weight, presence: true, numericality: { greater_than: 0, less_than_or_equal_to: 150 }
+  validates :weight, presence: true, numericality: { greater_than: 0, less_than_or_equal_to: 2400 }
 
   def rating_average
     sums = []

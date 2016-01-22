@@ -123,11 +123,6 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe "GET 'info'" do
-    # before(:each) do
-    #   @order = Order.create(status: "paid", email: "test@test.com", address: "test", city: "test", state: "WA", zip: "98102", credit_name: "test", credit_num: "4444444444444444", cvv: "444")
-    #
-    # end
-
     it "is successful" do
       get :info, id: order.id
       expect(response.status).to eq 200
