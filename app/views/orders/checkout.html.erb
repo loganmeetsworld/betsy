@@ -1,5 +1,5 @@
 <h1>Checkout</h1>
-
+  <%= flash[:alert] unless flash[:alert.nil?] %>
 <ul>
   <% @current_order.errors.each do |column, message| %>
     <% if column.to_s == "credit_name" %>
