@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
+  let(:current_robot) { create(:robot) }
   before :each do
     @category = Category.create(name: 'catprod')
     request.env["HTTP_REFERER"] = "where_i_came_from"
-    @current_robot = Robot.create(username: "robo", email: "robo@email.com", password: "BestPosswordOfAll")
-    session[:robot_id] = @current_robot.id
+    session[:robot_id] = current_robot.id
   end
 
   describe "POST 'create'" do
@@ -39,14 +39,14 @@ RSpec.describe CategoriesController, type: :controller do
 
     it "redirects to the referring page on success" do
       post :create, create_params
-      expect(response).to redirect_to robot_path(@current_robot)
+      expect(response).to redirect_to robot_path(current_robot)
       expect(Category.count).to eq 2
     end
   end
 
   describe "GET 'new'" do
     it "renders the new view" do
-      get :new, robot_id: @current_robot
+      get :new, robot_id: current_robot
       expect(response).to render_template("new")
     end
   end

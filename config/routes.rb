@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'home#index'
 
   # Robot jobs
@@ -25,12 +26,17 @@ Rails.application.routes.draw do
   resources :categories, only: [:new, :create]
 
   # Orders controller
-  get '/orders/checkout' => 'orders#checkout', as: 'checkout'
-  patch '/orders/confirm' => 'orders#confirm', as: 'confirm'
+  get '/orders/checkout' => 'orders#order_checkout', as: 'order_checkout'
+  patch '/orders/checkout/shipping' => 'orders#shipping', as: 'shipping'
+  patch '/orders/checkout/billing' => 'orders#billing', as: 'billing'
+  get '/orders/confirm' => 'orders#confirm', as: 'confirm'
   patch '/orders/cancel' => 'orders#cancel', as: 'cancel'
   patch '/orders/finalize' => 'orders#finalize', as: 'finalize'
   get '/robots/:id/orders/:id/info' => 'orders#info', as: 'info'
   resources :orders
+
+  # Checkout controller - helps with multistep forms
+  resources :checkout, only: [:show, :update], controller: 'checkout', as: 'checkout'
 
   # Orderitems controller
   patch 'orderitems/:id/ship' => 'orderitems#ship', as: :ship

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215233905) do
+ActiveRecord::Schema.define(version: 20160121001724) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -44,9 +44,16 @@ ActiveRecord::Schema.define(version: 20151215233905) do
     t.string   "credit_num"
     t.string   "cvv"
     t.datetime "exp_date"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.datetime "purchase_time"
+    t.string   "name"
+    t.string   "shipping_carrier"
+    t.integer  "shipping_cost"
+    t.string   "billing_address"
+    t.string   "billing_city"
+    t.string   "billing_state"
+    t.string   "billing_zip"
   end
 
   create_table "product_items", force: :cascade do |t|
@@ -66,6 +73,11 @@ ActiveRecord::Schema.define(version: 20151215233905) do
     t.datetime "updated_at",                                          null: false
     t.string   "description"
     t.boolean  "retire",                              default: false
+    t.integer  "weight"
+    t.integer  "length"
+    t.integer  "width"
+    t.integer  "height"
+    t.boolean  "cylinder",                            default: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -80,8 +92,12 @@ ActiveRecord::Schema.define(version: 20151215233905) do
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "state"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "country",         default: "US"
   end
 
 end

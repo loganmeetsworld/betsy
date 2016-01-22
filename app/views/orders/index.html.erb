@@ -46,7 +46,7 @@
     Current cart total: <%= number_to_currency(@current_order.total_amount) %>
   </h4>
   <p class="title-buttons">
-    <%= link_to "Continue to checkout", checkout_path, class: "btn btn-success" %>
+    <%= link_to "Continue to checkout", order_checkout_path, class: "btn btn-success" %>
   </p>
   <%= link_to "Cancel my order", order_path(@current_order), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
 

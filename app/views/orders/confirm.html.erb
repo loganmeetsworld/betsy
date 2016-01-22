@@ -8,7 +8,9 @@
   <h3>Order Information</h3>
   <table class="table table-hover table-bordered">
     <tr class="">
-      <th>Order Total Amount</th>
+      <th>Subtotal</th>
+      <th>Shipping</th>
+      <th>Total</th>
       <th>Time Purchased</th>
       <th>Current Status</th>
     </tr>
@@ -16,6 +18,12 @@
     <tr class="valign">
       <td class="text-center">
         <%= number_to_currency(@completed_order.total_amount) %>
+      </td>
+      <td class="text-center">
+        <%= number_to_currency(@completed_order.shipping_cost/100.00) %>
+      </td>
+      <td class="text-center">
+        <%= number_to_currency(@completed_order.total_amount + @completed_order.shipping_cost/100.00) %>
       </td>
       <td class="text-center">
         <%= @completed_order.updated_at.to_formatted_s(:short) %>

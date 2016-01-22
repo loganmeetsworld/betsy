@@ -1,19 +1,20 @@
 class OrdersController < ApplicationController
   def index
-
   end
 
-  def checkout
+  def order_checkout
+    redirect_to checkout_path(Order.form_steps.first)
+  end
+
+  def shipping
+  end
+
+  def billing
   end
 
   def confirm
     @completed_order = @current_order
     @current_order.status = "Awaiting confirmation"
-    @current_order.attributes = order_params
-    if !@current_order.save
-      @current_order.status = "pending"
-      render :checkout
-    end
   end
 
   def cancel
@@ -60,6 +61,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit([:credit_name, :email, :credit_num, :cvv, :address, :city, :state, :zip])
+    params.require(:order).permit([:credit_name, :email, :credit_num, :cvv, :address, :city, :state, :zip, :name, :shipping_carrier, :shipping_cost, :billing_address, :billing_city, :billing_state, :billing_zip])
   end
 end
