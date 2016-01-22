@@ -33,12 +33,12 @@
       <table class="table table-bordered table-responsive shipping-options">
         <thead>
           <tr>
-            <th>Fedex Options</th>
+            <th>USPS Options</th>
             <th>Cost</th>
           </tr>
         </thead>
         <tbody>
-          <% @fedex_rates.each do |ship_choice, cost| %>
+          <% @usps_rates.each do |ship_choice, cost| %>
             <tr>
               <td><%= ship_choice %></td>
               <td><%= number_to_currency(cost.to_i/100.00) %><%= f.radio_button :shipping_cost, cost.to_i, class: "shipping-radio-btn" %></td>
