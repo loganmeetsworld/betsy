@@ -35,6 +35,7 @@ module ShippingService
         package = get_package_dimensions(item.product)
         array = get_rates(origin, package, carrier)
         hash = make_hash(array)
+        #check for error
         hash.each do |key, val|
           total_hash[key] += val
         end

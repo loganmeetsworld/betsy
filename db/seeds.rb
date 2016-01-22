@@ -55,9 +55,9 @@ products = [
     picture_url: 'http://www.toyrobotsreview.com/wp-content/uploads/2013/08/robot-dog-toy.jpg',
     stock: 3,
     weight: 20,
-    length: 45,
-    width: 45,
-    height: 50
+    length: 4,
+    width: 4,
+    height: 5
   },
   {
     name: "Robot Food", description: "Yummy for robots so probably yummy for humans as well. Humans like robots and so humans probably like robot food.",
@@ -67,7 +67,7 @@ products = [
     stock: 100,
     weight: 30,
     length: 35,
-    width: 55,
+    width: 15,
     height: 12
   },
   {
@@ -114,7 +114,7 @@ products = [
     picture_url: 'https://f1.bcbits.com/img/a2219945996_16.jpg',
     stock: 5,
     weight: 50,
-    length: 45,
+    length: 14,
     width: 25,
     height: 17
   },
@@ -127,7 +127,7 @@ products = [
     stock: 4,
     weight: 65,
     length: 24,
-    width: 53,
+    width: 23,
     height: 12
   },
   {
@@ -162,8 +162,8 @@ products = [
     picture_url: 'http://media02.hongkiat.com/humanoid_robot_artwork/Equilibrium-robot-artwork-by-Daniel-Arnold-Mist.jpg',
     stock: 3,
     weight: 92,
-    length: 45,
-    width: 45,
+    length: 15,
+    width: 4,
     height: 35
   },
   {
@@ -187,8 +187,8 @@ products = [
     stock: 1,
     weight: 25,
     length: 25,
-    width: 28,
-    height: 32
+    width: 18,
+    height: 12
   },
   {
     name: "The Scream",
@@ -222,9 +222,9 @@ products = [
     picture_url: 'http://images.askmen.com/entertainment/guy_gear/ski-gadgets-2015_1417794395.jpg',
     stock: 3,
     weight: 92,
-    length: 30,
-    width: 30,
-    height: 35
+    length: 20,
+    width: 10,
+    height: 25
   },
   {
     name: "Portable Speaker",
@@ -258,9 +258,9 @@ products = [
     picture_url: 'http://www.emel.com/images/gadget3_57.jpg',
     stock: 7,
     weight: 45,
-    length: 99,
-    width: 98,
-    height: 90
+    length: 19,
+    width: 18,
+    height: 10
   },
   {
     name: "Arm Phone",
@@ -319,8 +319,8 @@ products = [
     stock: 15,
     weight: 23,
     length: 40,
-    width: 65,
-    height: 60
+    width: 6,
+    height: 10
   },
   {
     name: "Robot Oil",
