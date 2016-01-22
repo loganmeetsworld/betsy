@@ -2,14 +2,16 @@
 
 <% if @ups_rates.class == String %>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12 text-center">
       Sorry, there is a problem shipping <%= @ups_rates %>. Please remove it from your cart to continue.
+      <%= link_to "Back to cart", order_checkout_path, class: "btn btn-default" %>
     </div>
   </div>
 <% elsif @usps_rates.class == String %>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12 text-center">
       Sorry, there is a problem shipping <%= @usps_rates %>. Please remove it from your cart to continue.
+      <%= link_to "Back to cart", order_checkout_path, class: "btn btn-default" %>
     </div>
   </div>
 <% else %>
