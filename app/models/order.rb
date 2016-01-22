@@ -10,7 +10,19 @@ class Order < ActiveRecord::Base
   validates :state,       presence: true, on: :update, if: :awaiting_confirmation?
   validates :zip,         presence: true, numericality: { only_integer: true }, length: { is: 5 },  on: :update, if: :awaiting_confirmation?
 
-  serialize :dimensions
+  def get_ups
+    query = { packages: [{ dimensions: [25, 10, 15], weight: 500 }, { dimensions: [18, 30, 10], weight: 5000 }], origin: { state: "WA", city: "Seattle", zip: "98101" }, destination: { state: "IL", city: "Vernon Hills", zip: "60061" } }.to_json
+    r = HTTParty.post("http://shipple.herokuapp.com/ups/", headers: { 'Content-Type' => 'application/json' }, body: query)
+    response = JSON.parse(r.body)
+    return response["data"]
+  end
+
+  def get_usps
+    query = { packages: [{ dimensions: [25, 10, 15], weight: 500 }, { dimensions: [18, 30, 10], weight: 5000 }], origin: { state: "WA", city: "Seattle", zip: "98101" }, destination: { state: "IL", city: "Vernon Hills", zip: "60061" } }.to_json
+    r = HTTParty.post("http://shipple.herokuapp.com/usps/", headers: { 'Content-Type' => 'application/json' }, body: query)
+    response = JSON.parse(r.body)
+    return response["data"]
+  end
 
   def total_items
     total = 0
@@ -48,9 +60,5 @@ class Order < ActiveRecord::Base
     a.include?(false) ? complete = false : complete = true
 
     return complete
-  end
-
-  def self.orderitem_lookup(query)
-  
   end
 end

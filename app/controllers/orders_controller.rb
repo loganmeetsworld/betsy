@@ -14,6 +14,9 @@ class OrdersController < ApplicationController
       @current_order.status = "pending"
       render :checkout
     end
+    @ups = @current_order.get_ups
+    @usps = @current_order.get_usps
+    raise
   end
 
   def cancel
