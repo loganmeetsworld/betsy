@@ -3,7 +3,12 @@ BOTsy is online store hosting a wide variety of products made by robots. In this
 
 # Link to Trello Board for Shipping Service API
 https://trello.com/b/822g87Dz/botsy-shipping-service
-Requirements met for Shipping Service
+Requirements met for Shipping Service assignment.
+Made a shipping service API that generates shipping rate information
+from UPS and USPS.
+
+#Link to Shipping Service API
+https://github.com/daphnegold/shipping-service/tree/dargash/master
 
 #Upcoming
 More new RSPEC tests for BOTsy
