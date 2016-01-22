@@ -14,9 +14,14 @@ class OrdersController < ApplicationController
       @current_order.status = "pending"
       render :checkout
     end
-    ups = @current_order.get_ups
-    usps = @current_order.get_usps
-    @rates = ups + usps
+    ups = @current_order.get_service("ups")
+    usps = @current_order.get_service("usps")
+    unless ups.nil? || usps.nil?
+      @rates = ups + usps
+    else
+      flash[:alert] = "There is a problem with your shipping address!"
+      render :checkout
+    end
     cookies.signed[:shipping] = @rates
   end
 

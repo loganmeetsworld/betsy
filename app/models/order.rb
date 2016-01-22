@@ -10,18 +10,26 @@ class Order < ActiveRecord::Base
   validates :state,       presence: true, on: :update, if: :awaiting_confirmation?
   validates :zip,         presence: true, numericality: { only_integer: true }, length: { is: 5 },  on: :update, if: :awaiting_confirmation?
 
-  def get_ups
-    query = { packages: [{ dimensions: [25, 10, 15], weight: 500 }, { dimensions: [18, 30, 10], weight: 5000 }], origin: { state: "WA", city: "Seattle", zip: "98101" }, destination: { state: "IL", city: "Vernon Hills", zip: "60061" } }.to_json
-    r = HTTParty.post("http://shipple.herokuapp.com/ups/", headers: { 'Content-Type' => 'application/json' }, body: query)
-    response = JSON.parse(r.body)
-    return response["data"]
-  end
+  def get_service(service)
+    packages = []
+    self.orderitems.each do |oi|
+      packages << { dimensions: [oi.product.length, oi.product.height, oi.product.width], weight: oi.product.weight }
+    end
 
-  def get_usps
-    query = { packages: [{ dimensions: [25, 10, 15], weight: 500 }, { dimensions: [18, 30, 10], weight: 5000 }], origin: { state: "WA", city: "Seattle", zip: "98101" }, destination: { state: "IL", city: "Vernon Hills", zip: "60061" } }.to_json
-    r = HTTParty.post("http://shipple.herokuapp.com/usps/", headers: { 'Content-Type' => 'application/json' }, body: query)
-    response = JSON.parse(r.body)
-    return response["data"]
+    unless self.ship_city.empty? || self.ship_zip.empty? || self.ship_state.empty?
+      destination = { state: self.ship_state, city: self.ship_city, zip: self.ship_zip }
+    else
+      destination = { state: self.state, city: self.city, zip: self.zip }
+    end
+
+    query = { packages: packages, origin: { state: "WA", city: "Seattle", zip: "98101" }, destination: destination }.to_json
+    r = HTTParty.post("http://shipple.herokuapp.com/#{service}/", headers: { 'Content-Type' => 'application/json' }, body: query)
+    unless r.nil? || r.empty?
+      response = JSON.parse(r.body)
+      return response["data"]
+    else
+      return nil
+    end
   end
 
   def total_items
