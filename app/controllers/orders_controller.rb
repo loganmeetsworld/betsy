@@ -45,6 +45,7 @@ class OrdersController < ApplicationController
     @current_order.status = "paid"
     @current_order.purchase_time = Time.now
     @current_order.save
+    @total_price = @current_order.total_ship
     session[:order_id] = nil
     cookies.delete :shipping
     render :thanks

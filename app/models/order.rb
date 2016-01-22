@@ -42,6 +42,11 @@ class Order < ActiveRecord::Base
     return total
   end
 
+  def total_ship
+    total = self.total_amount
+    return total += self.ship_price/100.00
+  end
+
   def awaiting_confirmation?
     status == "Awaiting confirmation"
   end
