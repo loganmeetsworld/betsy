@@ -14,8 +14,10 @@ class OrdersController < ApplicationController
       @current_order.status = "pending"
       render :checkout
     end
-    @ups = @current_order.get_ups
-    @usps = @current_order.get_usps
+    ups = @current_order.get_ups
+    usps = @current_order.get_usps
+    @rates = ups + usps
+    cookies.signed[:shipping] = @rates
   end
 
   def cancel
@@ -36,10 +38,15 @@ class OrdersController < ApplicationController
         item.product.save
       end
     end
+
+    ship_hash = cookies.signed[:shipping][params[:order][:ship_choice].to_i]
+    @current_order.ship_choice = ship_hash["rate"]
+    @current_order.ship_price = ship_hash["price"]
     @current_order.status = "paid"
     @current_order.purchase_time = Time.now
     @current_order.save
     session[:order_id] = nil
+    cookies.delete :shipping
     render :thanks
   end
 

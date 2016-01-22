@@ -57,22 +57,14 @@
   </table>
 
   <h3>Shipping Options</h3>
-  <%=form_for @current_order do |f| %>
-    <%= @ups.each do |info| %>
-    <%= info["rate"] %>
-    <%= info["price"] %><br>
+  <%=form_for @current_order, url: finalize_path, method: :patch do |f| %>
+    <% @rates.each_with_index do |info, i| %>
+      <%= f.radio_button :ship_choice, i, required: true %> <%= info["rate"] %> <%= number_to_currency(info["price"]/100.00) %><br>
     <% end %>
-
-    <%= @usps.each do |info| %>
-    <%= info["rate"] %>
-    <%= info["price"] %><br>
-    <% end %>
+    <br>
+    <p class="title-buttons">
+      <%= link_to "Cancel this order", cancel_path, method: :patch, data: { confirm: 'Are you sure you want to cancel this order?' }, class: 'btn btn-danger' %>
+      <%= f.submit "Confirm this order", class: 'btn btn-success' %>
+    </p>
   <% end %>
-
-
-  <p class="title-buttons">
-    <%= link_to "Cancel this order", cancel_path, method: :patch, data: { confirm: 'Are you sure you want to cancel this order?' }, class: 'btn btn-danger' %>
-    <%= link_to "Confirm this order", finalize_path, method: :patch, class: 'btn btn-success' %>
-  </p>
-
 </div>
