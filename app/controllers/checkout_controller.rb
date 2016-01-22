@@ -5,7 +5,8 @@ class CheckoutController < ApplicationController
   def show
     if params[:id] == "shipping_info"
       order = @current_order
-      @response = ShippingService::Order.new(order).get_ups_total
+      @ups_rates = ShippingService::Order.new(order).get_total("ups")
+      @fedex_rates = ShippingService::Order.new(order).get_total("fedex")
     end
     render_wizard
   end
