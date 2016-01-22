@@ -1,12 +1,13 @@
 module ShippingService
-  class Package
+  class Order
 
     BASE_URI = "https://botsy-shipping.herokuapp.com/"
 
-    def initialize(robot, order, product)
-      @origin = get_robot_location(robot)
+    def initialize(order)
+      # @origin = get_robot_location(robot)
       @destination = get_package_location(order)
-      @package = get_package_dimensions(product)
+      # @package = get_package_dimensions(product)
+      @orderitems = order.orderitems
     end
 
     # return a JSON with correct formatting for the shipping service API
@@ -23,13 +24,35 @@ module ShippingService
     end
 
     # HTTParty request
-    def get_fedex_rate
-      HTTParty.post("#{BASE_URI}fedex_rates", :headers => { 'Content-Type' => 'application/json' }, :body => { "origin" => @origin, "destination" => @destination,  "package" => @package }.to_json)
+    def get_fedex_rate(origin, package)
+      HTTParty.post("#{BASE_URI}fedex_rates", :headers => { 'Content-Type' => 'application/json' }, :body => { "origin" => origin, "destination" => @destination,  "package" => package }.to_json)
     end
 
     # HTTParty request
     def get_ups_rate
       HTTParty.post("#{BASE_URI}ups_rates", :headers => { 'Content-Type' => 'application/json' }, :body => { "origin" => @origin, "destination" => @destination,  "package" => @package }.to_json)
+    end
+
+    def get_fedex_total
+      fedex_total_hash = Hash.new(0)
+      @orderitems.each do |item|
+        origin = get_robot_location(item.product.robot)
+        package = get_package_dimensions(item.product)
+        fedex_array = get_fedex_rate(origin, package)
+        fedex_hash = make_hash(fedex_array)
+        fedex_hash.each do |key, val|
+          fedex_total_hash[key] += val
+        end
+      end
+      return fedex_total_hash
+    end
+
+    def make_hash(array)
+      hash = {}
+      array.each do |arr|
+        hash[arr[0]] = arr[1]
+      end
+      return hash
     end
   end
 end
