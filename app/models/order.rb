@@ -26,7 +26,7 @@ class Order < ActiveRecord::Base
 
     query = { packages: packages, origin: { state: "WA", city: "Seattle", zip: "98101" }, destination: destination }.to_json
     r = HTTParty.post("http://shipple.herokuapp.com/#{service}/", headers: { 'Content-Type' => 'application/json' }, body: query)
-    unless r.nil? || r.empty?
+    unless r.nil? || r.empty? || !r.success?
       response = JSON.parse(r.body)
       return response["data"]
     else
