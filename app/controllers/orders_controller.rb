@@ -16,7 +16,6 @@ class OrdersController < ApplicationController
     end
     @ups = @current_order.get_ups
     @usps = @current_order.get_usps
-    raise
   end
 
   def cancel
@@ -27,7 +26,6 @@ class OrdersController < ApplicationController
   end
 
   def finalize
-    raise
     items = @current_order.orderitems
     items.each do |item|
       if item.quantity > item.product.stock
