@@ -4,9 +4,7 @@ module ShippingService
     BASE_URI = "https://botsy-shipping.herokuapp.com/"
 
     def initialize(order)
-      # @origin = get_robot_location(robot)
       @destination = get_package_location(order)
-      # @package = get_package_dimensions(product)
       @orderitems = order.orderitems
     end
 
@@ -23,7 +21,6 @@ module ShippingService
       return {"weight" => product.weight, "length" => product.length, "width" => product.width, "height" => product.height, "cylinder" => product.cylinder }
     end
 
-    # HTTParty request
     def get_rates(origin, package, carrier)
       HTTParty.post("#{BASE_URI}#{carrier}_rates", :headers => { 'Content-Type' => 'application/json' }, :body => { "origin" => origin, "destination" => @destination,  "package" => package }.to_json)
     end
@@ -33,6 +30,7 @@ module ShippingService
       @orderitems.each do |item|
         origin = get_robot_location(item.product.robot)
         package = get_package_dimensions(item.product)
+        quantity = item.quantity
         array = get_rates(origin, package, carrier)
         bad_product = check_for_error(array)
         if bad_product
@@ -40,7 +38,7 @@ module ShippingService
         else
           hash = make_hash(array)
           hash.each do |key, val|
-            total_hash[key] += val
+            total_hash[key] += (val * quantity)
           end
         end
       end
