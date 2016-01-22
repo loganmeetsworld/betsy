@@ -34,13 +34,23 @@ module ShippingService
         origin = get_robot_location(item.product.robot)
         package = get_package_dimensions(item.product)
         array = get_rates(origin, package, carrier)
-        hash = make_hash(array)
-        #check for error
-        hash.each do |key, val|
-          total_hash[key] += val
+        bad_product = check_for_error(array)
+        if bad_product
+          return item.product.name
+        else
+          hash = make_hash(array)
+          hash.each do |key, val|
+            total_hash[key] += val
+          end
         end
       end
       return total_hash
+    end
+
+    def check_for_error(array)
+      if array.parsed_response[0] == ["error"]
+        return true
+      end
     end
 
     def make_hash(array)

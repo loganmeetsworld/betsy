@@ -1,53 +1,68 @@
 <h1>Shipping Options</h1>
 
-<div class="row">
-  <div class="col-md-6">
-    <%= form_for @current_order, method: :put, url: wizard_path do |f| %>
-      <% if f.object.errors.any? %>
-        <div class="error_messages">
-          <% f.object.errors.full_messages.each do |error| %>
-            <p><%= error %></p>
-          <% end %>
+<% if @ups_rates.class == String %>
+  <div class="row">
+    <div class="col-md-6">
+      Sorry, there is a problem shipping <%= @ups_rates %>. Please remove it from your cart to continue.
+    </div>
+  </div>
+<% elsif @usps_rates.class == String %>
+  <div class="row">
+    <div class="col-md-6">
+      Sorry, there is a problem shipping <%= @usps_rates %>. Please remove it from your cart to continue.
+    </div>
+  </div>
+<% else %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_for @current_order, method: :put, url: wizard_path do |f| %>
+        <% if f.object.errors.any? %>
+          <div class="error_messages">
+            <% f.object.errors.full_messages.each do |error| %>
+              <p><%= error %></p>
+            <% end %>
+          </div>
+        <% end %>
+        <div class="container">
+          <table class="table table-bordered table-responsive shipping-options">
+            <thead>
+              <tr>
+                <th>UPS Options</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @ups_rates.each do |ship_choice, cost| %>
+                <tr>
+                  <td><%= ship_choice %></td>
+                  <td><%= number_to_currency(cost.to_i/100.00) %><%= f.radio_button :shipping_cost, cost.to_i/100.00, class: "shipping-radio-btn" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
-      <% end %>
+
       <div class="container">
         <table class="table table-bordered table-responsive shipping-options">
           <thead>
             <tr>
-              <th>UPS Options</th>
+              <th>USPS Options</th>
               <th>Cost</th>
             </tr>
           </thead>
           <tbody>
-            <% @ups_rates.each do |ship_choice, cost| %>
+            <% @usps_rates.each do |ship_choice, cost| %>
               <tr>
                 <td><%= ship_choice %></td>
-                <td><%= number_to_currency(cost.to_i/100.00) %><%= f.radio_button :shipping_cost, cost.to_i/100.00, class: "shipping-radio-btn" %></td>
+                <td><%= number_to_currency(cost.to_i/100.00) %><%= f.radio_button :shipping_cost, cost.to_i, class: "shipping-radio-btn" %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
-
-    <div class="container">
-      <table class="table table-bordered table-responsive shipping-options">
-        <thead>
-          <tr>
-            <th>USPS Options</th>
-            <th>Cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @usps_rates.each do |ship_choice, cost| %>
-            <tr>
-              <td><%= ship_choice %></td>
-              <td><%= number_to_currency(cost.to_i/100.00) %><%= f.radio_button :shipping_cost, cost.to_i, class: "shipping-radio-btn" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%= f.submit "Continue", class: "btn btn-primary" %>
+      <% end %>
     </div>
-    <%= f.submit "Continue", class: "btn btn-primary" %>
-    <% end %>
   </div>
-</div>
+<% end %>

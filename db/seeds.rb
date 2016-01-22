@@ -342,8 +342,8 @@ products = [
     picture_url: 'http://www.ilikewallpaper.net/ipad-air-wallpapers/download/20619/Golden-Watch-Gears-ipad-air-wallpaper-ilikewallpaper_com.jpg',
     stock: 67,
     weight: 4.5,
-    length: 7,
-    width: 7,
+    length: 70,
+    width: 70,
     height: 12
   }
 ]
