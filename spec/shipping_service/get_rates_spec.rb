@@ -36,8 +36,19 @@ RSpec.describe ShippingService::Order do
   end
 
   describe "get_total(carrier)" do
-    it "returns a hash" do
+    it "returns a hash if the product is within size guidelines" do
       expect(my_order.get_total("ups")).to be_an_instance_of Hash
     end
+
+    # robot2 = Robot.create(username: "test2", email: "test2@test.com", password: "test", password_confirmation: "test", state: "WA", city: "Seattel", country: "US", postal_code: "12345")
+    # product2 = Product.create(name: 'product', price: 10, stock: 10, length: 100, width: 100, height: 100, weight: 100, robot_id: robot2.id)
+    # orderitem2 = Orderitem.create(product_id: product2.id)
+    # order2 = Order.new(status: 'paid', email: 'test2@test.com', address: 'test', city: 'test', state: 'WA', zip: '98102', credit_name: 'test', credit_num: '1233456712345678', cvv: '123')
+    # order2.orderitems.push(orderitem2)
+    # bad_order = ShippingService::Order.new(order2)
+    #
+    # it "returns a string if the product is not within size guidelines" do
+    #   expect(bad_order.get_total("ups")).to be_an_instance_of String
+    # end
   end
 end
