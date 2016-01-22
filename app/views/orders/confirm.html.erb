@@ -57,10 +57,18 @@
   </table>
 
   <h3>Shipping Options</h3>
-    <%= radio_button_tag(:ups, "UPS") %>
-    <%= label_tag(:ups_ship, "UPS") %> <br>
-    <%= radio_button_tag(:usps, "USPS") %>
-    <%= label_tag(:age_adult, "USPS") %>
+  <%=form_for @current_order do |f| %>
+    <%= @ups.each do |info| %>
+    <%= info["rate"] %>
+    <%= info["price"] %><br>
+    <% end %>
+
+    <%= @usps.each do |info| %>
+    <%= info["rate"] %>
+    <%= info["price"] %><br>
+    <% end %>
+  <% end %>
+
 
   <p class="title-buttons">
     <%= link_to "Cancel this order", cancel_path, method: :patch, data: { confirm: 'Are you sure you want to cancel this order?' }, class: 'btn btn-danger' %>
