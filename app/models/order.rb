@@ -49,11 +49,6 @@ class Order < ActiveRecord::Base
     return total
   end
 
-  # commenting out for now, multistep form should take care of this
-  # def awaiting_confirmation?
-  #   status == "Awaiting confirmation"
-  # end
-
   def complete?
     complete = true
     a = []
