@@ -111,6 +111,9 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     it "goes back to the cart on failure" do
+      session[:order_id] = orderitem.order.id
+      orderitem.quantity = 11
+      orderitem.save
       patch :finalize
       expect(subject).to redirect_to orders_path
     end
