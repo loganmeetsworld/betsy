@@ -16,7 +16,7 @@ RSpec.describe Product, type: :model do
     it { is_expected.to validate_numericality_of(:length).is_greater_than(0).is_less_than_or_equal_to(108) }
     it { is_expected.to validate_numericality_of(:width).is_greater_than(0).is_less_than_or_equal_to(165) }
     it { is_expected.to validate_numericality_of(:height).is_greater_than(0).is_less_than_or_equal_to(165) }
-    it { is_expected.to validate_numericality_of(:weight).is_greater_than(0).is_less_than_or_equal_to(150) }
+    it { is_expected.to validate_numericality_of(:weight).is_greater_than(0).is_less_than_or_equal_to(2400) }
   end
 
   describe "model methods" do
