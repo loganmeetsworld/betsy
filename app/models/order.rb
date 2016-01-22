@@ -13,7 +13,9 @@ class Order < ActiveRecord::Base
   def get_service(service)
     packages = []
     self.orderitems.each do |oi|
-      packages << { dimensions: [oi.product.length, oi.product.height, oi.product.width], weight: oi.product.weight }
+      oi.quantity.times do
+        packages << { dimensions: [oi.product.length, oi.product.height, oi.product.width], weight: oi.product.weight }
+      end
     end
 
     unless self.ship_city.empty? || self.ship_zip.empty? || self.ship_state.empty?
