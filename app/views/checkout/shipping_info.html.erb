@@ -41,7 +41,7 @@
           <% @fedex_rates.each do |ship_choice, cost| %>
             <tr>
               <td><%= ship_choice %></td>
-              <td>$ <%= cost.to_i/100.0 %><%= f.radio_button :shipping_cost, 'cost', class: "shipping-radio-btn" %></td>
+              <td><%= number_to_currency(cost.to_i/100) %><%= f.radio_button :shipping_cost, cost.to_i/100.00, class: "shipping-radio-btn" %></td>
             </tr>
           <% end %>
         </tbody>

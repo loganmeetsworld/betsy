@@ -27,7 +27,7 @@ class CheckoutController < ApplicationController
     when "shipping_address"
         [:name, :address, :city, :state, :zip]
     when "shipping_info"
-      [:shipping_carrier]
+      [:shipping_cost]
     when "billing_info"
       [:credit_name, :email, :credit_num, :cvv, :billing_address, :billing_city, :billing_state, :billing_zip]
     end
