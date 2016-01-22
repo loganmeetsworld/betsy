@@ -10,12 +10,30 @@
           <% end %>
         </div>
       <% end %>
-      <div class="btn-group" data-toggle="buttons-radio">
+      <div class="container">
+      <table class="table table-bordered table-responsive">
+        <thead>
+          <tr>
+            <th>Shipping Choice</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @response.each do |ship_choice, cost| %>
+          <tr>
+            <td><%= ship_choice %></td>
+            <td>$ <%= cost.to_i/100.0 %><%= f.radio_button :shipping_cost, 'cost' %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+      <!-- <div class="btn-group" data-toggle="buttons-radio">
         <%= f.radio_button :shipping_carrier, 'fedex' %>
         <%= f.label :shipping_carrier, 'Fedex', :value => 'fedex' %>
         <%= f.radio_button :shipping_carrier, 'ups' %>
         <%= f.label :shipping_carrier, 'UPS', :value => 'ups' %>
-      </div>
+      </div> -->
       <%= f.submit "Continue", class: "btn btn-primary" %>
     <% end %>
   </div>

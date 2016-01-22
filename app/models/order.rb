@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   validates :city,            presence: true, if: -> { required_for_step?(:shipping_address) }
   validates :state,           presence: true, if: -> { required_for_step?(:shipping_address) }
   validates :zip,             presence: true, numericality: { only_integer: true }, length: { is: 5 },  if: -> { required_for_step?(:shipping_address) }
-  validates :shipping_carrier,presence: true, if: -> { required_for_step?(:shipping_info) }
+  # validates :shipping_cost,   presence: true, if: -> { required_for_step?(:shipping_info) }
   validates :credit_name,     presence: true, if: -> { required_for_step?(:billing_info) }
   validates :email,           presence: true, if: -> { required_for_step?(:billing_info) }
   validates :credit_num,      presence: true, numericality: { only_integer: true }, length: { is: 16 }, if: -> { required_for_step?(:billing_info) }
