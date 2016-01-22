@@ -6,7 +6,7 @@ class CheckoutController < ApplicationController
     if params[:id] == "shipping_info"
       order = @current_order
       @ups_rates = ShippingService::Order.new(order).get_total("ups")
-      @fedex_rates = ShippingService::Order.new(order).get_total("fedex")
+      @usps_rates = ShippingService::Order.new(order).get_total("usps")
     end
     render_wizard
   end
